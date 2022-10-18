@@ -4,7 +4,7 @@ const Search = (): JSX.Element => {
 
     const [form, setForm] = useState<string>(``)
 
-    const handleSubmit = (e: BaseSyntheticEvent): void => {
+    const handleSubmit = (e: SyntheticEvent): void => {
         e.preventDefault()
 
         console.log(e)
