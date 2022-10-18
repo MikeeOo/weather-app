@@ -1,9 +1,12 @@
 import React from 'react';
 
-function App() {
+import MainPage from "./pages/MainPage";
+
+function App(): JSX.Element {
   return (
     <>
 
+        <MainPage/>
     </>
   );
 }
