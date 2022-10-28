@@ -1,13 +1,13 @@
-import CitySearch from "../components/CitySearch";
-import CitiesShow from "../components/CitiesShow";
+import LocationSearch from "../components/LocationSearch";
+import LocationDisplay from "../components/LocationDisplay";
 
 const MainPage = (): JSX.Element => {
     
   return (
       <>
 
-          <CitySearch/>
-          <CitiesShow/>
+          <LocationSearch/>
+          <LocationDisplay/>
       </>
   )
 }

@@ -1,10 +1,12 @@
-export interface ICitiesReducer {
-    cities: ICities
+export interface ILocationDataReducer {
+    locationData: ILocationDataArray
 }
 
-export interface ICities {
-    citiesData: Array<object>
+export interface ILocationDataArray {
+    locationDataArray: Array<object>
 }
+
+
 
 // export interface ICitiesDataSlice {
 //     name: string,
