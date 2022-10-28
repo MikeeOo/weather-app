@@ -1,16 +1,13 @@
-import Search from "../components/Search";
-
+import CitySearch from "../components/CitySearch";
+import CitiesShow from "../components/CitiesShow";
 
 const MainPage = (): JSX.Element => {
-
-
-
-
-
-
+    
   return (
       <>
-          <Search/>
+
+          <CitySearch/>
+          <CitiesShow/>
       </>
   )
 }
