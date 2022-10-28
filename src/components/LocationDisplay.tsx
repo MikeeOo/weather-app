@@ -8,8 +8,16 @@ const LocationDisplay = (): JSX.Element => {
 
   return (
       <>
-          <Location/>
-          {console.log(locationDataArray)}
+
+          {locationDataArray.map((el) =>
+              <Location key={el.locationId}
+                        locationName={el.locationName}
+                        locationTemp={el.locationTemp}
+                        locationDesc={el.locationDesc}
+                        locationIcon={el.locationIcon}
+                        locationPicture={el.locationPicture}
+              />
+          )}
       </>
   )
 }

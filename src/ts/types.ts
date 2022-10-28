@@ -3,13 +3,13 @@ export interface ILocationDataReducer {
 }
 
 export interface ILocationDataArray {
-    locationDataArray: Array<object>
+    locationDataArray: Array<any>
 }
 
+export interface ILocationData {
+    value: IData
+}
 
-
-// export interface ICitiesDataSlice {
-//     name: string,
-//     initialState: Array<object>,
-//     reducers: string,
-// }
+export interface IData {
+    name: string
+}
