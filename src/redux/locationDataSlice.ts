@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getLocationDataFromAPI} from "../api/thunks";
-import {ILocationDataReducer, ILocationDataArray} from "../ts/types";
+import {ILocationDataReducer, ILocationDataArray, ILocationData, IAction} from "../ts/types";
 
 const initialState: ILocationDataArray = {
     locationDataArray: []
@@ -10,20 +10,21 @@ const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
-
     },
     extraReducers: builder => {
-        builder.addCase(getLocationDataFromAPI.fulfilled, (state, {meta, payload}) => {
+        builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: IAction): void => {
             // if(data[0].value.cod !== "404")
+            console.log(action.meta)
+            console.log(action.payload)
 
             state.locationDataArray.push({
 
-                locationId: meta.requestId,
-                locationName: payload[0].value.name,
-                locationTemp: payload[0].value.main.temp,
-                locationDesc: payload[0].value.weather[0].description,
-                locationIcon: payload[0].value.weather[0].icon,
-                locationPicture: payload[1].value.hits[Math.floor(Math.random() * payload[1].value.hits.length)].largeImageURL,
+                locationId: action.meta.requestId,
+                locationName: action.payload[0].value.name,
+                locationTemp: action.payload[0].value.main.temp,
+                locationDesc: action.payload[0].value.weather[0].description,
+                locationIcon: action.payload[0].value.weather[0].icon,
+                locationPicture: action.payload[1].value.hits[Math.floor(Math.random() * action.payload[1].value.hits.length)].largeImageURL,
             })
         })
     }
@@ -32,6 +33,6 @@ const locationDataSlice = createSlice({
 
 // export const {} = locationDataSlice.actions
 
-export const locationDataArray = (state: ILocationDataReducer): Array<any> => state.locationData.locationDataArray
+export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
 
 export default locationDataSlice.reducer

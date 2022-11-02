@@ -1,6 +1,6 @@
-const Location = (props): JSX.Element => {
+import {ILocationDataProps} from "../ts/types";
 
-
+const Location = (props: ILocationDataProps): JSX.Element => {
 
   return (
       <div style={{backgroundColor: `darkgrey`, border: `2px dashed yellow`}}>

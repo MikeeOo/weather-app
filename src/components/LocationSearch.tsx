@@ -22,8 +22,7 @@ const LocationSearch = (): JSX.Element => {
               <input type="text"
                      value={locationInput}
                      placeholder={`City, Country or Landmark`}
-                     onChange={e => setLocationInput(e.target.value)}
-              />
+                     onChange={e => setLocationInput(e.target.value)}/>
 
               <button>Add Location</button>
           </form>
