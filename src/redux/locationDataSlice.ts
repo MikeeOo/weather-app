@@ -11,9 +11,10 @@ const locationDataSlice = createSlice({
     initialState,
     reducers: {
     },
-    extraReducers: builder => {
+    extraReducers: (builder): void => {
         builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: IAction): void => {
-            // if(data[0].value.cod !== "404")
+
+            console.log(state)
             console.log(action.meta)
             console.log(action.payload)
 
@@ -24,7 +25,8 @@ const locationDataSlice = createSlice({
                 locationTemp: action.payload[0].value.main.temp,
                 locationDesc: action.payload[0].value.weather[0].description,
                 locationIcon: action.payload[0].value.weather[0].icon,
-                locationPicture: action.payload[1].value.hits[Math.floor(Math.random() * action.payload[1].value.hits.length)].largeImageURL,
+                locationPicture: action.payload[1].value.hits
+                    [Math.floor(Math.random() * action.payload[1].value.hits.length)].largeImageURL,
             })
         })
     }

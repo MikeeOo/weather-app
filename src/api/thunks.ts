@@ -9,5 +9,5 @@ export const getLocationDataFromAPI = createAsyncThunk(
             (await fetch(`${WEATHER_API}weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
             (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${city}`)).json()
         ])
-    },
+    }
 )

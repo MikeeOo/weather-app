@@ -29,19 +29,37 @@ export interface IAction {
     meta: IMeta,
 }
 
-// export interface IPayload{
-//     status: string,
-//     value: any
-// }
+export interface IPayload {
+    status: string,
+    // value?: IWeatherData & IPictureData
+    value?: any
+    reason?: string
+}
 
-//
-// export interface IWeatherData{
-//     name: string,
-//     main: any,
-//     weather: any
-// }
+export interface IWeatherData{
+    name: string
+    main: IWeatherMain
+    weather: Array<IWeatherWeather>
+}
 
-export interface IMeta {
+export interface IWeatherMain{
+    temp: number
+}
+
+export interface IWeatherWeather{
+    description: string,
+    icon: string,
+}
+
+interface IPictureData{
+    hits: Array<IPicture>
+}
+
+interface IPicture{
+    largeImageURL: string
+}
+
+interface IMeta {
     arg: string,
     requestId: string,
     requestStatus: string,

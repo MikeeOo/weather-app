@@ -13,8 +13,6 @@ const Location = (props: ILocationDataProps): JSX.Element => {
           {props.locationIcon}
           <br/>
           {props.locationPicture}
-          {/*<img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon"/>*/}
-          {/*{(Math.round(weatherData.main.temp.toFixed(1)))}°C*/}
       </div>
   )
 }

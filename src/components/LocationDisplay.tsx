@@ -15,8 +15,7 @@ const LocationDisplay = (): JSX.Element => {
                         locationTemp={el.locationTemp}
                         locationDesc={el.locationDesc}
                         locationIcon={el.locationIcon}
-                        locationPicture={el.locationPicture}
-              />
+                        locationPicture={el.locationPicture}/>
           )}
       </>
   )

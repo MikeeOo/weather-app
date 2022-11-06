@@ -1,4 +1,4 @@
-import {BaseSyntheticEvent, SyntheticEvent, useState} from "react";
+import {SyntheticEvent, useState} from "react";
 import {useDispatch} from "react-redux";
 import {getLocationDataFromAPI} from "../api/thunks";
 
