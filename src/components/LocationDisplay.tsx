@@ -8,14 +8,14 @@ const LocationDisplay = (): JSX.Element => {
 
   return (
       <>
-
-          {locationDataArray.map((el) =>
-              <Location key={el.locationId}
-                        locationName={el.locationName}
-                        locationTemp={el.locationTemp}
-                        locationDesc={el.locationDesc}
-                        locationIcon={el.locationIcon}
-                        locationPicture={el.locationPicture}/>
+          {locationDataArray.map((location) =>
+              <Location key={location.locationId}
+                        locationId={location.locationId}
+                        locationName={location.locationName}
+                        locationTemp={location.locationTemp}
+                        locationDesc={location.locationDesc}
+                        locationIcon={location.locationIcon}
+                        locationPicture={location.locationPicture}/>
           )}
       </>
   )

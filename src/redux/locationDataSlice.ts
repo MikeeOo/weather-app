@@ -10,13 +10,22 @@ const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
+        deleteLocationData(state, action){
+            state.locationDataArray.splice(
+                state.locationDataArray.indexOf(
+                    state.locationDataArray.find(
+                        (location) => location.locationId === action.payload
+                    )
+                )
+            ,1);
+        }
     },
     extraReducers: (builder): void => {
         builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: IAction): void => {
 
-            console.log(state)
-            console.log(action.meta)
-            console.log(action.payload)
+            // console.log(state)
+            // console.log(action.meta)
+            // console.log(action.payload)
 
             state.locationDataArray.push({
 
@@ -33,7 +42,7 @@ const locationDataSlice = createSlice({
 
 })
 
-// export const {} = locationDataSlice.actions
+export const {deleteLocationData} = locationDataSlice.actions
 
 export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
 
