@@ -1,5 +1,4 @@
-import React from 'react';
-// check if this react is needed
+import ResetStyled from "./styled/Reset.styled";
 import MainPage from "./pages/MainPage";
 
 function App(): JSX.Element {
@@ -7,6 +6,7 @@ function App(): JSX.Element {
   return (
     <>
 
+        <ResetStyled/>
         <MainPage/>
     </>
   );
