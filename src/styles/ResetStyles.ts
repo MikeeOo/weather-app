@@ -1,10 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
-const ResetStyled = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-  body {background-color: #4B0106;}
+const ResetStyles = createGlobalStyle`
   html, body, div, span, applet, object, iframe, 
   h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
   a, abbr, acronym, address, big, cite, code, 
@@ -210,4 +206,4 @@ const ResetStyled = createGlobalStyle`
   }
 `
 
-export default ResetStyled
+export default ResetStyles

@@ -1,4 +1,6 @@
-import ResetStyled from "./styled/Reset.styled";
+import ResetStyles from "./styles/ResetStyles";
+import GlobalStyles from "./styles/GlobalStyles";
+
 import MainPage from "./pages/MainPage";
 
 function App(): JSX.Element {
@@ -6,7 +8,8 @@ function App(): JSX.Element {
   return (
     <>
 
-        <ResetStyled/>
+        <ResetStyles/>
+        <GlobalStyles/>
         <MainPage/>
     </>
   );

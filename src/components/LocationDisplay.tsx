@@ -7,7 +7,7 @@ const LocationDisplay = (): JSX.Element => {
     const locationDataArray = useSelector(reduxLocationDataArray)
 
   return (
-      <>
+      <div>
           {locationDataArray.map((location) =>
               <Location key={location.locationId}
                         locationId={location.locationId}
@@ -17,7 +17,7 @@ const LocationDisplay = (): JSX.Element => {
                         locationIcon={location.locationIcon}
                         locationPicture={location.locationPicture}/>
           )}
-      </>
+      </div>
   )
 }
 

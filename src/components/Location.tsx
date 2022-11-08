@@ -11,24 +11,25 @@ const Location = (props: ILocationData): JSX.Element => {
 
     const dispatch = useDispatch()
 
-    return (
-        <LocationStyled>
-            <img src={props.locationPicture} alt=""/>
-            {props.locationName}
-            <button onClick={() => dispatch(deleteLocationData(props.locationId))}
-                    style={{width: `40px`}}>
+  return (
 
-                <DeleteSvg/>
-            </button>
-            
-            <br/>
-            {props.locationTemp}
-            <br/>
-            {props.locationDesc}
-            <br/>
-            <br/>
-            <img src={`https://openweathermap.org/img/wn/${props.locationIcon}@2x.png`} alt="weather icon"/>
+      <LocationStyled>
 
+          <img src={props.locationPicture} alt=""/>
+          {props.locationName}
+          <button onClick={() => dispatch(deleteLocationData(props.locationId))}
+                  style={{width: `40px`}}>
+
+              <DeleteSvg/>
+          </button>
+
+          <br/>
+          {props.locationTemp}
+          <br/>
+          {props.locationDesc}
+          <br/>
+          <br/>
+          <img src={`https://openweathermap.org/img/wn/${props.locationIcon}@2x.png`} alt="weather icon"/>
       </LocationStyled>
   )
 }

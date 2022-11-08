@@ -9,4 +9,3 @@ export const LocationStyled = styled.div`
     width: 100%;
   }
 `
-
