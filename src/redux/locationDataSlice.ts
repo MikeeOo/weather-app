@@ -10,7 +10,11 @@ const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
+        getLocationFromLocalStorage(state){
+            state.locationDataArray = JSON.parse(localStorage.getItem(`locationDataArray`))
+        },
         deleteLocationData(state, action){
+
             state.locationDataArray.splice(
                 state.locationDataArray.indexOf(
                     state.locationDataArray.find(
@@ -18,6 +22,7 @@ const locationDataSlice = createSlice({
                     )
                 )
             ,1);
+            localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         }
     },
     extraReducers: (builder): void => {
@@ -27,7 +32,6 @@ const locationDataSlice = createSlice({
             // console.log(action.payload)
 
             state.locationDataArray.push({
-
                 locationId: action.meta.requestId,
                 locationName: action.payload[0].value.name,
                 locationTemp: action.payload[0].value.main.temp,
@@ -36,12 +40,13 @@ const locationDataSlice = createSlice({
                 locationPicture: action.payload[1].value.hits
                     [Math.floor(Math.random() * action.payload[1].value.hits.length)].largeImageURL,
             })
+            localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         })
     }
 
 })
 
-export const {deleteLocationData} = locationDataSlice.actions
+export const {getLocationFromLocalStorage, deleteLocationData} = locationDataSlice.actions
 
 export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
 
