@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import LocationSearch from "../components/LocationSearch";
-import LocationDisplay from "../components/LocationDisplay";
+import Header from "../components/MainPage/Header";
+import Search from "../components/MainPage/Search";
+import Display from "../components/MainPage/Display";
 
 import {MainPageStyled} from "./MainPage.styled";
 
@@ -10,8 +10,8 @@ const MainPage = (): JSX.Element => {
       <MainPageStyled>
 
           <Header/>
-          <LocationSearch/>
-          <LocationDisplay/>
+          <Search/>
+          <Display/>
       </MainPageStyled>
   )
 }

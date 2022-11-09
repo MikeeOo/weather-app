@@ -15,6 +15,15 @@ export interface ILocationData {
     locationPicture: string
 }
 
+export interface ILocationPicture {
+    locationPicture: string,
+}
+
+export interface ILocationHeading {
+    locationId: string,
+    locationName: string
+}
+
 export interface IAction {
     type: string,
     payload: Array<IPayload>,

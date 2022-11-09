@@ -1,12 +1,12 @@
 import {SyntheticEvent, useState} from "react";
 import {useDispatch} from "react-redux";
-import {getLocationDataFromAPI} from "../api/thunks";
+import {getLocationDataFromAPI} from "../../api/thunks";
 
-import {ReactComponent as Search} from "../assets/search.svg"
+import {ReactComponent as SearchSvg} from "../../assets/search.svg"
 
-import {LocationSearchStyled} from "./LocationSearch.styled";
+import {SearchStyled} from "./Search.styled";
 
-const LocationSearch = (): JSX.Element => {
+const Search = (): JSX.Element => {
 
     const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ const LocationSearch = (): JSX.Element => {
     }
 
   return (
-      <LocationSearchStyled>
+      <SearchStyled>
 
           <form onSubmit={handleSubmit}>
 
@@ -28,10 +28,10 @@ const LocationSearch = (): JSX.Element => {
                      value={locationInput}
                      placeholder={`City, Country or Landmark...`}
                      onChange={e => setLocationInput(e.target.value)}/>
-              <button type="submit"><Search/></button>
+              <button type="submit"><SearchSvg/></button>
           </form>
-      </LocationSearchStyled>
+      </SearchStyled>
   )
 }
 
-export default LocationSearch
+export default Search

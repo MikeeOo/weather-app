@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LocationSearchStyled = styled.div`
+export const SearchStyled = styled.div`
   margin: 2.4rem 0 0 0;
   
   form {

@@ -1,12 +1,13 @@
-import {useDispatch, useSelector} from "react-redux";
-import {getLocationFromLocalStorage} from "../redux/locationDataSlice";
-import {locationDataArray as reduxLocationDataArray} from "../redux/locationDataSlice";
-
-import {LocationDisplayStyled} from "./LocationDisplay.styled";
-import Location from "./Location";
 import {useEffect} from "react";
 
-const LocationDisplay = (): JSX.Element => {
+import {useDispatch, useSelector} from "react-redux";
+import {getLocationFromLocalStorage} from "../../redux/locationDataSlice";
+import {locationDataArray as reduxLocationDataArray} from "../../redux/locationDataSlice";
+
+import {DisplayStyled} from "./Display.styled";
+import Location from "../Location/Location";
+
+const Display = (): JSX.Element => {
 
     const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ const LocationDisplay = (): JSX.Element => {
     },[])
 
   return (
-      <LocationDisplayStyled>
+      <DisplayStyled>
           {locationDataArray.map((location) =>
               <Location key={location.locationId}
                         locationId={location.locationId}
@@ -27,8 +28,8 @@ const LocationDisplay = (): JSX.Element => {
                         locationIcon={location.locationIcon}
                         locationPicture={location.locationPicture}/>
           )}
-      </LocationDisplayStyled>
+      </DisplayStyled>
   )
 }
 
-export default LocationDisplay
+export default Display
