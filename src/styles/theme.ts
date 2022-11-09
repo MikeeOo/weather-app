@@ -3,6 +3,7 @@ export const theme = {
         primary: `#202C36`,
         secondary: `#2B3844`,
         white: `#FFFFFF`,
+        grey: `#808080`,
 
 
         log: `rgba(0, 255, 0, 0.2)`

@@ -6,8 +6,8 @@ const Header = (): JSX.Element => {
       <HeaderStyled>
 
 
-          {/*<h1>🌈MikeeOo's weather-app xD🌈</h1>*/}
-          <h1>Where in the world?</h1>
+          <h1>🌈MikeeOo's weather-app🌈</h1>
+          {/*<h1>Where in the world?</h1>*/}
           <button>Light Mode</button>
       </HeaderStyled>
   );

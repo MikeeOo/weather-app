@@ -1,5 +1,7 @@
 import {useSelector} from "react-redux";
 import {locationDataArray as reduxLocationDataArray} from "../redux/locationDataSlice";
+
+import {LocationDisplayStyled} from "./LocationDisplay.styled";
 import Location from "./Location";
 
 const LocationDisplay = (): JSX.Element => {
@@ -7,7 +9,7 @@ const LocationDisplay = (): JSX.Element => {
     const locationDataArray = useSelector(reduxLocationDataArray)
 
   return (
-      <div>
+      <LocationDisplayStyled>
           {locationDataArray.map((location) =>
               <Location key={location.locationId}
                         locationId={location.locationId}
@@ -17,7 +19,7 @@ const LocationDisplay = (): JSX.Element => {
                         locationIcon={location.locationIcon}
                         locationPicture={location.locationPicture}/>
           )}
-      </div>
+      </LocationDisplayStyled>
   )
 }
 

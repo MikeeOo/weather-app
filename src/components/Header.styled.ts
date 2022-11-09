@@ -9,6 +9,8 @@ export const HeaderStyled = styled.header`
   display: flex;
   font-size: 1.4rem;
   font-weight: ${({theme}) => theme.weight.bold};
-  height: 80px;
+  height: 8rem;
+  //padding: 2em;
+  //padding: 2em;
   justify-content: space-between;
 `

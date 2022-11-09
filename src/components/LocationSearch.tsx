@@ -2,6 +2,8 @@ import {SyntheticEvent, useState} from "react";
 import {useDispatch} from "react-redux";
 import {getLocationDataFromAPI} from "../api/thunks";
 
+import {ReactComponent as Search} from "../assets/search.svg"
+
 import {LocationSearchStyled} from "./LocationSearch.styled";
 
 const LocationSearch = (): JSX.Element => {
@@ -22,12 +24,11 @@ const LocationSearch = (): JSX.Element => {
 
           <form onSubmit={handleSubmit}>
 
-              <button>Add Location</button>
-              <input type="text"
+              <input type="search"
                      value={locationInput}
-                     placeholder={`City, Country or Landmark`}
-                     onChange={e => setLocationInput(e.target.value)}
-              />
+                     placeholder={`City, Country or Landmark...`}
+                     onChange={e => setLocationInput(e.target.value)}/>
+              <button type="submit"><Search/></button>
           </form>
       </LocationSearchStyled>
   )

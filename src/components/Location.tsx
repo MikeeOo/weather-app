@@ -15,6 +15,7 @@ const Location = (props: ILocationData): JSX.Element => {
 
       <LocationStyled>
 
+
           <img src={props.locationPicture} alt=""/>
           {props.locationName}
           <button onClick={() => dispatch(deleteLocationData(props.locationId))}

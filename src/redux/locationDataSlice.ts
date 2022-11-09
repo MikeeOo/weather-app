@@ -22,7 +22,6 @@ const locationDataSlice = createSlice({
     },
     extraReducers: (builder): void => {
         builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: IAction): void => {
-
             // console.log(state)
             // console.log(action.meta)
             // console.log(action.payload)
