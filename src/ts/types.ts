@@ -34,7 +34,6 @@ export interface IPayload {
     status: string,
     // value?: IWeatherData & IPictureData
     value?: any
-    reason?: string
 }
 
 export interface IWeatherData{

@@ -5,7 +5,7 @@ import {ILocationData} from "../ts/types";
 export const getLocationDataFromAPI = createAsyncThunk(
     'locationData/getLocationDataFromAPI',
     async (city: string): Promise<Array<PromiseSettledResult<Promise<ILocationData>>>> => {
-        return Promise.allSettled([
+        return await Promise.allSettled([
             (await fetch(`${WEATHER_API}weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
             (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${city}`)).json()
         ])

@@ -1,6 +1,6 @@
-import Header from "../components/MainPage/Header";
-import Search from "../components/MainPage/Search";
-import Display from "../components/MainPage/Display";
+import Header from "../../Header";
+import Search from "./Search";
+import Display from "./Display";
 
 import {MainPageStyled} from "./MainPage.styled";
 

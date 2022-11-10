@@ -1,7 +1,7 @@
-import ResetStyles from "./styles/ResetStyles";
-import GlobalStyles from "./styles/GlobalStyles";
+import ResetStyles from "../../styles/ResetStyles";
+import GlobalStyles from "../../styles/GlobalStyles";
 
-import MainPage from "./pages/MainPage";
+import MainPage from "../pages/main/MainPage";
 
 function App(): JSX.Element {
 

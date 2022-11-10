@@ -1,10 +1,9 @@
 import {useDispatch} from "react-redux";
 
-
 import {LocationHeadingStyled} from "./LocationHeading.styled";
 import {deleteLocationData} from "../../redux/locationDataSlice";
 
-import {ReactComponent as DeleteSvg} from "../../assets/x-svgrepo-com.svg";
+import DeleteSvg from "../atoms/svg/DeleteSvg";
 
 import {ILocationHeading} from "../../ts/types"
 

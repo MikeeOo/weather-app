@@ -1,8 +1,8 @@
 import {SyntheticEvent, useState} from "react";
 import {useDispatch} from "react-redux";
-import {getLocationDataFromAPI} from "../../api/thunks";
+import {getLocationDataFromAPI} from "../../../api/thunks";
 
-import {ReactComponent as SearchSvg} from "../../assets/search.svg"
+import SearchSvg from "../../atoms/svg/SearchSvg";
 
 import {SearchStyled} from "./Search.styled";
 
@@ -15,6 +15,7 @@ const Search = (): JSX.Element => {
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault()
 
+        // @ts-ignore
         dispatch(getLocationDataFromAPI(locationInput))
         setLocationInput(``)
     }
