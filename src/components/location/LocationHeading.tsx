@@ -5,7 +5,7 @@ import {deleteLocationData} from "../../redux/locationDataSlice";
 
 import DeleteSvg from "../atoms/svg/DeleteSvg";
 
-import {ILocationHeading} from "../../ts/types"
+import {ILocationHeading} from "../../types/componentsProps"
 
 const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Element => {
 

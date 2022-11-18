@@ -1,7 +1,7 @@
 import LocationPicture from "./LocationPicture";
 import LocationHeading from "./LocationHeading";
 import {LocationStyled} from "./Location.styled";
-import {ILocationData} from "../../ts/types";
+import {ILocationData} from "../../types/reduxData";
 
 const Location = (props: ILocationData): JSX.Element => {
 

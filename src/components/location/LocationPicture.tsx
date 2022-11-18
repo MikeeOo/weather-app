@@ -1,6 +1,6 @@
 import {LocationPictureStyled} from "./LocationPicture.styled";
 
-import {ILocationPicture} from "../../ts/types";
+import {ILocationPicture} from "../../types/componentsProps";
 
 const LocationPicture = ({locationPicture}: ILocationPicture): JSX.Element => {
 

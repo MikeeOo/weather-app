@@ -1,4 +1,5 @@
 import {SyntheticEvent, useState} from "react";
+import type {} from 'redux-thunk/extend-redux';
 import {useDispatch} from "react-redux";
 import {getLocationDataFromAPI} from "../../../api/thunks";
 
@@ -15,7 +16,6 @@ const Search = (): JSX.Element => {
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault()
 
-        // @ts-ignore
         dispatch(getLocationDataFromAPI(locationInput))
         setLocationInput(``)
     }

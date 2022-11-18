@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getLocationDataFromAPI} from "../api/thunks";
-import {ILocationDataReducer, ILocationDataArray, ILocationData, IAction} from "../ts/types";
+import {ILocationDataReducer, ILocationDataArray, ILocationData} from "../types/reduxData";
+import {ApiData} from "../types/apiData";
 
 const initialState: ILocationDataArray = {
     locationDataArray: []
@@ -20,15 +21,18 @@ const locationDataSlice = createSlice({
                     (location) => location.locationId === action.payload
                 )
             ,1);
+            console.log(action)
+            console.log(state)
+
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         }
     },
     extraReducers: (builder): void => {
-        builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: IAction): void => {
-            // console.log(state)
+        builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: ApiData): void => {
+            console.log(state)
+            console.log(action)
             // console.log(action.meta)
             // console.log(action.payload)
-            console.log(action)
 
             state.locationDataArray.push({
                 locationId: action.meta.requestId,
@@ -42,7 +46,6 @@ const locationDataSlice = createSlice({
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         })
     }
-
 })
 
 export const {getLocationFromLocalStorage, deleteLocationData} = locationDataSlice.actions
