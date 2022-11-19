@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const SearchStyled = styled.div`
-  margin: 2.4rem 0 0 0;
+  padding: 2.4rem 0 0 0;
   
   form {
     display: flex;
     justify-content: center;
   }
-
+  
   input[type="search"] {
     border: none;
     border-radius: 5px 0 0 5px;

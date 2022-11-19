@@ -6,6 +6,8 @@ import {deleteLocationData} from "../../redux/locationDataSlice";
 import DeleteSvg from "../atoms/svg/DeleteSvg";
 
 import {ILocationHeading} from "../../types/componentsProps"
+import {Link} from "react-router-dom";
+
 
 const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Element => {
 
@@ -14,7 +16,7 @@ const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Elem
   return (
       <LocationHeadingStyled>
 
-          <h2>{locationName}</h2>
+          <Link to="/location" style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
 
           <button onClick={() => dispatch(deleteLocationData(locationId))}>
 

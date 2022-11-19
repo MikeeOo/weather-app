@@ -1,9 +1,9 @@
 import {SyntheticEvent, useState} from "react";
 import type {} from 'redux-thunk/extend-redux';
 import {useDispatch} from "react-redux";
-import {getLocationDataFromAPI} from "../../../api/thunks";
+import {getLocationDataFromAPI} from "../../api/thunks";
 
-import SearchSvg from "../../atoms/svg/SearchSvg";
+import SearchSvg from "../atoms/svg/SearchSvg";
 
 import {SearchStyled} from "./Search.styled";
 

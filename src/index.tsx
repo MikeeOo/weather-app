@@ -7,7 +7,7 @@ import {theme} from "./styles/theme";
 import {Provider} from "react-redux";
 import store from "./redux/store";
 
-import App from './components/layout/App';
+import App from './layout/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
