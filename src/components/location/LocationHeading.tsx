@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 
 import {LocationHeadingStyled} from "./LocationHeading.styled";
-import {deleteLocationData} from "../../redux/locationDataSlice";
+// import {deleteLocationData} from "../../redux/locationDataSlice";
 
 import DeleteSvg from "../atoms/svg/DeleteSvg";
 
@@ -18,10 +18,10 @@ const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Elem
 
           <Link to="/location" style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
 
-          <button onClick={() => dispatch(deleteLocationData(locationId))}>
+          {/*<button onClick={() => dispatch(deleteLocationData(locationId))}>*/}
 
               <DeleteSvg/>
-          </button>
+          {/*</button>*/}
       </LocationHeadingStyled>
   );
 };

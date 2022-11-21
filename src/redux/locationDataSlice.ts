@@ -1,9 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getLocationDataFromAPI} from "../api/thunks";
-import {ILocationDataReducer, ILocationDataArray, ILocationData} from "../types/reduxData";
-import {ApiData} from "../types/apiData";
 
-const initialState: ILocationDataArray = {
+
+const initialState = {
     locationDataArray: []
 }
 
@@ -11,45 +10,28 @@ const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
-        getLocationFromLocalStorage(state){
-            state.locationDataArray = JSON.parse(localStorage.getItem(`locationDataArray`) as string)
-            // state.locationDataArray = JSON.parse(String(localStorage.getItem(`locationDataArray`)))
-        },
-        deleteLocationData(state, action){
-            state.locationDataArray.splice(
-                state.locationDataArray.findIndex(
-                    (location) => location.locationId === action.payload
-                )
-            ,1);
-            console.log(action)
-            console.log(state)
-
+        addLocationName(state, {payload}: any){
+            state.locationDataArray.push(payload as never)
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         }
     },
-    extraReducers: (builder): void => {
-        builder.addCase(getLocationDataFromAPI.fulfilled, (state, action: ApiData): void => {
-            console.log(state)
-            console.log(action)
-            // console.log(action.meta)
-            // console.log(action.payload)
+    extraReducers: (builder => {
+        builder.addCase(getLocationDataFromAPI.fulfilled, (state, action) => {
 
-            state.locationDataArray.push({
-                locationId: action.meta.requestId,
-                locationName: action.payload[0].value.name,
-                locationTemp: action.payload[0].value.main.temp,
-                locationDesc: action.payload[0].value.weather[0].description,
-                locationIcon: action.payload[0].value.weather[0].icon,
-                locationPicture: action.payload[1].value.hits
-                    [Math.floor(Math.random() * action.payload[1].value.hits.length)].largeImageURL,
-            })
-            localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
+            // const locationIndex = state.locationDataArray.findIndex(location =>
+            //         console.log(location)
+            //     // location.locationId === action.payload[2].locationId
+            // )
+
+            console.log(state.locationDataArray)
+
+            // state.locationDataArray[locationIndex].locationTemp = action.payload[0].value.name
         })
-    }
+    })
 })
 
-export const {getLocationFromLocalStorage, deleteLocationData} = locationDataSlice.actions
+export const {addLocationName} = locationDataSlice.actions
 
-export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
+export const locationDataArray = (state: any) => state.locationData.locationDataArray
 
 export default locationDataSlice.reducer

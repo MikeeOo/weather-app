@@ -1,21 +1,28 @@
-import LocationPicture from "./LocationPicture";
-import LocationHeading from "./LocationHeading";
-import {LocationStyled} from "./Location.styled";
-import {ILocationData} from "../../types/reduxData";
+import {useEffect} from "react";
 
-const Location = (props: ILocationData): JSX.Element => {
+
+import {useDispatch} from "react-redux";
+import type {} from 'redux-thunk/extend-redux';
+
+import {LocationStyled} from "./Location.styled";
+import {getLocationDataFromAPI} from "../../api/thunks";
+
+const Location = (props: any): JSX.Element => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getLocationDataFromAPI(props))
+    },[])
 
   return (
 
       <LocationStyled>
-
-          <LocationPicture locationPicture={props.locationPicture} />
-
-          <LocationHeading locationId={props.locationId}
-                           locationName={props.locationName}/>
-
-          <p>Temp: {(Math.round(parseFloat(props.locationTemp.toFixed(1))))}°C</p>
-          <p>Conditions: {props.locationDesc}<img src={`https://openweathermap.org/img/wn/${props.locationIcon}@2x.png`} alt="weather icon"/></p>
+          {props.locationId}
+          {props.locationInput}
+          {props.locationTemp}
+          XDXDXDXDXDXD
+          {/*<p>Conditions: {props.locationDesc}<img src={`https://openweathermap.org/img/wn/${props.locationIcon}@2x.png`} alt="weather icon"/></p>*/}
       </LocationStyled>
   )
 }

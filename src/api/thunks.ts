@@ -4,13 +4,11 @@ import {IWeatherPayload, IPicturePayload, IWeatherData, IPictureData} from "../t
 
 export const getLocationDataFromAPI = createAsyncThunk(
     'locationData/getLocationDataFromAPI',
-    async (city: string): Promise<[IWeatherPayload, IPicturePayload]> => {
+    async (props: any) => {
         return await Promise.allSettled([
-            (await fetch(`${WEATHER_API}weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
-            (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${city}`)).json()
-        ]) as [
-            {status: 'fulfilled' | 'rejected', value: IWeatherData},
-            {status: 'fulfilled' | 'rejected', value: IPictureData}
-        ]
+            (await fetch(`${WEATHER_API}weather?q=${props.locationInput}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
+            (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${props.locationInput}`)).json(),
+            props
+        ])
     }
 )
