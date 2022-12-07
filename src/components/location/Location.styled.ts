@@ -27,5 +27,4 @@ export const LocationStyled = styled.div`
     margin-top: -2rem;
     display: inline;
   }
-  
 `

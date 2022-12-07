@@ -1,11 +1,11 @@
-import {SyntheticEvent, useState} from "react";
-import type {} from 'redux-thunk/extend-redux';
-import {useDispatch} from "react-redux";
-import {getLocationDataFromAPI} from "../../api/thunks";
+import {useState, SyntheticEvent} from "react";
 
-import SearchSvg from "../atoms/svg/SearchSvg";
+import {useDispatch} from "react-redux";
+// import type {} from 'redux-thunk/extend-redux';
+import {addLocationInputToArray} from "../../redux/locationDataSlice";
 
 import {SearchStyled} from "./Search.styled";
+import SearchSvg from "../atoms/svg/SearchSvg";
 
 const Search = (): JSX.Element => {
 
@@ -16,7 +16,10 @@ const Search = (): JSX.Element => {
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault()
 
-        dispatch(getLocationDataFromAPI(locationInput))
+        dispatch(addLocationInputToArray({
+            locationInput: locationInput,
+            locationName: ``,
+        }))
         setLocationInput(``)
     }
 

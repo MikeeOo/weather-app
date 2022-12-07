@@ -26,8 +26,8 @@ export const SearchStyled = styled.div`
     
     &:focus {
       opacity: 1;
-      border-top: 4px solid ${({theme}) => theme.color.primary};
-      border-bottom: 4px solid ${({theme}) => theme.color.primary};
+      // border-top: 4px solid ${({theme}) => theme.color.primary};
+      // border-bottom: 4px solid ${({theme}) => theme.color.primary};
 
     }
     &:hover {
@@ -39,16 +39,16 @@ export const SearchStyled = styled.div`
     border: none;
     border-radius: 0 5px 5px 0;
     background: ${({theme}) => theme.color.secondary};
-    border-top: 2px solid ${({theme}) => theme.color.secondary};
-    border-bottom: 2px solid ${({theme}) => theme.color.secondary};
-    border-right: 2px solid ${({theme}) => theme.color.secondary};
+    // border-top: 2px solid ${({theme}) => theme.color.secondary};
+    // border-bottom: 2px solid ${({theme}) => theme.color.secondary};
+    // border-right: 2px solid ${({theme}) => theme.color.secondary};
     padding: 1em 2em;
     opacity: .7;
     
     &:active {
-      border-top: 2px solid ${({theme}) => theme.color.primary};
-      border-bottom: 2px solid ${({theme}) => theme.color.primary};
-      border-right: 2px solid ${({theme}) => theme.color.primary};
+      // border-top: 2px solid ${({theme}) => theme.color.primary};
+      // border-bottom: 2px solid ${({theme}) => theme.color.primary};
+      // border-right: 2px solid ${({theme}) => theme.color.primary};
     }
 
     &:hover {
