@@ -20,7 +20,7 @@ export default function App(): JSX.Element {
             <Route path="/" element={<Default/>}>
 
                 <Route index element={<MainPage/>}/>
-                <Route path="/location" element={<LocationPage/>}/>
+                <Route path="/:locationName/id=:id" element={<LocationPage/>}/>
             </Route>
         </Routes>
     </Router>

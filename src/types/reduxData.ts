@@ -3,13 +3,14 @@ export interface ILocationDataReducer {
 }
 
 export interface ILocationDataArray {
-    locationDataArray: Array<ILocationData>
+    locationDataArray: Array<ILocationData>,
+    locationDataPageArray: Array<ILocationData>
 }
 
 export interface ILocationData {
     locationId: string,
     locationName: string,
-    locationTemp: number,
+    locationTemp: string,
     locationDesc: string,
     locationIcon: string,
     locationPicture: string

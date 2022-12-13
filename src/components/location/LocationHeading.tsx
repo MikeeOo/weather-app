@@ -16,7 +16,7 @@ const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Elem
   return (
       <LocationHeadingStyled>
 
-          <Link to="/location" style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
+          <Link to={`/${locationName}/id=${locationId}`} style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
 
           <button onClick={() => dispatch(deleteLocationData(locationId))}>
 
