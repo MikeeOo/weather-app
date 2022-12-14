@@ -9,6 +9,8 @@ import SearchSvg from "../atoms/svg/SearchSvg";
 import {SearchStyled} from "./Search.styled";
 import {Dispatch} from "@reduxjs/toolkit";
 
+
+import {ChangeEvent} from "react";
 const Search = (): JSX.Element => {
 
     const dispatch: Dispatch = useDispatch()
@@ -40,7 +42,8 @@ const Search = (): JSX.Element => {
               <input type="search"
                      value={locationInput}
                      placeholder={`City, Country or Landmark...`}
-                     onChange={e => setLocationInput(e.target.value)}/>
+                     onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}/>
+
               <button type="submit"><SearchSvg/></button>
           </form>
       </SearchStyled>

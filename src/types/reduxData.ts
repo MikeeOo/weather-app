@@ -6,6 +6,7 @@ export interface ILocationDataReducer {
 export interface ILocationDataArray {
     locationDataArray: Array<ILocationData>,
     locationDataPageArray: Array<ILocationData>
+    loader: boolean,
 }
 
 export interface ILocationData {

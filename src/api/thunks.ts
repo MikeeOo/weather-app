@@ -23,12 +23,12 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
             updatedLocationDataArray.push({
                 locationId: locationData.locationId,
                 locationInput: locationData.locationInput,
-                locationName: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.name : `error: not found`,
-                locationTemp: locationApiRequest[0].value.cod !== `404` ? Math.round(parseFloat(locationApiRequest[0].value.main.temp.toFixed(1))).toString() : `X`,
-                locationDesc: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.weather[0].description : `X`,
-                locationIcon: locationApiRequest[0].value.cod !== `404` ? `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png` : ``,
+                locationName: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.name : `location not found`,
+                locationTemp: locationApiRequest[0].value.cod !== `404` ? Math.round(parseFloat(locationApiRequest[0].value.main.temp.toFixed(1))).toString() : `location not found`,
+                locationDesc: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.weather[0].description : `location not found`,
+                locationIcon: locationApiRequest[0].value.cod !== `404` ? `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png` : `location not found`,
                 // locationPicture: locationApiRequest[1].value.hits[Math.floor(Math.random() * locationApiRequest[1].value.hits.length)].largeImageURL,
-                locationPicture: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[1].value.hits[2].largeImageURL : ``
+                locationPicture: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[1].value.hits[2].largeImageURL : `location not found`
             });
             // console.log(locationApiRequest[0].value.cod)
             // console.log(locationApiRequest)
