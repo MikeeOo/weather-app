@@ -1,22 +1,34 @@
 import {SyntheticEvent, useState} from "react";
-import type {} from 'redux-thunk/extend-redux';
 import {useDispatch} from "react-redux";
-import {getLocationDataFromAPI} from "../../api/thunks";
+// import type {} from 'redux-thunk/extend-redux';
+import {addLocationInputDataToState} from "../../redux/locationDataSlice";
+
+import { v4 as uuid } from 'uuid';
 
 import SearchSvg from "../atoms/svg/SearchSvg";
-
 import {SearchStyled} from "./Search.styled";
+import {Dispatch} from "@reduxjs/toolkit";
 
 const Search = (): JSX.Element => {
 
-    const dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch()
 
     const [locationInput, setLocationInput] = useState<string>(``)
 
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault()
 
-        dispatch(getLocationDataFromAPI(locationInput))
+        if(locationInput.length > 2) {
+            dispatch(addLocationInputDataToState({
+                locationId: uuid(),
+                locationInput: locationInput,
+                locationName: ``,
+                locationTemp: ``,
+                locationDesc: ``,
+                locationIcon: ``,
+                locationPicture: ``,
+            }))
+        }
         setLocationInput(``)
     }
 

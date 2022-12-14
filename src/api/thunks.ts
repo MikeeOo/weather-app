@@ -2,15 +2,38 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {WEATHER_API, WEATHER_API_KEY, PICTURE_API, PICTURE_API_KEY} from "./constants";
 import {IWeatherPayload, IPicturePayload, IWeatherData, IPictureData} from "../types/apiData"
 
-export const getLocationDataFromAPI = createAsyncThunk(
-    'locationData/getLocationDataFromAPI',
-    async (city: string): Promise<[IWeatherPayload, IPicturePayload]> => {
-        return await Promise.allSettled([
-            (await fetch(`${WEATHER_API}weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
-            (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${city}`)).json()
-        ]) as [
-            {status: 'fulfilled' | 'rejected', value: IWeatherData},
-            {status: 'fulfilled' | 'rejected', value: IPictureData}
-        ]
+import {ILocationData} from "../types/reduxData";
+
+export const updateLocationDataArrayViaApi = createAsyncThunk(
+    'locationData/updateLocationDataArrayViaApi',
+    async (locationDataArray: Array<ILocationData>): Promise<Array<ILocationData>> => {
+
+        const updatedLocationDataArray: Array<ILocationData> = [];
+
+        for(const locationData  of locationDataArray){
+
+            const locationApiRequest: [IWeatherPayload, IPicturePayload] = await Promise.allSettled([
+                (await fetch(`${WEATHER_API}weather?q=${locationData.locationInput}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
+                (await fetch(`${PICTURE_API}?key=${PICTURE_API_KEY}&q=${locationData.locationInput}`)).json()
+            ]) as [
+                {status: 'fulfilled' | 'rejected', value: IWeatherData},
+                {status: 'fulfilled' | 'rejected', value: IPictureData}
+            ]
+
+            updatedLocationDataArray.push({
+                locationId: locationData.locationId,
+                locationInput: locationData.locationInput,
+                locationName: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.name : `error: not found`,
+                locationTemp: locationApiRequest[0].value.cod !== `404` ? Math.round(parseFloat(locationApiRequest[0].value.main.temp.toFixed(1))).toString() : `X`,
+                locationDesc: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.weather[0].description : `X`,
+                locationIcon: locationApiRequest[0].value.cod !== `404` ? `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png` : ``,
+                // locationPicture: locationApiRequest[1].value.hits[Math.floor(Math.random() * locationApiRequest[1].value.hits.length)].largeImageURL,
+                locationPicture: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[1].value.hits[2].largeImageURL : ``
+            });
+            // console.log(locationApiRequest[0].value.cod)
+            // console.log(locationApiRequest)
+        }
+
+        return updatedLocationDataArray;
     }
-)
+);

@@ -1,8 +1,11 @@
-export interface ApiData {
+import {ILocationData} from "./reduxData";
+
+export interface IUpdatedLocationData {
     type: string,
-    payload: [IWeatherPayload, IPicturePayload]
+    payload: Array<ILocationData>
     meta: IMeta,
 }
+
 //____________IWeatherPayload____________//
 export interface IWeatherPayload {
     status: string,
@@ -11,6 +14,7 @@ export interface IWeatherPayload {
 
 export interface IWeatherData {
     name: string
+    cod: number | string,
     main: IWeatherMain
     weather: Array<IWeatherWeather>
 }
@@ -38,7 +42,7 @@ interface IPicture {
 }
 //________IMeta________//
 interface IMeta {
-    arg: string,
+    arg: Array<ILocationData>,
     requestId: string,
     requestStatus: string,
 }

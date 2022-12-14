@@ -1,23 +1,36 @@
 import {useEffect} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
-import {getLocationFromLocalStorage} from "../../redux/locationDataSlice";
-import {locationDataArray as reduxLocationDataArray} from "../../redux/locationDataSlice";
+import {
+    locationDataArray as reduxLocationDataArray,
+    getLocationFromLocalStorage
+} from "../../redux/locationDataSlice";
+import {updateLocationDataArrayViaApi} from "../../api/thunks";
+import type {} from 'redux-thunk/extend-redux';
 
 import {DisplayStyled} from "./Display.styled";
 import Location from "../location/Location";
+import {ILocationData} from "../../types/reduxData";
+import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 
 const Display = (): JSX.Element => {
 
-    const dispatch = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
 
-    const locationDataArray = useSelector(reduxLocationDataArray)
+    const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
 
     useEffect(() => {
         dispatch(getLocationFromLocalStorage())
     },[])
 
-  return (
+    useEffect(() => {
+        if(locationDataArray.length){
+            dispatch(updateLocationDataArrayViaApi(locationDataArray))
+        }
+    },[locationDataArray.length])
+
+
+    return (
       <DisplayStyled>
           {locationDataArray.map((location) =>
               <Location key={location.locationId}

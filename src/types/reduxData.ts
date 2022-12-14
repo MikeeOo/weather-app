@@ -1,3 +1,4 @@
+
 export interface ILocationDataReducer {
     locationData: ILocationDataArray
 }
@@ -9,6 +10,7 @@ export interface ILocationDataArray {
 
 export interface ILocationData {
     locationId: string,
+    locationInput: string,
     locationName: string,
     locationTemp: string,
     locationDesc: string,

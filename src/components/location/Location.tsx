@@ -1,9 +1,9 @@
 import LocationPicture from "./LocationPicture";
 import LocationHeading from "./LocationHeading";
 import {LocationStyled} from "./Location.styled";
-import {ILocationData} from "../../types/reduxData";
+import {ILocation} from "../../types/componentsProps";
 
-const Location = (props: ILocationData): JSX.Element => {
+const Location = (props: ILocation): JSX.Element => {
 
   return (
 
@@ -15,7 +15,7 @@ const Location = (props: ILocationData): JSX.Element => {
                            locationName={props.locationName}/>
 
           <p>Temp: {props.locationTemp}°C</p>
-          <p>Conditions: {props.locationDesc}<img src={`https://openweathermap.org/img/wn/${props.locationIcon}@2x.png`} alt="weather icon"/></p>
+          <p>Conditions: {props.locationDesc}<img src={props.locationIcon} alt="weather icon"/></p>
       </LocationStyled>
   )
 }
