@@ -28,11 +28,11 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                 locationDesc: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[0].value.weather[0].description : `location not found`,
                 locationIcon: locationApiRequest[0].value.cod !== `404` ? `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png` : `location not found`,
                 // locationPicture: locationApiRequest[1].value.hits[Math.floor(Math.random() * locationApiRequest[1].value.hits.length)].largeImageURL,
-                locationPicture: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[1].value.hits[2].largeImageURL : `location not found`
+                locationPicture: locationApiRequest[0].value.cod !== `404` ? locationApiRequest[1].value.hits[2].largeImageURL : `location not found`,
+                requestCod: locationApiRequest[0].value.cod.toString()
             });
-            // console.log(locationApiRequest[0].value.cod)
-            // console.log(locationApiRequest)
         }
+
 
         return updatedLocationDataArray;
     }

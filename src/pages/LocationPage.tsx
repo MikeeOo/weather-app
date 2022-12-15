@@ -20,7 +20,7 @@ const LocationPage = (): JSX.Element => {
 
 
   return (
-      <div style={{color: `white`, fontSize: `20px`,}}>
+      <div style={{color: `white`, fontSize: `20px`}}>
 
           <Link to="/">BACK</Link>
 

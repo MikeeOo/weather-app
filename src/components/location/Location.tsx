@@ -3,23 +3,29 @@ import LocationHeading from "./LocationHeading";
 import {LocationStyled} from "./Location.styled";
 import {ILocation} from "../../types/componentsProps";
 import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 
 const Location = (props: ILocation): JSX.Element => {
+
+    const dispatch = useDispatch()
 
     const [locationError, setLocationError] = useState<boolean>(false)
 
     useEffect(() => {
+
+
         props.locationName !== `location not found`? setLocationError(false) : setLocationError(true)
+
     },[])
 
   return (
 
       <LocationStyled>
-
           <LocationPicture locationPicture={props.locationPicture} />
 
           <LocationHeading locationId={props.locationId}
                            locationName={props.locationName}/>
+
           {!locationError && <p>Temp: {props.locationTemp}°C</p>}
           {!locationError && <p>Conditions: {props.locationDesc}</p>}
           {!locationError && <img src={props.locationIcon} alt="weather icon"/>}

@@ -7,6 +7,7 @@ export interface ILocationDataArray {
     locationDataArray: Array<ILocationData>,
     locationDataPageArray: Array<ILocationData>
     loader: boolean,
+    notFoundError: boolean;
 }
 
 export interface ILocationData {
@@ -17,4 +18,5 @@ export interface ILocationData {
     locationDesc: string,
     locationIcon: string,
     locationPicture: string
+    requestCod: string
 }
