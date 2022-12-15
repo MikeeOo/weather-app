@@ -36,11 +36,6 @@ const Search = (): JSX.Element => {
             dispatch(addLocationInputDataToState({
                 locationId: uuid(),
                 locationInput: locationInput,
-                locationName: ``,
-                locationTemp: ``,
-                locationDesc: ``,
-                locationIcon: ``,
-                locationPicture: ``,
             }))
         }
         setLocationInput(``)

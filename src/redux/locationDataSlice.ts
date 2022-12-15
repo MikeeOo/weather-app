@@ -14,8 +14,11 @@ const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
-        setLoader(state){
+        setLoader(state): void{
             state.loader = true;
+        },
+        deleteErr(state){
+            state.notFoundError = false
         },
 
         addLocationInputDataToState(state, {payload}){
@@ -31,7 +34,7 @@ const locationDataSlice = createSlice({
         deleteLocationData(state, action): void{
             state.locationDataArray.splice(
                 state.locationDataArray.findIndex(
-                    (location) => location.locationId === action.payload
+                    (location): boolean => location.locationId === action.payload
                 )
             ,1);
 
@@ -43,13 +46,12 @@ const locationDataSlice = createSlice({
 
             const localStorageDataArray: Array<ILocationData> = JSON.parse(localStorage.getItem(`locationDataArray`) as string)
 
+            console.log(state.locationDataArray)
+
             state.locationDataPageArray = localStorageDataArray.slice(
                 localStorageDataArray.findIndex((location) => location.locationId === payload.id),
                 localStorageDataArray.findIndex((location) => location.locationId === payload.id) + 1)
         },
-        deleteErr(state){
-            state.notFoundError = false
-        }
     },
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, action: IUpdatedLocationData): void => {
@@ -58,19 +60,15 @@ const locationDataSlice = createSlice({
                     state.locationDataArray = action.payload;
                     state.loader = false;
                 } else {
-                    // localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray.slice(1,2)))
-                    // state.locationDataArray.splice(1,1)
-                    const xd = action.payload
-                    xd.pop()
-                    console.log(xd)
-                    state.locationDataArray = xd
-                    localStorage.setItem(`locationDataArray`, JSON.stringify(xd))
+
+                    const updatedLocationArray = action.payload
+                    updatedLocationArray.pop()
+                    console.log(updatedLocationArray)
+                    state.locationDataArray = updatedLocationArray
+                    localStorage.setItem(`locationDataArray`, JSON.stringify(updatedLocationArray))
                     state.loader = false;
                     state.notFoundError = true;
                 }
-
-                // console.log(action.payload[action.payload.length - 1].requestCod)
-
         })
     }
 })

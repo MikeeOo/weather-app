@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -31,10 +31,11 @@ const Display = (): JSX.Element => {
     },[])
 
     useEffect(() => {
+        // dispatch(setLoader())
+        // tutaj możesz wrzucić info o dodaniu miasta zamiast loadera
+        if(locationDataArray.length){
 
-            if(locationDataArray.length){
-
-                dispatch(setLoader())
+            dispatch(setLoader())
 
                 const timeout: TimeoutId = setTimeout((): void => {
 
