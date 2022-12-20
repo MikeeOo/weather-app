@@ -38,8 +38,6 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                     requestCod: locationApiRequest[0].value.cod.toString()
                 });
             }
-
-
         }
 
 

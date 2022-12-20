@@ -41,7 +41,7 @@ const Search = (): JSX.Element => {
         setLocationInput(``)
     }
 
-    console.log(err)
+    // console.log(err)
   return (
       <SearchStyled>
 

@@ -5,7 +5,7 @@ export interface ILocationDataReducer {
 
 export interface ILocationDataArray {
     locationDataArray: Array<ILocationData>,
-    locationDataPageArray: Array<ILocationData>
+    locationDataPage: ILocationData
     loader: boolean,
     notFoundError: boolean;
 }
@@ -18,5 +18,5 @@ export interface ILocationData {
     locationDesc?: string,
     locationIcon?: string,
     locationPicture?: string
-    requestCod: string
+    requestCod?: string
 }
