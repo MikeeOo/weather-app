@@ -4,8 +4,11 @@ import {ILocationPicture} from "../../types/componentsProps";
 
 const LocationPicture = ({locationPicture}: ILocationPicture): JSX.Element => {
 
+  console.log(locationPicture)
+
   return (
-      <LocationPictureStyled style={{backgroundImage: `url(${locationPicture})`}}/>
+      <>xd</>
+      // <LocationPictureStyled style={{backgroundImage: `url(${locationPicture})`}}/>
   );
 };
 

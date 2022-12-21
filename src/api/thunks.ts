@@ -34,7 +34,7 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                     locationDesc: locationApiRequest[0].value.weather[0].description,
                     locationIcon: `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png`,
                     // locationPicture: locationApiRequest[1].value.hits[Math.floor(Math.random() * locationApiRequest[1].value.hits.length)].largeImageURL,
-                    locationPicture: locationApiRequest[1].value.hits[2].largeImageURL,
+                    locationPicture: locationApiRequest[1].value.hits,
                     requestCod: locationApiRequest[0].value.cod.toString()
                 });
             }

@@ -17,6 +17,10 @@ export interface ILocationData {
     locationTemp?: string,
     locationDesc?: string,
     locationIcon?: string,
-    locationPicture?: string
+    locationPicture?: Array<ILocationImg>,
     requestCod?: string
+}
+
+export interface ILocationImg {
+    largeImageURL: string
 }

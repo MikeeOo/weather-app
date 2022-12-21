@@ -1,14 +1,16 @@
+import {ILocationImg} from "./reduxData";
+
 export interface ILocation {
     locationId?: string,
     locationName?: string,
     locationTemp?: string,
     locationDesc?: string,
     locationIcon?: string,
-    locationPicture?: string,
+    locationPicture?: Array<ILocationImg>,
 }
 
 export interface ILocationPicture {
-    locationPicture?: string,
+    locationPicture?: Array<ILocationImg>,
 }
 
 export interface ILocationHeading {
