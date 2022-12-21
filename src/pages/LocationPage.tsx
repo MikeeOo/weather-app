@@ -1,30 +1,56 @@
 import React, {useEffect, useState} from "react";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {
     locationDataPage as reduxLocationDataPage,
     filterLocationDataArrayViaParams,
+    editLocationPicture, locationDataArray as reduxLocationDataArray,
 } from "../redux/locationDataSlice";
 import Slider from "react-slick";
-import {current} from "@reduxjs/toolkit";
-
+import {updateLocationDataArrayViaApi} from "../api/thunks";
+import {ILocationData} from "../types/reduxData";
 
 const LocationPage = (): JSX.Element => {
 
+
     const params = useParams()
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
+    const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
+
+
     const locationDataPage = useSelector(reduxLocationDataPage)
 
-    const [currSlide, setCurrSlide] = useState<number>(0)
+    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex))
+
+    const [initialSlide, setInitialSlide] = useState<number>(0)
 
     useEffect(() => {
         dispatch(filterLocationDataArrayViaParams(params))
+
+        // setInitialSlide(params.locationPictureIndex)
     },[])
 
-    console.log(locationDataPage.locationPicture)
-    console.log(currSlide)
+
+    // console.log(locationDataPage.locationPicture)
+    // console.log(currSlide)
+
+    const returnToMain = () => {
+
+
+        dispatch(editLocationPicture({
+            currLocationSlide: currSlide,
+            currLocationId: params.id
+        }))
+        // dispatch(updateLocationDataArrayViaApi({
+        //     locationDataArray: locationDataArray,
+        //     id: currSlide
+        // }))
+        navigate("/");
+    }
 
     const settings = {
         "beforeChange": (current: number, next: number): void => setCurrSlide(next),
@@ -34,12 +60,14 @@ const LocationPage = (): JSX.Element => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        initialSlide: parseInt(params.locationPictureIndex),
     };
 
+    console.log(currSlide)
     return (
       <div style={{color: `white`, fontSize: `20px`}}>
 
-          <Link to="/">BACK</Link>
+          <button onClick={returnToMain}>BACK</button>
 
 
           <div style={{width: `600px`,backgroundColor: `black`, margin: `0 auto`}}>

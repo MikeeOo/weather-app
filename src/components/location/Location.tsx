@@ -13,14 +13,21 @@ const Location = (props: ILocation): JSX.Element => {
       <LocationStyled>
           {/*<LocationPicture locationPicture={props.locationPicture} />*/}
 
-          {props.locationPicture && <LocationPictureStyled style={{backgroundImage: `url(${props.locationPicture[2].largeImageURL})`}}/>}
+          {props.locationPicture && <LocationPictureStyled
+
+              style={{backgroundImage: `url(${props.locationPicture[props.locationPictureIndex].largeImageURL})`}}/>}
+
+
+
 
           <LocationHeading locationId={props.locationId}
-                           locationName={props.locationName}/>
+                           locationName={props.locationName}
+                           locationPictureIndex={props.locationPictureIndex}
+          />
 
           <p>Temp: {props.locationTemp}°C</p>
           <p>Conditions: {props.locationDesc}</p>
-          <img src={props.locationIcon} alt="weather icon"/>
+          <img src={props.locationIcon} alt="weather icon" style={{filter: `invert(1)`}}/>
       </LocationStyled>
   )
 }

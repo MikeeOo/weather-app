@@ -48,6 +48,18 @@ const locationDataSlice = createSlice({
             // const xd = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: { locationId: string; }): boolean => location.locationId === payload.id)
             state.locationDataPage = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocation): boolean => location.locationId === payload.id)
         },
+
+        editLocationPicture(state, {payload}) {
+            state.locationDataArray = state.locationDataArray.map(locationData => {
+                if(locationData.locationId === payload.currLocationId) {
+                    return {...locationData, locationPictureIndex: payload.currLocationSlide}
+                } else {
+                    return locationData
+                }
+            })
+
+            // localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray))
+        }
     },
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, action: IUpdatedLocationData): void => {
@@ -71,7 +83,7 @@ const locationDataSlice = createSlice({
     }
 })
 
-export const {deleteErr,setLoader, addLocationInputDataToState ,getLocationFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions
+export const {editLocationPicture,deleteErr,setLoader, addLocationInputDataToState ,getLocationFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions
 
 export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
 export const locationDataPage = (state: ILocationDataReducer): ILocationData => state.locationData.locationDataPage

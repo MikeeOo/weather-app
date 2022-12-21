@@ -18,6 +18,7 @@ export interface ILocationData {
     locationDesc?: string,
     locationIcon?: string,
     locationPicture?: Array<ILocationImg>,
+    locationPictureIndex?: number,
     requestCod?: string
 }
 

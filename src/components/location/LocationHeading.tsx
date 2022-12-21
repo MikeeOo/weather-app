@@ -9,14 +9,14 @@ import {ILocationHeading} from "../../types/componentsProps"
 import {Link} from "react-router-dom";
 
 
-const LocationHeading = ({locationId, locationName}: ILocationHeading): JSX.Element => {
+const LocationHeading = ({locationId, locationName, locationPictureIndex}: ILocationHeading): JSX.Element => {
 
     const dispatch = useDispatch()
 
   return (
       <LocationHeadingStyled>
 
-          <Link to={`/${locationName}/id=${locationId}`} style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
+          <Link to={`/${locationName}/id=${locationId}/${locationPictureIndex}`} style={{color: 'white', fontSize: `20px`}}>{locationName}</Link>
 
           <button onClick={() => dispatch(deleteLocationData(locationId))}>
 

@@ -24,7 +24,7 @@ const Display = (): JSX.Element => {
     const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
 
     const loader: boolean = useSelector(reduxLoader)
-
+    // DLACZEGO TO TERAZ NIE JEST POTRZEBNE?!?!?!?!
     useEffect(() => {
 
         dispatch(getLocationFromLocalStorage())
@@ -46,7 +46,7 @@ const Display = (): JSX.Element => {
             }
     },[locationDataArray.length])
 
-
+    // console.log(locationDataArray)
     return (
       <DisplayStyled>
           {!loader && locationDataArray.map((location) =>
@@ -56,7 +56,8 @@ const Display = (): JSX.Element => {
                         locationTemp={location.locationTemp}
                         locationDesc={location.locationDesc}
                         locationIcon={location.locationIcon}
-                        locationPicture={location.locationPicture}/>
+                        locationPicture={location.locationPicture}
+                        locationPictureIndex={location.locationPictureIndex}/>
           )}
 
           {loader && <div style={{width: `300px`, height:`100vh`, margin:`0 auto`, display: `flex`, alignItems:`center`}}><LoaderSvg/></div>}
