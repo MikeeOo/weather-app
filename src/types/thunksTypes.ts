@@ -1,4 +1,4 @@
-import {ILocationData} from "./reduxData";
+import {ILocationData} from "./commonTypes";
 
 export interface IUpdatedLocationData {
     type: string,
@@ -7,7 +7,7 @@ export interface IUpdatedLocationData {
 }
 
 //____________IWeatherPayload____________//
-export interface IWeatherPayload {
+export interface IWeatherResponse {
     status: string,
     value: IWeatherData;
 }
@@ -28,7 +28,7 @@ interface IWeatherWeather {
     icon: string,
 }
 //____________IPicturePayload____________//
-export interface IPicturePayload {
+export interface IImagesResponse {
     status: string,
     value: IPictureData,
 }

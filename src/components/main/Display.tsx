@@ -1,21 +1,20 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
 import {
-    locationDataArray as reduxLocationDataArray,
-    loader as reduxLoader,
-    setLoader,
-    getLocationFromLocalStorage
-} from "../../redux/locationDataSlice";
+    locationDataArray as reduxLocationDataArray, locationDataLoader as reduxLocationDataLoader,
+    setLocationDataLoader, getLocationFromLocalStorage} from "../../redux/locationDataSlice";
 import {updateLocationDataArrayViaApi} from "../../api/thunks";
-import type {} from 'redux-thunk/extend-redux';
 
-import {DisplayStyled} from "./Display.styled";
 import Location from "../location/Location";
-import {ILocationData} from "../../types/reduxData";
-import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import LoaderSvg from "../atoms/svg/LoaderSvg";
+
+import type {} from 'redux-thunk/extend-redux';
+import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import {ILocationData} from "../../types/commonTypes";
+
+import styled from "styled-components";
 
 const Display = (): JSX.Element => {
 
@@ -23,19 +22,16 @@ const Display = (): JSX.Element => {
 
     const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
 
-    const loader: boolean = useSelector(reduxLoader)
-    // DLACZEGO TO TERAZ NIE JEST POTRZEBNE?!?!?!?!
-    useEffect(() => {
+    const locationDataLoader: boolean = useSelector(reduxLocationDataLoader)
 
+    useEffect((): void => {
         dispatch(getLocationFromLocalStorage())
     },[])
 
     useEffect(() => {
-        // dispatch(setLoader())
-        // tutaj możesz wrzucić info o dodaniu miasta zamiast loadera
         if(locationDataArray.length){
 
-            dispatch(setLoader())
+            dispatch(setLocationDataLoader())
 
                 const timeout: TimeoutId = setTimeout((): void => {
 
@@ -46,28 +42,30 @@ const Display = (): JSX.Element => {
             }
     },[locationDataArray.length])
 
-    // console.log(locationDataArray)
     return (
       <DisplayStyled>
 
           {!locationDataArray.length ? <div style={{color: "white"}}>Search for location...</div> : null}
 
           <>
-              {!loader && locationDataArray.map((location) =>
+              {!locationDataLoader && locationDataArray.map((location: ILocationData) =>
                   <Location key={location.locationId}
                             locationId={location.locationId}
                             locationName={location.locationName}
                             locationTemp={location.locationTemp}
                             locationDesc={location.locationDesc}
                             locationIcon={location.locationIcon}
-                            locationPicture={location.locationPicture}
-                            locationPictureIndex={location.locationPictureIndex}/>
+                            locationImages={location.locationImages}
+                            locationImageIndex={location.locationImageIndex}/>
               )}
-              {loader && <div style={{width: `300px`, height:`100vh`, margin:`0 auto`, display: `flex`, alignItems:`center`}}><LoaderSvg/></div>}
+              {locationDataLoader && <div style={{width: `300px`, height:`100vh`, margin:`0 auto`, display: `flex`, alignItems:`center`}}><LoaderSvg/></div>}
           </>
-
       </DisplayStyled>
   )
-}
+};
 
-export default Display
+export default Display;
+
+export const DisplayStyled = styled.div`
+  padding: 0 0 2.4rem 0;
+`

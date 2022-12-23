@@ -1,33 +1,35 @@
-import {SyntheticEvent, useEffect, useState} from "react";
-import {useDispatch, useSelector,} from "react-redux";
-import {addLocationInputDataToState, deleteErr} from "../../redux/locationDataSlice";
+import {useState, useEffect, SyntheticEvent, ChangeEvent} from "react";
+
 import { v4 as uuid } from 'uuid';
 
-import SearchSvg from "../atoms/svg/SearchSvg";
-import {SearchStyled} from "./Search.styled";
-import {Dispatch} from "@reduxjs/toolkit";
-import {notFoundError} from "../../redux/locationDataSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {locationNotFoundError as reduxLocationNotFoundError} from "../../redux/locationDataSlice";
+import {addLocationInputDataToState, removeLocationNotFoundError} from "../../redux/locationDataSlice";
 
-import {ChangeEvent} from "react";
+import SearchSvg from "../atoms/svg/SearchSvg";
+
+import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import {updateLocationDataArrayViaApi} from "../../api/thunks";
+
+import {SearchStyled} from "./Search.styled";
+
 
 const Search = (): JSX.Element => {
 
-    const dispatch: Dispatch = useDispatch()
+    const dispatch: Dispatch<AnyAction> = useDispatch()
 
-    const err = useSelector(notFoundError)
+    const locationNotFoundError: boolean = useSelector(reduxLocationNotFoundError)
 
     const [locationInput, setLocationInput] = useState<string>(``)
 
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
 
-            dispatch(deleteErr())
+            dispatch(removeLocationNotFoundError())
         }, 1000 * 7)
 
         return () => clearTimeout(timeout)
-    },[err])
+    },[locationNotFoundError])
 
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault()
@@ -36,14 +38,13 @@ const Search = (): JSX.Element => {
             dispatch(addLocationInputDataToState({
                 locationId: uuid(),
                 locationInput: locationInput,
-                locationPictureIndex: "0"
+                locationImageIndex: "0"
             }))
         }
-        dispatch(deleteErr())
+        dispatch(removeLocationNotFoundError())
         setLocationInput(``)
     }
 
-    // console.log(err)
   return (
       <SearchStyled>
 
@@ -56,7 +57,8 @@ const Search = (): JSX.Element => {
 
               <button type="submit"><SearchSvg/></button>
           </form>
-          {err && <div style={{color: `red`}}>location not found</div>}
+
+          {locationNotFoundError && <div style={{color: `red`}}>location not found</div>}
       </SearchStyled>
   )
 }

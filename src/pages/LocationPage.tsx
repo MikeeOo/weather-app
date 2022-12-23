@@ -1,60 +1,46 @@
-import React, {useEffect, useState} from "react";
-import {useParams, Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    locationDataPage as reduxLocationDataPage,
-    filterLocationDataArrayViaParams,
-    editLocationPicture, locationDataArray as reduxLocationDataArray,
-} from "../redux/locationDataSlice";
+import {useEffect, useState} from "react";
+
+import {useParams, useNavigate, Params, NavigateFunction} from "react-router-dom";
+
 import Slider from "react-slick";
-import {updateLocationDataArrayViaApi} from "../api/thunks";
-import {ILocationData} from "../types/reduxData";
+
+import {useDispatch, useSelector} from "react-redux";
+import {locationDataPage as reduxLocationDataPage} from "../redux/locationDataSlice";
+import {filterLocationDataArrayViaParams, editLocationImage} from "../redux/locationDataSlice";
+
+import {AnyAction, Dispatch} from "@reduxjs/toolkit";
+
+import {ILocationData, ILocationImagesURLs} from "../types/commonTypes";
+import {ISettings} from "../types/sliderTypes";
 
 const LocationPage = (): JSX.Element => {
 
+    const params: Readonly<Params<string>> = useParams();
 
-    const params = useParams()
+    const navigate: NavigateFunction = useNavigate();
 
-    const navigate = useNavigate()
+    const dispatch: Dispatch<AnyAction> = useDispatch();
 
-    const dispatch = useDispatch()
+    const locationDataPage: ILocationData = useSelector(reduxLocationDataPage);
 
-    const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
+    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex as string));
 
+    useEffect((): void => {
+        dispatch(filterLocationDataArrayViaParams(params));
+    },[]);
 
-    const locationDataPage = useSelector(reduxLocationDataPage)
+    const returnToMain = (): void => {
 
-    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex as string))
-
-    const [initialSlide, setInitialSlide] = useState<number>(0)
-
-    useEffect(() => {
-        dispatch(filterLocationDataArrayViaParams(params))
-
-        // setInitialSlide(params.locationPictureIndex)
-    },[])
-
-
-    // console.log(locationDataPage.locationPicture)
-    // console.log(currSlide)
-
-    const returnToMain = () => {
-
-
-        dispatch(editLocationPicture({
+        dispatch(editLocationImage({
             currLocationSlide: currSlide.toString(),
             currLocationId: params.id
-        }))
-        // dispatch(updateLocationDataArrayViaApi({
-        //     locationDataArray: locationDataArray,
-        //     id: currSlide
-        // }))
-        navigate("/");
-    }
+        }));
 
-    const settings = {
-        "beforeChange": (current: number, next: number): void => setCurrSlide(next),
-        // beforeChange: (current: number, next: number): void => setCurrSlide(next),
+        navigate("/");
+    };
+
+    const settings: ISettings = {
+        beforeChange: (current: number, next: number): void => setCurrSlide(next),
         dots: true,
         infinite: true,
         speed: 500,
@@ -63,7 +49,6 @@ const LocationPage = (): JSX.Element => {
         initialSlide: parseInt(params.locationPictureIndex as string),
     };
 
-    console.log(currSlide)
     return (
       <div style={{color: `white`, fontSize: `20px`}}>
 
@@ -73,8 +58,8 @@ const LocationPage = (): JSX.Element => {
               <h2>Center Mode</h2>
 
               <Slider {...settings}>
-              {locationDataPage.locationPicture && locationDataPage.locationPicture.map((img, index) =>
-                  <div key={index} ><img src={img.largeImageURL} alt="" style={{width: `100%`, height: `400px`, objectFit: `cover`,}}/></div>
+              {locationDataPage.locationImages && locationDataPage.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
+                  <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `400px`, objectFit: `cover`,}}/></div>
               )}
               </Slider>
           </div>

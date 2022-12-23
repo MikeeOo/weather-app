@@ -1,6 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, DefaultTheme, GlobalStyleComponent} from "styled-components";
 
-const ResetStyles = createGlobalStyle`
+const ResetStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
   html, body, div, span, applet, object, iframe, 
   h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
   a, abbr, acronym, address, big, cite, code, 
@@ -206,4 +206,4 @@ const ResetStyles = createGlobalStyle`
   }
 `
 
-export default ResetStyles
+export default ResetStyles;

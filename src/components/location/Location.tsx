@@ -1,33 +1,53 @@
-import LocationPicture from "./LocationPicture";
-import LocationHeading from "./LocationHeading";
-import {LocationStyled} from "./Location.styled";
-import {ILocation} from "../../types/componentsProps";
-import {LocationPictureStyled} from "./LocationPicture.styled";
+import LocationName from "./LocationName";
+import {ILocation} from "../../types/propsTypes";
+import LocationImage from "./LocationImage";
 
-const Location = (props: ILocation): JSX.Element => {
+import styled from "styled-components";
 
-    // console.log(props.locationPicture)
+const Location = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocation): JSX.Element => {
+
   return (
 
       <LocationStyled>
-          {/*<LocationPicture locationPicture={props.locationPicture} />*/}
 
-          {props.locationPicture && <LocationPictureStyled
+          <LocationImage locationImages={locationImages} locationImageIndex={locationImageIndex}/>
 
-              style={{backgroundImage: `url(${props.locationPicture[parseInt(props.locationPictureIndex as string)].largeImageURL})`}}/>}
+          <LocationName locationId={locationId} locationName={locationName} locationImageIndex={locationImageIndex}/>
 
-
-
-
-          <LocationHeading locationId={props.locationId}
-                           locationName={props.locationName}
-                           locationPictureIndex={props.locationPictureIndex}/>
-
-          <p>Temp: {props.locationTemp}°C</p>
-          <p>Conditions: {props.locationDesc}</p>
-          <img src={props.locationIcon} alt="weather icon" style={{filter: `invert(1)`}}/>
+          <p>Temp: {locationTemp} °C</p>
+          <p>Conditions: {locationDesc}<img src={locationIcon} alt="weather icon" style={{filter: `invert(0.2)`}}/></p>
       </LocationStyled>
   )
-}
+};
 
-export default Location
+export default Location;
+
+const LocationStyled = styled.div`
+  //background-color: ${({theme}) => theme.color.secondary};
+  background-color: rgba(79, 95, 110, 0.4);
+
+  //background-color: #738494;
+  //background-color: #5c6a78;
+  //background-color: #556370;
+  //background-color: rgba(79, 95, 110, 0.7);
+  //background-color: #304152;
+  max-width: 26.4rem;
+  margin: 2.4rem auto 0 auto;
+  border-radius: 10px;
+  color: ${({theme}) => theme.color.white};
+  
+  p {
+    //padding: 0 0.7rem;
+    margin: 1rem;
+    //margin-top: 0.7rem;
+    font-size: 1.4rem;
+  }
+  //
+  img {
+    width: 25%;
+    max-width: 100%;
+    margin-top: -2rem;
+    display: inline;
+  }
+  
+`

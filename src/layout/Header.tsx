@@ -29,4 +29,3 @@ const HeaderStyled = styled.header`
   //padding: 2em;
   justify-content: space-between;
 `
-
