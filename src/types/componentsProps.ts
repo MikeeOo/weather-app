@@ -7,7 +7,7 @@ export interface ILocation {
     locationDesc?: string,
     locationIcon?: string,
     locationPicture?: Array<ILocationImg>,
-    locationPictureIndex: number,
+    locationPictureIndex?: string,
 }
 
 export interface ILocationPicture {
@@ -17,4 +17,5 @@ export interface ILocationPicture {
 export interface ILocationHeading {
     locationId?: string,
     locationName?: string
+    locationPictureIndex?: string,
 }

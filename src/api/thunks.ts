@@ -22,7 +22,7 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
 
             if(locationApiRequest[0].value.cod === "404"){
                 updatedLocationDataArray.push({
-                    requestCod: locationApiRequest[0].value.cod.toString()
+                    requestCod: locationApiRequest[0].value.cod
                 })
             }
             else{
@@ -35,7 +35,7 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                     locationIcon: `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png`,
                     // locationPicture: locationApiRequest[1].value.hits[Math.floor(Math.random() * locationApiRequest[1].value.hits.length)].largeImageURL,
                     locationPicture: locationApiRequest[1].value.hits,
-                    locationPictureIndex: locationData.locationPictureIndex !== 0 ? locationData.locationPictureIndex : 0,
+                    locationPictureIndex: locationData.locationPictureIndex !== "0" ? locationData.locationPictureIndex : "0",
                     // if (locationData.locationPictureIndex !== 0){locationData.locationPictureIndex} else {0}
                     // if (currSlide !== 0){currSlide} else {0}
                     requestCod: locationApiRequest[0].value.cod.toString()

@@ -9,7 +9,9 @@ import {ILocationHeading} from "../../types/componentsProps"
 import {Link} from "react-router-dom";
 
 
-const LocationHeading = ({locationId, locationName, locationPictureIndex}: ILocationHeading): JSX.Element => {
+const LocationHeading = ({locationId,
+                          locationName,
+                          locationPictureIndex}: ILocationHeading): JSX.Element => {
 
     const dispatch = useDispatch()
 

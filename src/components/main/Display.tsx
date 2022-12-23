@@ -49,18 +49,23 @@ const Display = (): JSX.Element => {
     // console.log(locationDataArray)
     return (
       <DisplayStyled>
-          {!loader && locationDataArray.map((location) =>
-              <Location key={location.locationId}
-                        locationId={location.locationId}
-                        locationName={location.locationName}
-                        locationTemp={location.locationTemp}
-                        locationDesc={location.locationDesc}
-                        locationIcon={location.locationIcon}
-                        locationPicture={location.locationPicture}
-                        locationPictureIndex={location.locationPictureIndex}/>
-          )}
 
-          {loader && <div style={{width: `300px`, height:`100vh`, margin:`0 auto`, display: `flex`, alignItems:`center`}}><LoaderSvg/></div>}
+          {!locationDataArray.length ? <div style={{color: "white"}}>Search for location...</div> : null}
+
+          <>
+              {!loader && locationDataArray.map((location) =>
+                  <Location key={location.locationId}
+                            locationId={location.locationId}
+                            locationName={location.locationName}
+                            locationTemp={location.locationTemp}
+                            locationDesc={location.locationDesc}
+                            locationIcon={location.locationIcon}
+                            locationPicture={location.locationPicture}
+                            locationPictureIndex={location.locationPictureIndex}/>
+              )}
+              {loader && <div style={{width: `300px`, height:`100vh`, margin:`0 auto`, display: `flex`, alignItems:`center`}}><LoaderSvg/></div>}
+          </>
+
       </DisplayStyled>
   )
 }

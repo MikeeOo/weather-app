@@ -1,7 +1,6 @@
 import {Outlet} from "react-router-dom";
-
 import Header from "./Header";
-import {DefaultStyled} from "./Default.styled";
+import styled from "styled-components";
 
 const Default = (): JSX.Element => {
 
@@ -15,3 +14,10 @@ const Default = (): JSX.Element => {
 };
 
 export default Default;
+
+const DefaultStyled = styled.div`
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: ${({theme}) => theme.color.primary};
+
+`

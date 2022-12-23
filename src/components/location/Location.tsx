@@ -3,7 +3,6 @@ import LocationHeading from "./LocationHeading";
 import {LocationStyled} from "./Location.styled";
 import {ILocation} from "../../types/componentsProps";
 import {LocationPictureStyled} from "./LocationPicture.styled";
-import {useState} from "react";
 
 const Location = (props: ILocation): JSX.Element => {
 
@@ -15,15 +14,14 @@ const Location = (props: ILocation): JSX.Element => {
 
           {props.locationPicture && <LocationPictureStyled
 
-              style={{backgroundImage: `url(${props.locationPicture[props.locationPictureIndex].largeImageURL})`}}/>}
+              style={{backgroundImage: `url(${props.locationPicture[parseInt(props.locationPictureIndex as string)].largeImageURL})`}}/>}
 
 
 
 
           <LocationHeading locationId={props.locationId}
                            locationName={props.locationName}
-                           locationPictureIndex={props.locationPictureIndex}
-          />
+                           locationPictureIndex={props.locationPictureIndex}/>
 
           <p>Temp: {props.locationTemp}°C</p>
           <p>Conditions: {props.locationDesc}</p>

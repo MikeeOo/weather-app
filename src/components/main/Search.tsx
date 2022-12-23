@@ -36,9 +36,10 @@ const Search = (): JSX.Element => {
             dispatch(addLocationInputDataToState({
                 locationId: uuid(),
                 locationInput: locationInput,
-                locationPictureIndex: 0
+                locationPictureIndex: "0"
             }))
         }
+        dispatch(deleteErr())
         setLocationInput(``)
     }
 

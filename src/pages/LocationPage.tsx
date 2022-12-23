@@ -24,7 +24,7 @@ const LocationPage = (): JSX.Element => {
 
     const locationDataPage = useSelector(reduxLocationDataPage)
 
-    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex))
+    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex as string))
 
     const [initialSlide, setInitialSlide] = useState<number>(0)
 
@@ -42,7 +42,7 @@ const LocationPage = (): JSX.Element => {
 
 
         dispatch(editLocationPicture({
-            currLocationSlide: currSlide,
+            currLocationSlide: currSlide.toString(),
             currLocationId: params.id
         }))
         // dispatch(updateLocationDataArrayViaApi({
@@ -60,7 +60,7 @@ const LocationPage = (): JSX.Element => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        initialSlide: parseInt(params.locationPictureIndex),
+        initialSlide: parseInt(params.locationPictureIndex as string),
     };
 
     console.log(currSlide)
@@ -68,7 +68,6 @@ const LocationPage = (): JSX.Element => {
       <div style={{color: `white`, fontSize: `20px`}}>
 
           <button onClick={returnToMain}>BACK</button>
-
 
           <div style={{width: `600px`,backgroundColor: `black`, margin: `0 auto`}}>
               <h2>Center Mode</h2>
