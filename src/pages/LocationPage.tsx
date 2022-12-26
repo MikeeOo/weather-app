@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-import {useParams, useNavigate, Params, NavigateFunction} from "react-router-dom";
+import {useParams, useNavigate, NavigateFunction} from "react-router-dom";
 
 import Slider from "react-slick";
 
@@ -15,15 +15,15 @@ import {ISettings} from "../types/sliderTypes";
 
 const LocationPage = (): JSX.Element => {
 
-    const params: Readonly<Params<string>> = useParams();
+    const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
 
     const navigate: NavigateFunction = useNavigate();
-
+    
     const dispatch: Dispatch<AnyAction> = useDispatch();
-
+    
     const locationDataPage: ILocationData = useSelector(reduxLocationDataPage);
 
-    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationPictureIndex as string));
+    const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationImageIndex as string));
 
     useEffect((): void => {
         dispatch(filterLocationDataArrayViaParams(params));
@@ -33,7 +33,7 @@ const LocationPage = (): JSX.Element => {
 
         dispatch(editLocationImage({
             currLocationSlide: currSlide.toString(),
-            currLocationId: params.id
+            currLocationId: params.locationId
         }));
 
         navigate("/");
@@ -46,7 +46,7 @@ const LocationPage = (): JSX.Element => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        initialSlide: parseInt(params.locationPictureIndex as string),
+        initialSlide: parseInt(params.locationImageIndex as string),
     };
 
     return (

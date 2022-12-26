@@ -1,16 +1,18 @@
 import {useEffect} from "react";
 
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
+import {useAppDispatch} from "../../redux/store";
+
 import {
     locationDataArray as reduxLocationDataArray, locationDataLoader as reduxLocationDataLoader,
-    setLocationDataLoader, getLocationFromLocalStorage} from "../../redux/locationDataSlice";
+    setLocationDataLoader, getInitialStateFromLocalStorage} from "../../redux/locationDataSlice";
 import {updateLocationDataArrayViaApi} from "../../api/thunks";
 
 import Location from "../location/Location";
 import LoaderSvg from "../atoms/svg/LoaderSvg";
 
-import type {} from 'redux-thunk/extend-redux';
-import {AnyAction, Dispatch} from "@reduxjs/toolkit";
+// import type {} from 'redux-thunk/extend-redux';
+// import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {ILocationData} from "../../types/commonTypes";
 
@@ -18,14 +20,14 @@ import styled from "styled-components";
 
 const Display = (): JSX.Element => {
 
-    const dispatch: Dispatch<AnyAction> = useDispatch();
+    const dispatch = useAppDispatch();
 
     const locationDataArray: Array<ILocationData> = useSelector(reduxLocationDataArray)
 
     const locationDataLoader: boolean = useSelector(reduxLocationDataLoader)
 
     useEffect((): void => {
-        dispatch(getLocationFromLocalStorage())
+        dispatch(getInitialStateFromLocalStorage())
     },[])
 
     useEffect(() => {

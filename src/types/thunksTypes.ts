@@ -1,12 +1,4 @@
-import {ILocationData} from "./commonTypes";
-
-export interface IUpdatedLocationData {
-    type: string,
-    payload: Array<ILocationData>
-    meta: IMeta,
-}
-
-//____________IWeatherPayload____________//
+//____________IWeatherResponse____________//
 export interface IWeatherResponse {
     status: string,
     value: IWeatherData;
@@ -27,22 +19,17 @@ interface IWeatherWeather {
     description: string,
     icon: string,
 }
-//____________IPicturePayload____________//
+
+//____________IImagesResponse____________//
 export interface IImagesResponse {
     status: string,
-    value: IPictureData,
+    value: IImagesData,
 }
 
-export interface IPictureData {
-    hits: Array<IPicture>
+export interface IImagesData {
+    hits: Array<IImage>
 }
 
-interface IPicture {
+interface IImage {
     largeImageURL: string
-}
-//________IMeta________//
-interface IMeta {
-    arg: Array<ILocationData>,
-    requestId: string,
-    requestStatus: string,
 }

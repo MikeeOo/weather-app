@@ -3,7 +3,7 @@ import {ILocationImage} from "../../types/propsTypes";
 import styled from "styled-components";
 
 const LocationImage = ({locationImages, locationImageIndex}: ILocationImage): JSX.Element =>
-    <LocationImageStyled style={{backgroundImage: `url(${locationImages && locationImages[parseInt(locationImageIndex as string)].largeImageURL})`}}/>;
+    <LocationImageStyled style={{backgroundImage: `url(${locationImages?.length && locationImages[parseInt(locationImageIndex as string)].largeImageURL})`}}/>;
 
 export default LocationImage;
 

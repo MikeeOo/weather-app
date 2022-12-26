@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {WEATHER_API, WEATHER_API_KEY, IMAGE_API, IMAGE_API_KEY} from "./constants";
 import {ILocationData} from "../types/commonTypes";
-import {IWeatherResponse, IImagesResponse, IWeatherData, IPictureData} from "../types/thunksTypes";
+import {IWeatherResponse, IImagesResponse, IWeatherData, IImagesData} from "../types/thunksTypes";
 
 export const updateLocationDataArrayViaApi = createAsyncThunk(
     'locationData/updateLocationDataArrayViaApi',
@@ -16,7 +16,7 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                 (await fetch(`${IMAGE_API}?key=${IMAGE_API_KEY}&q=${locationData.locationInput}`)).json()
             ]) as [
                 {status: 'fulfilled' | 'rejected', value: IWeatherData},
-                {status: 'fulfilled' | 'rejected', value: IPictureData}
+                {status: 'fulfilled' | 'rejected', value: IImagesData}
             ];
 
             if(locationApiRequest[0].value.cod === "404"){

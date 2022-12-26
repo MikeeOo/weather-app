@@ -60,7 +60,7 @@ const Search = (): JSX.Element => {
 
           {locationNotFoundError && <div style={{color: `red`}}>location not found</div>}
       </SearchStyled>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

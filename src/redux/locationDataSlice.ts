@@ -1,10 +1,10 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {updateLocationDataArrayViaApi} from "../api/thunks";
 
-import {ILocationDataReducer, ILocationDataArray} from "../types/locationDataSliceTypes";
-import {IUpdatedLocationData} from "../types/thunksTypes";
+import {ILocationDataArray, ILocationInputData, ILocationParamsData, ILocationEditData} from "../types/locationDataSliceTypes";
 import {ILocationData} from "../types/commonTypes"
+import {RootState} from "./store";
 
 const initialState: ILocationDataArray = {
     locationDataArray: [],
@@ -20,22 +20,23 @@ const locationDataSlice = createSlice({
         setLocationDataLoader(state): void{
             state.locationDataLoader = true;
         },
+
         removeLocationNotFoundError(state): void{
             state.locationNotFoundError = false;
         },
-        addLocationInputDataToState(state, {payload}): void{
 
+        addLocationInputDataToState(state, {payload}: PayloadAction<ILocationInputData>): void{
             state.locationDataArray.push(payload)
-
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         },
-        // change this name!!!
-        getLocationFromLocalStorage(state): void{
+
+        getInitialStateFromLocalStorage(state): void{
             state.locationDataArray = localStorage.getItem(`locationDataArray`) ? JSON.parse(localStorage.getItem(`locationDataArray`) as string) : [];
         },
-        deleteLocationData(state, action): void{
 
-            state.locationDataArray.splice(state.locationDataArray.findIndex((location): boolean => location.locationId === action.payload),1);
+        deleteLocationData(state, {payload}: PayloadAction<undefined | string>): void{
+
+            state.locationDataArray.splice(state.locationDataArray.findIndex((location): boolean => location.locationId === payload),1);
 
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
 
@@ -43,24 +44,27 @@ const locationDataSlice = createSlice({
                 localStorage.clear();
             }
         },
-        filterLocationDataArrayViaParams(state, {payload}: any): void{
-            state.locationDataPage = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.id);
+
+        filterLocationDataArrayViaParams(state, {payload}: PayloadAction<ILocationParamsData>): void{
+            state.locationDataPage = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.locationId);
         },
-        editLocationImage(state, {payload}): void {
+
+        editLocationImage(state, {payload}: PayloadAction<ILocationEditData>): void {
             state.locationDataArray = state.locationDataArray.map(locationData => locationData.locationId === payload.currLocationId ? {...locationData, locationImageIndex: payload.currLocationSlide} : locationData);
         }
     },
+
     extraReducers: (builder): void => {
-        builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, action: IUpdatedLocationData): void => {
+        builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
 
-                if(action.payload[action.payload.length - 1].locationRequestCod === `200`) {
+                if(payload[payload.length - 1].locationRequestCod === `200`) {
 
-                    state.locationDataArray = action.payload;
-                    localStorage.setItem(`locationDataArray`, JSON.stringify(action.payload))
+                    state.locationDataArray = payload;
+                    localStorage.setItem(`locationDataArray`, JSON.stringify(payload))
                     state.locationDataLoader = false;
                 } else {
 
-                    const updatedLocationArray: Array<ILocationData> = action.payload
+                    const updatedLocationArray: Array<ILocationData> = payload
                     updatedLocationArray.pop()
                     state.locationDataArray = updatedLocationArray
                     localStorage.setItem(`locationDataArray`, JSON.stringify(updatedLocationArray))
@@ -71,11 +75,11 @@ const locationDataSlice = createSlice({
     }
 });
 
-export const {editLocationImage,removeLocationNotFoundError,setLocationDataLoader, addLocationInputDataToState ,getLocationFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions
+export const {editLocationImage,removeLocationNotFoundError,setLocationDataLoader, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions
 
-export const locationDataArray = (state: ILocationDataReducer): Array<ILocationData> => state.locationData.locationDataArray
-export const locationDataPage = (state: ILocationDataReducer): ILocationData => state.locationData.locationDataPage
-export const locationDataLoader = (state: ILocationDataReducer): boolean => state.locationData.locationDataLoader
-export const locationNotFoundError = (state: ILocationDataReducer): boolean => state.locationData.locationNotFoundError
+export const locationDataArray = (state: RootState): Array<ILocationData> => state.locationData.locationDataArray
+export const locationDataPage = (state: RootState): ILocationData => state.locationData.locationDataPage
+export const locationDataLoader = (state: RootState): boolean => state.locationData.locationDataLoader
+export const locationNotFoundError = (state: RootState): boolean => state.locationData.locationNotFoundError
 
 export default locationDataSlice.reducer
