@@ -1,11 +1,14 @@
 import {configureStore} from "@reduxjs/toolkit";
 
 import locationDataSlice from "./locationDataSlice";
+import themeSlice from "./themeSlice";
+
 import {useDispatch} from "react-redux";
 
 export const store = configureStore({
     reducer: {
-        locationData: locationDataSlice
+        locationData: locationDataSlice,
+        themeState: themeSlice
     }
 })
 

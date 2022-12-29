@@ -1,9 +1,10 @@
 export interface ISettings {
     beforeChange: (current: number, next: number) => void,
-    dots: boolean,
     infinite: boolean,
     speed: number,
+    fade: boolean,
     slidesToShow: number,
     slidesToScroll: number,
+    arrows : boolean,
     initialSlide: number,
 }

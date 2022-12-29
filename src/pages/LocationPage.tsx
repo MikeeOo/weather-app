@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import React, {MutableRefObject, useEffect, useState} from "react";
 
 import {useParams, useNavigate, NavigateFunction} from "react-router-dom";
 
-import Slider from "react-slick";
+import SlickSlider from "react-slick";
 
 import {useDispatch, useSelector} from "react-redux";
 import {locationDataPage as reduxLocationDataPage} from "../redux/locationDataSlice";
@@ -13,17 +13,38 @@ import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import {ILocationData, ILocationImagesURLs} from "../types/commonTypes";
 import {ISettings} from "../types/sliderTypes";
 
+import ChevronRightSvg from "../components/atoms/svg/ChevronRightSvg";
+import ChevronLeftSvg from "../components/atoms/svg/ChevronLeftSvg";
+
+import styled from "styled-components";
+import {sliderButtonsStyles} from "../styles/mixins";
+
 const LocationPage = (): JSX.Element => {
 
     const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
 
     const navigate: NavigateFunction = useNavigate();
-    
+
     const dispatch: Dispatch<AnyAction> = useDispatch();
-    
+
     const locationDataPage: ILocationData = useSelector(reduxLocationDataPage);
 
+    const slider: MutableRefObject<SlickSlider | null> = React.useRef(null);
+
+    // const slider: MutableRefObject<Slider | null> = React.useRef<Slider | null>(null);
+
     const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationImageIndex as string));
+
+    const settings: ISettings = {
+        beforeChange: (current: number, next: number): void => setCurrSlide(next),
+        infinite: true,
+        speed: 400,
+        fade: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows : false,
+        initialSlide: parseInt(params.locationImageIndex as string),
+    };
 
     useEffect((): void => {
         dispatch(filterLocationDataArrayViaParams(params));
@@ -39,37 +60,53 @@ const LocationPage = (): JSX.Element => {
         navigate("/");
     };
 
-    const settings: ISettings = {
-        beforeChange: (current: number, next: number): void => setCurrSlide(next),
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        initialSlide: parseInt(params.locationImageIndex as string),
-    };
-
-    return (
-      <div style={{color: `white`, fontSize: `20px`}}>
+  return (
+      <LocationPageStyled>
 
           <button onClick={returnToMain}>BACK</button>
 
-          <div style={{width: `600px`,backgroundColor: `black`, margin: `0 auto`}}>
-              <h2>Center Mode</h2>
+          <SliderStyled>
 
-              <Slider {...settings}>
-              {locationDataPage.locationImages && locationDataPage.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
-                  <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `400px`, objectFit: `cover`,}}/></div>
-              )}
-              </Slider>
-          </div>
+              <SlickSlider ref={slider} {...settings}>
+
+                  {locationDataPage.locationImages && locationDataPage.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
+                      <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `230px`, objectFit: `cover`}}/></div>)}
+              </SlickSlider>
+
+              <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><ChevronRightSvg/></SliderButtonNextStyled>
+              <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><ChevronLeftSvg/></SliderButtonPrevStyled>
+          </SliderStyled>
 
           <div>{locationDataPage.locationName}</div>
           <p>Temp: {locationDataPage.locationTemp}°C</p>
           <p>Conditions: {locationDataPage.locationDesc}<img src={locationDataPage.locationIcon} alt="weather icon" /></p>
-      </div>
+      </LocationPageStyled>
   );
 };
 
 export default LocationPage;
 
+export const LocationPageStyled = styled.div`
+  color: white;
+  font-size: 20px;
+  max-width: 375px;
+  background-color: ${({theme}) => theme.color.log};
+  margin: 0 auto;
+  position: relative;
+`
+
+const SliderStyled = styled.div`
+  position: relative;
+`
+
+export const SliderButtonNextStyled = styled.button`
+  ${sliderButtonsStyles};
+  right: 0;
+  border-radius: 50% 0 0 50%;
+
+`
+
+export const SliderButtonPrevStyled = styled.button`
+  ${sliderButtonsStyles};
+  border-radius: 0 50% 50% 0;
+`

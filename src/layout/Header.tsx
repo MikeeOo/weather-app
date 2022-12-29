@@ -1,14 +1,24 @@
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {changeTheme} from "../redux/themeSlice";
+import {themeState as reduxThemeState} from "../redux/themeSlice";
 
 const Header = (): JSX.Element => {
+
+    const dispatch = useDispatch()
+
+    const themeState = useSelector(reduxThemeState)
+
+    const handleClick = (): void => {
+        themeState === `Dark` ? dispatch(changeTheme(`Light`)) : dispatch(changeTheme(`Dark`))
+    }
 
   return (
       <HeaderStyled>
 
-
           <h1>🌈MikeeOo's weather-app🌈</h1>
           {/*<h1>Where in the world?</h1>*/}
-          <button>Light Mode</button>
+          <button onClick={handleClick}>{themeState} Mode</button>
       </HeaderStyled>
   );
 };
