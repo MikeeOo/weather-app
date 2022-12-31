@@ -1,17 +1,17 @@
 import {configureStore} from "@reduxjs/toolkit";
 
 import locationDataSlice from "./locationDataSlice";
-import themeSlice from "./themeSlice";
+import themeStatusSlice from "./themeStatusSlice";
 
-import {useDispatch} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 export const store = configureStore({
     reducer: {
         locationData: locationDataSlice,
-        themeState: themeSlice
+        theme: themeStatusSlice
     }
-})
+});
 
-export const useAppDispatch: () => typeof store.dispatch = useDispatch
+export const useAppDispatch: () => typeof store.dispatch = useDispatch;
 
-export type RootState = ReturnType<typeof store.getState>
+export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;

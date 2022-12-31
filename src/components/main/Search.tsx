@@ -2,13 +2,11 @@ import {useState, useEffect, SyntheticEvent, ChangeEvent} from "react";
 
 import { v4 as uuid } from 'uuid';
 
-import {useDispatch, useSelector} from "react-redux";
-import {locationNotFoundError as reduxLocationNotFoundError} from "../../redux/locationDataSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {addLocationInputDataToState, removeLocationNotFoundError} from "../../redux/locationDataSlice";
 
 import SearchSvg from "../atoms/svg/SearchSvg";
 
-import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 import {SearchStyled} from "./Search.styled";
@@ -16,9 +14,9 @@ import {SearchStyled} from "./Search.styled";
 
 const Search = (): JSX.Element => {
 
-    const dispatch: Dispatch<AnyAction> = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const locationNotFoundError: boolean = useSelector(reduxLocationNotFoundError)
+    const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
 
     const [locationInput, setLocationInput] = useState<string>(``)
 

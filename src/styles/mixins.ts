@@ -1,10 +1,10 @@
 import {css} from "styled-components";
 
-const fontStyles = ({ color, size, family }) => `
-  color: ${color || "red"};
-  font-size: ${size || "1rem"};
-  font-family: ${family || "Helvetica neue"};
-`;
+// const fontStyles = ({ color, size, family }) => `
+//   color: ${color || "red"};
+//   font-size: ${size || "1rem"};
+//   font-family: ${family || "Helvetica neue"};
+// `;
 
 export const buttonReset = css`
   border: none;

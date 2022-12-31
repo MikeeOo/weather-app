@@ -4,21 +4,20 @@ import Default from "./Default"
 import MainPage from "../pages/MainPage";
 import LocationPage from "../pages/LocationPage";
 
+import {useAppSelector} from "../redux/store";
+
 import {ThemeProvider} from "styled-components";
 import {darkTheme, lightTheme} from "../styles/themes";
-import {themeState as reduxThemeState} from "../redux/themeSlice";
-
 
 import ResetStyles from "../styles/ResetStyles";
 import GlobalStyles from "../styles/GlobalStyles";
-import {useSelector} from "react-redux";
 
 export default function App(): JSX.Element {
 
-    const themeState = useSelector(reduxThemeState)
+    const themeChangeStatus = useAppSelector(state => state.theme.themeChangeStatus)
 
   return (
-      <ThemeProvider theme={themeState === `Dark` ? darkTheme : lightTheme}>
+      <ThemeProvider theme={themeChangeStatus === `Light` ? darkTheme : lightTheme}>
 
             <Router>
 

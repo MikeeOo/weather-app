@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../redux/store";
 import {deleteLocationData} from "../../redux/locationDataSlice";
 
 import DeleteSvg from "../atoms/svg/DeleteSvg";
@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 const LocationName = ({locationId, locationName, locationImageIndex}: ILocationName): JSX.Element => {
 
-    const dispatch: Dispatch<AnyAction> = useDispatch()
+    const dispatch = useAppDispatch()
 
   return (
       <LocationNameStyled>

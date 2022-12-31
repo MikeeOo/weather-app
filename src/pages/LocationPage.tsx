@@ -1,16 +1,13 @@
-import React, {MutableRefObject, useEffect, useState} from "react";
+import {useEffect, useState, useRef, MutableRefObject} from "react";
 
 import {useParams, useNavigate, NavigateFunction} from "react-router-dom";
 
 import SlickSlider from "react-slick";
 
-import {useDispatch, useSelector} from "react-redux";
-import {locationDataPage as reduxLocationDataPage} from "../redux/locationDataSlice";
+import {useAppDispatch, useAppSelector} from "../redux/store";
 import {filterLocationDataArrayViaParams, editLocationImage} from "../redux/locationDataSlice";
 
-import {AnyAction, Dispatch} from "@reduxjs/toolkit";
-
-import {ILocationData, ILocationImagesURLs} from "../types/commonTypes";
+import {ILocationImagesURLs} from "../types/commonTypes";
 import {ISettings} from "../types/sliderTypes";
 
 import ChevronRightSvg from "../components/atoms/svg/ChevronRightSvg";
@@ -25,13 +22,11 @@ const LocationPage = (): JSX.Element => {
 
     const navigate: NavigateFunction = useNavigate();
 
-    const dispatch: Dispatch<AnyAction> = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const locationDataPage: ILocationData = useSelector(reduxLocationDataPage);
+    const locationDataPage = useAppSelector(state  => state.locationData.locationDataPage);
 
-    const slider: MutableRefObject<SlickSlider | null> = React.useRef(null);
-
-    // const slider: MutableRefObject<Slider | null> = React.useRef<Slider | null>(null);
+    const slider: MutableRefObject<SlickSlider | null> = useRef(null);
 
     const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationImageIndex as string));
 

@@ -1,6 +1,6 @@
 import {ILocationData} from "./commonTypes";
 
-export interface ILocationDataArray {
+export interface ILocationDataState {
     locationDataArray: Array<ILocationData>,
     locationDataPage: ILocationData
     locationDataLoader: boolean,
