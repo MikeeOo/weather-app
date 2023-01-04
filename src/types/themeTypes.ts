@@ -1,18 +1,9 @@
 export interface ITheme {
-    color: IColor,
-    weight: IWeight
+    color: IColor
 }
 
 interface IColor {
-    primary: string,
-    secondary: string,
-    white: string,
-    grey: string,
-    log: string
-}
-
-interface IWeight {
-    semiBold: string,
-    bold: string,
-    extraBold: string,
+    text: string,
+    elements: string,
+    background: string
 }

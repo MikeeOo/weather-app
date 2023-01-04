@@ -1,7 +1,8 @@
-import {useAppDispatch, useAppSelector} from "../redux/store";
-import {changeTheme} from "../redux/themeStatusSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {changeTheme} from "../../redux/themeStatusSlice";
 
 import styled from "styled-components";
+import {fontWeightBold} from "../../styles/mixins";
 
 const Header = (): JSX.Element => {
 
@@ -26,13 +27,11 @@ export default Header;
 
 const HeaderStyled = styled.header`
   align-items: center;
-  background-color: ${({theme}) => theme.color.secondary};
-  //background-color: ${({theme}) => theme.color.log};
-  
-  color: ${({theme}) => theme.color.white};
+  background-color: ${({theme}) => theme.color.elements};
+  color: ${({theme}) => theme.color.text};
   display: flex;
   font-size: 1.4rem;
-  font-weight: ${({theme}) => theme.weight.bold};
+  ${fontWeightBold};
   height: 8rem;
   //padding: 2em;
   //padding: 2em;

@@ -4,17 +4,17 @@ import {useParams, useNavigate, NavigateFunction} from "react-router-dom";
 
 import SlickSlider from "react-slick";
 
-import {useAppDispatch, useAppSelector} from "../redux/store";
-import {filterLocationDataArrayViaParams, editLocationImage} from "../redux/locationDataSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {filterLocationDataArrayViaParams, editLocationImage} from "../../redux/locationDataSlice";
 
-import {ILocationImagesURLs} from "../types/commonTypes";
-import {ISettings} from "../types/sliderTypes";
+import {ILocationImagesURLs} from "../../types/commonTypes";
+import {ISettings} from "../../types/sliderTypes";
 
-import ChevronRightSvg from "../components/atoms/svg/ChevronRightSvg";
-import ChevronLeftSvg from "../components/atoms/svg/ChevronLeftSvg";
+import ChevronRightSvg from "../atoms/svg/ChevronRightSvg";
+import ChevronLeftSvg from "../atoms/svg/ChevronLeftSvg";
 
 import styled from "styled-components";
-import {sliderButtonsStyles} from "../styles/mixins";
+import {sliderButtonsStyles} from "../../styles/mixins";
 
 const LocationPage = (): JSX.Element => {
 
@@ -65,7 +65,7 @@ const LocationPage = (): JSX.Element => {
               <SlickSlider ref={slider} {...settings}>
 
                   {locationDataPage.locationImages && locationDataPage.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
-                      <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `230px`, objectFit: `cover`}}/></div>)}
+                      <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `230px`, objectFit: `cover`, borderRadius: "1rem"}}/></div>)}
               </SlickSlider>
 
               <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><ChevronRightSvg/></SliderButtonNextStyled>
@@ -82,24 +82,21 @@ const LocationPage = (): JSX.Element => {
 export default LocationPage;
 
 export const LocationPageStyled = styled.div`
-  color: white;
   font-size: 20px;
+  //background-color: green;
   max-width: 375px;
-  background-color: ${({theme}) => theme.color.log};
   margin: 0 auto;
-  position: relative;
-`
+`;
 
 const SliderStyled = styled.div`
   position: relative;
-`
+`;
 
 export const SliderButtonNextStyled = styled.button`
   ${sliderButtonsStyles};
   right: 0;
   border-radius: 50% 0 0 50%;
-
-`
+`;
 
 export const SliderButtonPrevStyled = styled.button`
   ${sliderButtonsStyles};

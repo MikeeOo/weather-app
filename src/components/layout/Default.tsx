@@ -16,7 +16,7 @@ const Default = (): JSX.Element => {
 export default Default;
 
 const DefaultStyled = styled.div`
-  max-width: 100%;
+  //max-width: 100%;
   min-height: 100vh;
-  background-color: ${({theme}) => theme.color.primary};
-`
+  background-color: ${({theme}) => theme.color.background};
+`;
