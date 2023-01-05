@@ -11,13 +11,20 @@ export interface ILocation {
 }
 
 export interface ILocationImage {
+    locationId?: string,
+    locationName?: string,
     locationImages?: Array<ILocationImagesURLs>,
     locationImageIndex? : string
 
 }
 
-export interface ILocationName {
+export interface ILocationHeader {
     locationId?: string,
     locationName?: string
     locationImageIndex?: string,
+}
+export interface ILocationWeather {
+    locationTemp?: string,
+    locationDesc?: string
+    locationIcon?: string,
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {flexBox} from "../../styles/logicalMixins";
+import {flexBox} from "../../../../../styles/mixins/logicalMixins";
 
-export const SearchStyled = styled.div`
+export const MainSearchStyled = styled.div`
   padding: 2.4rem 0 0 0 ;
   
   form {

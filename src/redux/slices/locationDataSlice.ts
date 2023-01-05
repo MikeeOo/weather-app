@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {updateLocationDataArrayViaApi} from "../api/thunks";
+import {updateLocationDataArrayViaApi} from "../../api/thunks";
 
-import {ILocationDataState, ILocationInputData, ILocationParamsData, ILocationEditData} from "../types/locationDataSliceTypes";
-import {ILocationData} from "../types/commonTypes";
+import {ILocationDataState, ILocationInputData, ILocationParamsData, ILocationEditData} from "../../types/locationDataSliceTypes";
+import {ILocationData} from "../../types/commonTypes";
 
 const initialState: ILocationDataState = {
     locationDataArray: [],

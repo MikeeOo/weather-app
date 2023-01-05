@@ -1,4 +1,4 @@
-import {ITheme} from "../types/themeTypes";
+import {ITheme} from "../../types/themeTypes";
 
 export const darkTheme: ITheme = {
     color: {

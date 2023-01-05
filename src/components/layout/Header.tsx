@@ -1,8 +1,8 @@
 import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {changeTheme} from "../../redux/themeStatusSlice";
+import {changeTheme} from "../../redux/slices/themeStatusSlice";
 
 import styled from "styled-components";
-import {fontWeightBold} from "../../styles/mixins";
+import {extraBold} from "../../styles/mixins/mixins";
 
 const Header = (): JSX.Element => {
 
@@ -31,7 +31,7 @@ const HeaderStyled = styled.header`
   color: ${({theme}) => theme.color.text};
   display: flex;
   font-size: 1.4rem;
-  ${fontWeightBold};
+  font-weight: ${extraBold};
   height: 8rem;
   //padding: 2em;
   //padding: 2em;

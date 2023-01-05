@@ -2,19 +2,19 @@ import {useState, useEffect, SyntheticEvent, ChangeEvent} from "react";
 
 import { v4 as uuid } from 'uuid';
 
-import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {addLocationInputDataToState, removeLocationNotFoundError} from "../../redux/locationDataSlice";
+import {useAppDispatch, useAppSelector} from "../../../../../redux/store";
+import {addLocationInputDataToState, removeLocationNotFoundError} from "../../../../../redux/slices/locationDataSlice";
 
 import { AiOutlineSearch } from "react-icons/ai";
 
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
-import Button from "../atoms/Button";
+import Button from "../../../../../styles/atoms/Button";
 
-import {SearchStyled} from "./Search.styled";
-import { ButtonStyled } from "../atoms/Button.styled";
+import {MainSearchStyled} from "./MainSearch.styled";
+import { ButtonStyled } from "../../../../../styles/atoms/Button.styled";
 
-const Search = (): JSX.Element => {
+const MainSearch = (): JSX.Element => {
 
     const dispatch = useAppDispatch()
 
@@ -46,7 +46,7 @@ const Search = (): JSX.Element => {
     };
 
   return (
-      <SearchStyled>
+      <MainSearchStyled>
 
           <form onSubmit={handleSubmit}>
 
@@ -64,8 +64,8 @@ const Search = (): JSX.Element => {
           </form>
 
           {locationNotFoundError && <div style={{color: `red`}}>location not found</div>}
-      </SearchStyled>
+      </MainSearchStyled>
   );
 };
 
-export default Search;
+export default MainSearch;

@@ -1,7 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 
-import locationDataSlice from "./locationDataSlice";
-import themeStatusSlice from "./themeStatusSlice";
+import locationDataSlice from "./slices/locationDataSlice";
+import themeStatusSlice from "./slices/themeStatusSlice";
 
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 

@@ -21,10 +21,6 @@ export const sliderButtonsStyles = css`
 
 export const extraBold = `800`;
 
-export const fontWeightBold = css`
-  font-weight: 700;
-`;
-
-export const fontWeightExtraBold = css`
-  font-weight: 800;
+export const log = css`
+  background-color: rgba(0, 255, 0, 0.2);
 `;

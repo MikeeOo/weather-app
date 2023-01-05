@@ -1,16 +1,16 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Default from "./Default"
-import MainPage from "../pages/MainPage";
-import LocationPage from "../pages/LocationPage";
+import MainPage from "../pages/main-page/MainPage";
+import LocationPage from "../pages/location-page/LocationPage";
 
 import {useAppSelector} from "../../redux/store";
 
 import {ThemeProvider} from "styled-components";
-import {darkTheme, lightTheme} from "../../styles/themes";
+import {darkTheme, lightTheme} from "../../styles/global/themes";
 
-import ResetStyles from "../../styles/ResetStyles";
-import GlobalStyles from "../../styles/GlobalStyles";
+import ResetStyles from "../../styles/global/ResetStyles";
+import GlobalStyles from "../../styles/global/GlobalStyles";
 
 export default function App(): JSX.Element {
 

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {IThemeChangeStatusState} from "../types/themeStatusSlice";
+import {IThemeChangeStatusState} from "../../types/themeStatusSlice";
 
 const initialState: IThemeChangeStatusState = {
     themeChangeStatus: "Light",

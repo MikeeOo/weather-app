@@ -4,17 +4,17 @@ import {useParams, useNavigate, NavigateFunction} from "react-router-dom";
 
 import SlickSlider from "react-slick";
 
-import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {filterLocationDataArrayViaParams, editLocationImage} from "../../redux/locationDataSlice";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {filterLocationDataArrayViaParams, editLocationImage} from "../../../redux/slices/locationDataSlice";
 
-import {ILocationImagesURLs} from "../../types/commonTypes";
-import {ISettings} from "../../types/sliderTypes";
+import {ILocationImagesURLs} from "../../../types/commonTypes";
+import {ISettings} from "../../../types/sliderTypes";
 
-import ChevronRightSvg from "../atoms/svg/ChevronRightSvg";
-import ChevronLeftSvg from "../atoms/svg/ChevronLeftSvg";
+import ChevronRightSvg from "../../../svg/ChevronRightSvg";
+import ChevronLeftSvg from "../../../svg/ChevronLeftSvg";
 
 import styled from "styled-components";
-import {sliderButtonsStyles} from "../../styles/mixins";
+import {sliderButtonsStyles} from "../../../styles/mixins/mixins";
 
 const LocationPage = (): JSX.Element => {
 
