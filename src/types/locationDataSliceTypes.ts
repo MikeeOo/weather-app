@@ -1,25 +1,25 @@
 import {ILocationData} from "./commonTypes";
 
 export interface ILocationDataState {
-    locationDataArray: Array<ILocationData>,
-    locationDataPage: ILocationData
-    locationDataLoader: boolean,
+    locationDataArray: Array<ILocationData>;
+    locationDataPage: ILocationData;
+    locationDataLoader: boolean;
     locationNotFoundError: boolean;
 }
 
 export interface ILocationInputData {
-    locationId: string,
-    locationInput: string,
-    locationImageIndex: string,
+    locationId: string;
+    locationInput: string;
+    locationImageIndex: string;
 }
 
 export interface ILocationParamsData {
-    locationId?: string,
-    locationName?: string,
-    locationImageIndex?: string,
+    locationId?: string;
+    locationName?: string;
+    locationImageIndex?: string;
 }
 
 export interface ILocationEditData{
-    currLocationSlide: string,
-    currLocationId?: string
+    currLocationSlide: string;
+    currLocationId?: string;
 }

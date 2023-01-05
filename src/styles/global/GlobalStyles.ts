@@ -19,10 +19,6 @@ const GlobalStyles: GlobalStyleComponent<{theme: ITheme}, DefaultTheme> = create
   a {
     text-decoration: none;
     color: ${({theme}) => theme.color.text};
-
-    &:hover{
-          text-decoration: underline;
-    };
   };
   
   input, button {
@@ -40,10 +36,6 @@ const GlobalStyles: GlobalStyleComponent<{theme: ITheme}, DefaultTheme> = create
   input {
     &:focus {
       ${shadowOutline};
-    };
-    
-    &::placeholder {
-      color: ${({theme}) => theme.color.text};
     };
   };
   

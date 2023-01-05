@@ -3,6 +3,10 @@ import {changeTheme} from "../../redux/slices/themeStatusSlice";
 
 import styled from "styled-components";
 import {extraBold} from "../../styles/mixins/mixins";
+import {ButtonStyled} from "../../styles/atoms/Button.styled";
+import {BsFillMoonFill} from "react-icons/bs"
+import {FaLightbulb} from "react-icons/fa"
+
 
 const Header = (): JSX.Element => {
 
@@ -17,8 +21,16 @@ const Header = (): JSX.Element => {
   return (
       <HeaderStyled>
 
-          <h1>🌈MikeeOo's weather-app🌈</h1>
-          <button onClick={handleClick}>{themeChangeStatus} Mode</button>
+          <h1>🌈weather-app🌈</h1>
+
+              <ButtonStyled onClick={handleClick}
+                            themeStatus
+                            contrast
+                            fontSize="1.2rem"
+                            padding=".5em .5em">
+                  {themeChangeStatus === "Light" ? <FaLightbulb/> : <BsFillMoonFill/>}
+                  {themeChangeStatus} Mode
+              </ButtonStyled>
       </HeaderStyled>
   );
 };

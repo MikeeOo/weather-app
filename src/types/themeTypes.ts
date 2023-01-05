@@ -1,9 +1,10 @@
 export interface ITheme {
-    color: IColor
+    color: IColor;
 }
 
 interface IColor {
-    text: string,
-    elements: string,
-    background: string
+    text: string;
+    elements: string;
+    background: string;
+    pseudoElement: string;
 }

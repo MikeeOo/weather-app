@@ -9,10 +9,10 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
-import Button from "../../../../../styles/atoms/Button";
-
 import {MainSearchStyled} from "./MainSearch.styled";
 import { ButtonStyled } from "../../../../../styles/atoms/Button.styled";
+import {InputStyled} from "../../../../../styles/atoms/Input.styled";
+import {FormStyled} from "../../../../../styles/atoms/Form.styled";
 
 const MainSearch = (): JSX.Element => {
 
@@ -22,14 +22,37 @@ const MainSearch = (): JSX.Element => {
 
     const [locationInput, setLocationInput] = useState<string>(``)
 
+    const [locationInputTooShort, setLocationInputTooShort] = useState<boolean>(false)
+
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
 
             dispatch(removeLocationNotFoundError())
-        }, 1000 * 7)
+
+        }, 1000 * 3)
 
         return () => clearTimeout(timeout)
     },[locationNotFoundError])
+
+    useEffect(() => {
+        const timeout: TimeoutId = setTimeout((): void => {
+
+            setLocationInputTooShort(false);
+
+        }, 1000 * 3);
+
+        return () => clearTimeout(timeout);
+    },[locationInputTooShort]);
+
+    const handleErrors = (): string => {
+        if(locationNotFoundError) {
+            return `Error: Location not found!`;
+        } else if(locationInputTooShort) {
+            return `Location must be at last 3 characters...`;
+        } else {
+            return `City, Country or Landmark...`;
+        }
+    };
 
     const handleSubmit = (e: SyntheticEvent): void => {
       e.preventDefault();
@@ -40,20 +63,26 @@ const MainSearch = (): JSX.Element => {
                 locationInput: locationInput,
                 locationImageIndex: "0"
             }));
+        } else {
+            setLocationInputTooShort(true);
         }
+
         dispatch(removeLocationNotFoundError());
         setLocationInput(``);
     };
 
-  return (
+    return (
       <MainSearchStyled>
 
-          <form onSubmit={handleSubmit}>
+          <FormStyled onSubmit={handleSubmit}>
 
-              <input type="search"
+              <InputStyled type="search"
                      value={locationInput}
-                     placeholder={`City, Country or Landmark...`}
-                     onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}/>
+                     placeholder={handleErrors()}
+                     onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
+                     onClick={() => dispatch(removeLocationNotFoundError())}
+                     placeholderColor={(locationNotFoundError || locationInputTooShort) && `error`}
+              />
 
               <ButtonStyled fontSize="1.6rem"
                             borderRadius="0 5px 5px 0"
@@ -61,9 +90,8 @@ const MainSearch = (): JSX.Element => {
 
                   <AiOutlineSearch/>
               </ButtonStyled>
-          </form>
+          </FormStyled>
 
-          {locationNotFoundError && <div style={{color: `red`}}>location not found</div>}
       </MainSearchStyled>
   );
 };

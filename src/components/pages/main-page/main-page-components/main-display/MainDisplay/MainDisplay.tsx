@@ -29,12 +29,16 @@ const MainDisplay = (): JSX.Element => {
 
             dispatch(setLocationDataLoader())
 
-                const timeout: TimeoutId = setTimeout((): void => {
+            // dispatch(updateLocationDataArrayViaApi(locationDataArray))
+
+            // smoother
+            const timeout: TimeoutId = setTimeout((): void => {
 
                     dispatch(updateLocationDataArrayViaApi(locationDataArray))
                 }, 250)
 
                 return () => clearTimeout(timeout)
+
             }
     },[locationDataArray.length]);
 
