@@ -25,6 +25,6 @@ yarn-error.log*
 ### Webstorm ###
 .idea/
 
-src/api/constants.ts
+src/redux/api/constants.ts
 
 /ignore
