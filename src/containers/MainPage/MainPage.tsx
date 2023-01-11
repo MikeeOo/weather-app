@@ -1,5 +1,5 @@
 import Search from "../../modules/main_page/Search/Search";
-import Display from "../../modules/main_page/Display/Display";
+import Display from "../../modules/main_page/Display";
 
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {useState} from "react";

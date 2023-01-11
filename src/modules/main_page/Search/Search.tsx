@@ -22,7 +22,6 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
         const timeout: TimeoutId = setTimeout((): void => {
 
             dispatch(removeLocationNotFoundError())
-
         }, 1000 * 3);
 
         return () => clearTimeout(timeout);
@@ -32,7 +31,6 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
         const timeout: TimeoutId = setTimeout((): void => {
 
             setLocationInputTooShort(false);
-
         }, 1000 * 3);
 
         return () => clearTimeout(timeout);
@@ -48,11 +46,17 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
         } else {
             if (locationDataArray.length === 1) {
                 return "Add another one ;))"
-            } else if (locationDataArray.length > 7) {
+            } else if (locationDataArray.length >= 9) {
+                return "INFINITE LOCATIOOOOOOOONS !!!"
+            } else if (locationDataArray.length >= 8) {
                 return "Oh! Isn't enough?"
             }
-            else if (locationDataArray.length > 1) {
+            else if (locationDataArray.length === 2) {
                 return "Add more! ;)"
+            } else if (locationDataArray.length === 3) {
+                return "And more! ;)"
+            } else if (locationDataArray.length >= 4) {
+                return "Add as many as u want ;)"
             }
             else {
                 return "Search for location... ;)"

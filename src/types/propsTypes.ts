@@ -24,10 +24,27 @@ export interface ILocationHeader {
     locationName?: string;
     locationImageIndex?: string;
 }
-export interface ILocationWeather {
+export interface ILocationCardWeather {
     locationTemp?: string;
     locationDesc?: string;
     locationIcon?: string;
+}
+
+export interface IWeatherIcon {
+    locationIcon?: string;
+}
+
+export interface IWeatherInfo {
+    locationTemp?: string;
+    locationDesc?: string;
+}
+
+export interface ILocationTemp {
+    locationTemp?: string;
+}
+
+export interface ILocationDesc {
+    locationDesc?: string;
 }
 
 export interface IMainSearch {
@@ -71,8 +88,4 @@ export interface IForm {
 export interface IGuide {
     guideStatus: string;
     errorColor: string | boolean;
-}
-
-export interface ILoader {
-    children: JSX.Element;
 }

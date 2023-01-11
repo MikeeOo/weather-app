@@ -58,36 +58,3 @@ export const ClickInfo = styled.div`
   bottom: 0;
   font-weight: 700;
 `;
-
-export const WeatherDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  padding: .7rem 0;
-  
-  img {
-    width: 100%;
-    max-width: 6em;
-    //object-fit: cover;
-    filter: invert(0.2);
-  }
-  
-  div {
-    border-left: 2px solid ${({theme}) => theme.color.pseudoElement};
-    padding: 0 .7rem;
-  }
-  
-  h3 {
-    font-size: 3.1rem;
-    padding: .5rem 0 .5rem .7rem ;
-  }
-
-  p {
-    height: 2px;
-    background-color: ${({theme}) => theme.color.pseudoElement};
-  }
-  
-  h4 {
-    font-size: 1.5rem;
-    padding: 1.3rem 0 0 .7rem;
-  };
-`;

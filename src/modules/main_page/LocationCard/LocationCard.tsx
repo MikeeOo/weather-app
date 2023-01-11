@@ -3,7 +3,7 @@ import {
     ClickInfo,
     LinkStyled,
     LocationCardStyled,
-    LocationImgContainer, WeatherDiv,
+    LocationImgContainer,
 } from "./LocationStyles";
 import {useState} from "react";
 import {BsXLg} from "react-icons/bs";
@@ -13,11 +13,13 @@ import {useAppDispatch} from "../../../redux/store";
 import {LocationName} from "./LocationStyles";
 import {ImgStyled} from "./LocationStyles";
 import {LocationImageNotFoundStyled} from "../../../styles/atoms/LocationImgeNotFound.styled";
+import LocationCardWeather from "../LocationCardWeather/LocationCardWeather";
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocation): JSX.Element => {
 
     const dispatch = useAppDispatch();
 
     const [state, setState] = useState<boolean>(false);
+
   return (
       <LocationCardStyled>
 
@@ -32,7 +34,6 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                       <ImgStyled src={`${locationImages?.length && locationImages[parseInt(locationImageIndex as string)].largeImageURL}`} alt="searched location image"/>
                       :
                       <LocationImageNotFoundStyled>Image not found...</LocationImageNotFoundStyled>}
-
               </LinkStyled>
 
               {state && <ButtonStyled
@@ -45,17 +46,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
               {state &&  <ClickInfo>click to change image...</ClickInfo>}
           </LocationImgContainer>
 
-          <WeatherDiv>
-
-              <img src={locationIcon} alt="weather icon"/>
-
-              <div>
-
-                  <h3>{locationTemp} °C</h3>
-                  <p/>
-                  <h4>{locationDesc}</h4>
-              </div>
-          </WeatherDiv>
+          <LocationCardWeather locationIcon={locationIcon} locationTemp={locationTemp} locationDesc={locationDesc}/>
       </LocationCardStyled>
 
 

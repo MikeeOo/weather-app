@@ -10,8 +10,7 @@ import {ILocationData} from "../../../types/commonTypes";
 
 import { DisplayStyled } from "./Display.styled";
 import {IMainDisplay} from "../../../types/propsTypes";
-import Loader from "../../../components/Loader/Loader";
-import SvgSpinner from "../../../components/SvgSpinner/SvgSpinner";
+import Loader from "../Loader/Loader";
 
 const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay): JSX.Element => {
 
@@ -38,7 +37,10 @@ const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay
 
     return (
         <>
+            {locationDataLoader && <Loader/>}
+
             <DisplayStyled>
+
                 {!locationDataLoader && locationDataArray.map((location: ILocationData) =>
                     <LocationCard key={location.locationId}
                                   locationId={location.locationId}
@@ -50,10 +52,8 @@ const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay
                                   locationImageIndex={location.locationImageIndex}/>
                 )}
             </DisplayStyled>
-
-            {locationDataLoader && <Loader><SvgSpinner/></Loader>}
         </>
-    )
+    );
 };
 
 export default Display;

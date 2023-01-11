@@ -1,10 +1,10 @@
-import { SvgSpinnerStyled } from "./SvgSpinner.styled";
+import { SpinnerStyled } from "./Spinner.styled";
 
-const SvgSpinner = (): JSX.Element => {
+const Spinner = (): JSX.Element => {
 
   return (
-      <SvgSpinnerStyled version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
+      <SpinnerStyled version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
           <path d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
               <animateTransform
                 attributeName="transform"
@@ -35,8 +35,8 @@ const SvgSpinner = (): JSX.Element => {
                     to="360 50 50"
                     repeatCount="indefinite"/>
               </path>
-      </SvgSpinnerStyled>
+      </SpinnerStyled>
   );
 };
 
-export default SvgSpinner;
+export default Spinner;

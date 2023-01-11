@@ -1,11 +1,12 @@
 import { LoaderStyled } from "./Loader.styled";
-import {ILoader} from "../../types/propsTypes";
+import Spinner from "../../../components/Spinner/Spinner";
 
-const Loader = ({children}: ILoader): JSX.Element => {
+const Loader = (): JSX.Element => {
 
   return (
       <LoaderStyled>
-          {children}
+
+          <Spinner/>
       </LoaderStyled>
   );
 };
