@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {flexBox} from "../mixins/logicalMixins";
+import {flexBox} from "../../styles/mixins/logicalMixins";
 
-export const LocationImageNotFoundStyled = styled.div`
+export const ImgErrorStyled = styled.div`
   ${flexBox({jc: `center`, ai: `center`})};
   height: 12em;
   font-weight: 600;

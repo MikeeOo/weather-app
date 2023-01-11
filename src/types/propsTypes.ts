@@ -1,8 +1,9 @@
 import {ILocationData, ILocationImagesURLs} from "./commonTypes";
 import {store} from "../redux/store";
-import {ChangeEvent, Dispatch, SetStateAction, SyntheticEvent} from "react";
+import {ChangeEvent, Dispatch, MouseEventHandler, ReactNode, SetStateAction, SyntheticEvent} from "react";
 
 export interface ILocation {
+    dispatch: typeof store.dispatch;
     locationId?: string;
     locationName?: string;
     locationTemp?: string;
@@ -12,18 +13,37 @@ export interface ILocation {
     locationImageIndex?: string;
 }
 
-export interface ILocationImage {
+export interface ILocationCardAction {
+    dispatch: typeof store.dispatch;
     locationId?: string;
     locationName?: string;
     locationImages?: Array<ILocationImagesURLs>;
     locationImageIndex? : string;
 }
 
+export interface ILink {
+    locationId?: string;
+    locationName?: string;
+    locationImages?: Array<ILocationImagesURLs>;
+    locationImageIndex? : string;
+}
+
+
 export interface ILocationHeader {
     locationId?: string;
     locationName?: string;
     locationImageIndex?: string;
 }
+
+export interface ILocationImg {
+    locationImages?: Array<ILocationImagesURLs>;
+    locationImageIndex?: string;
+}
+
+export interface ILocationName {
+    locationName?: string;
+}
+
 export interface ILocationCardWeather {
     locationTemp?: string;
     locationDesc?: string;
@@ -65,10 +85,13 @@ export interface IMainDisplay {
 }
 
 export interface IButton {
-    children: JSX.Element;
+    children?: JSX.Element | Array<JSX.Element>;
+    onClick?: MouseEventHandler<HTMLButtonElement> & (() => { payload: string | undefined; type: string; })
     fontSize: string;
-    borderRadius: string;
+    borderRadius?: string;
     padding: string;
+    contrast?: boolean;
+    imgPosition?: boolean;
 }
 
 export interface IInput {
@@ -88,4 +111,8 @@ export interface IForm {
 export interface IGuide {
     guideStatus: string;
     errorColor: string | boolean;
+}
+
+export interface IThemeStatus {
+    themeChangeStatus: string;
 }

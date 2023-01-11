@@ -43,6 +43,7 @@ const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay
 
                 {!locationDataLoader && locationDataArray.map((location: ILocationData) =>
                     <LocationCard key={location.locationId}
+                                  dispatch={dispatch}
                                   locationId={location.locationId}
                                   locationName={location.locationName}
                                   locationTemp={location.locationTemp}

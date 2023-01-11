@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import {css} from "styled-components";
 import {flexBox} from "../../styles/mixins/logicalMixins";
+import {IButton} from "../../types/propsTypes";
 
-export const ButtonStyled = styled.button<{fontSize: string, contrast?: any, imgPosition?: any,  padding: string, borderRadius?: string, themeStatus? : any}>`
+export const ButtonStyled = styled.button<IButton>`
   ${flexBox({jc: "center", ai: "center"})};
   
   border-radius: ${props => props.borderRadius};
@@ -11,11 +12,6 @@ export const ButtonStyled = styled.button<{fontSize: string, contrast?: any, img
   
   ${props => props.contrast && css`
     background-color: ${({theme}) => theme.color.background};
-  `};
-  
-  ${props => props.themeStatus && css`
-    ${flexBox({jc: "space-between"})};
-    width: 8.7rem;
   `};
   
   ${props => props.imgPosition && css`
