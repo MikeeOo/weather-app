@@ -2,7 +2,7 @@ import {ILocationData} from "./commonTypes";
 
 export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;
-    locationDataPage: ILocationData;
+    locationDataDetails: ILocationData;
     locationDataLoader: boolean;
     locationNotFoundError: boolean;
 }

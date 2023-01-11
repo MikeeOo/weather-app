@@ -1,6 +1,8 @@
 import {ILocationData, ILocationImagesURLs} from "./commonTypes";
 import {store} from "../redux/store";
-import {ChangeEvent, Dispatch, MouseEventHandler, ReactNode, SetStateAction, SyntheticEvent} from "react";
+import {ChangeEvent, Dispatch, MutableRefObject, SetStateAction, SyntheticEvent} from "react";
+import SlickSlider from "react-slick";
+import {ISettings} from "./sliderTypes";
 
 export interface ILocation {
     dispatch: typeof store.dispatch;
@@ -27,7 +29,6 @@ export interface ILink {
     locationImages?: Array<ILocationImagesURLs>;
     locationImageIndex? : string;
 }
-
 
 export interface ILocationHeader {
     locationId?: string;
@@ -85,8 +86,9 @@ export interface IMainDisplay {
 }
 
 export interface IButton {
-    children?: JSX.Element | Array<JSX.Element>;
-    onClick?: MouseEventHandler<HTMLButtonElement> & (() => { payload: string | undefined; type: string; })
+    children?: JSX.Element | Array<JSX.Element | string>;
+    // onClick?: MouseEventHandler<HTMLButtonElement> & (() => { payload: string | undefined; type: string; });
+    onClick?: () => void;
     fontSize: string;
     borderRadius?: string;
     padding: string;
@@ -99,7 +101,8 @@ export interface IInput {
     value: string;
     placeholder: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onClick: () => {payload: undefined; type: string;};
+    // onClick: () => {payload: undefined; type: string;};
+    onClick: () => void;
     errorColor: string | boolean;
 }
 
@@ -115,4 +118,16 @@ export interface IGuide {
 
 export interface IThemeStatus {
     themeChangeStatus: string;
+}
+
+export interface ISlider {
+    params: Readonly<Partial<Record<string, string | undefined>>>;
+    setCurrSlide: Dispatch<SetStateAction<number>>;
+    locationDataDetails: ILocationData
+}
+
+export interface IReturnToMain {
+    dispatch: typeof store.dispatch;
+    currSlide: number;
+    params: Readonly<Partial<Record<string, string | undefined>>>;
 }

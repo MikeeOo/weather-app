@@ -1,4 +1,4 @@
-import Search from "../../modules/main_page/Search/Search";
+import Search from "../../modules/main_page/Search";
 import Display from "../../modules/main_page/Display";
 
 import {useAppDispatch, useAppSelector} from "../../redux/store";

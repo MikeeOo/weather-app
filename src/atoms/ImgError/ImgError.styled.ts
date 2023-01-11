@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {flexBox} from "../../styles/mixins/logicalMixins";
+import {flexBox} from "../../styles/mixins";
 
 export const ImgErrorStyled = styled.div`
   ${flexBox({jc: `center`, ai: `center`})};

@@ -7,7 +7,7 @@ import {ILocationData} from "../../types/commonTypes";
 
 const initialState: ILocationDataState = {
     locationDataArray: [],
-    locationDataPage: {},
+    locationDataDetails: {},
     locationDataLoader: false,
     locationNotFoundError: false
 };
@@ -45,7 +45,7 @@ const locationDataSlice = createSlice({
         },
 
         filterLocationDataArrayViaParams(state, {payload}: PayloadAction<ILocationParamsData>): void {
-            state.locationDataPage = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.locationId);
+            state.locationDataDetails = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.locationId);
         },
 
         editLocationImage(state, {payload}: PayloadAction<ILocationEditData>): void {

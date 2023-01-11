@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {css} from "styled-components";
-import {flexBox} from "../../styles/mixins/logicalMixins";
+import {flexBox} from "../../styles/mixins";
 import {IButton} from "../../types/propsTypes";
 
 export const ButtonStyled = styled.button<IButton>`

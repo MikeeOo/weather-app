@@ -3,10 +3,10 @@ import {deleteLocationData} from "../../../redux/slices/locationDataSlice";
 import {BsXLg} from "react-icons/bs";
 import {useState} from "react";
 import {ILocationCardAction} from "../../../types/propsTypes";
-import LocationName from "../../../atoms/LocationName/LocationName";
-import ClickInfo from "../../../atoms/ClickInfo/ClickInfo";
-import Link from "../../../components/Link/Link";
-import Button from "../../../components/Button/Button";
+import LocationName from "../../../atoms/LocationName";
+import ClickInfo from "../../../atoms/ClickInfo";
+import Link from "../../../components/Link";
+import Button from "../../../components/Button";
 
 const LocationCardAction = ({dispatch, locationId, locationName, locationImages, locationImageIndex}: ILocationCardAction): JSX.Element => {
 
@@ -21,13 +21,12 @@ const LocationCardAction = ({dispatch, locationId, locationName, locationImages,
 
           <Link locationName={locationName} locationId={locationId} locationImages={locationImages} locationImageIndex={locationImageIndex}/>
 
-          {state && <Button
-              onClick={() => dispatch(deleteLocationData(locationId))}
-              borderRadius="1rem"
-              contrast
-              imgPosition
-              fontSize="1.2rem"
-              padding="1em"><BsXLg/></Button>}
+          {state && <Button onClick={() => dispatch(deleteLocationData(locationId))}
+                            borderRadius="1rem"
+                            contrast
+                            imgPosition
+                            fontSize="1.2rem"
+                            padding="1em"><BsXLg/></Button>}
 
           {state &&  <ClickInfo/>}
       </LocationCardActionStyled>

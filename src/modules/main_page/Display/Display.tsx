@@ -3,14 +3,14 @@ import {useEffect} from "react";
 import {setLocationDataLoader, getInitialStateFromLocalStorage} from "../../../redux/slices/locationDataSlice";
 import {updateLocationDataArrayViaApi} from "../../../redux/api/thunks";
 
-import LocationCard from "../LocationCard/LocationCard";
+import LocationCard from "../LocationCard";
+import Loader from "../Loader";
 
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {ILocationData} from "../../../types/commonTypes";
 
 import { DisplayStyled } from "./Display.styled";
 import {IMainDisplay} from "../../../types/propsTypes";
-import Loader from "../Loader/Loader";
 
 const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay): JSX.Element => {
 

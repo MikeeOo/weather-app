@@ -24,3 +24,9 @@ export const extraBold = `800`;
 export const log = css`
   background-color: rgba(0, 255, 0, 0.2);
 `;
+
+export const flexBox = ({jc = false, ai = false}: {jc?: string | boolean, ai?: string | boolean}): string => `
+  display: flex;
+  ${jc ? `justify-content: ${jc};` : ""}
+  ${ai ? `align-items: ${ai};` : ""}
+`;

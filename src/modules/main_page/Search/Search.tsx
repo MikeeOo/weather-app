@@ -1,8 +1,9 @@
 import {useEffect, SyntheticEvent, ChangeEvent} from "react";
 
-import Form from "../../../components/Form/Form"
-import Input from "../../../components/Input/Input";
-import Button from "../../../components/Button/Button";
+import Form from "../../../components/Form"
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
+import Guide from "../../../components/Guide";
 
 import { v4 as uuid } from 'uuid';
 
@@ -14,7 +15,6 @@ import {IMainSearch} from "../../../types/propsTypes";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 import {SearchStyled} from "./Search.styled";
-import Guide from "../../../components/Guide/Guide";
 
 const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInput, locationInputTooShort, setLocationInputTooShort, locationDataArray, locationDataLoader }: IMainSearch ): JSX.Element => {
 
@@ -38,28 +38,26 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
 
     const handleGuideStatus = (): string => {
         if (locationDataLoader) {
-            return "Updating..."
+            return "Updating...";
         } else if(locationNotFoundError) {
             return `Error: Location not found!`;
         } else if(locationInputTooShort) {
             return `Location must be at last 3 characters long...`;
         } else {
             if (locationDataArray.length === 1) {
-                return "Add another one ;))"
+                return "Add another one ;))";
             } else if (locationDataArray.length >= 9) {
-                return "INFINITE LOCATIOOOOOOOONS !!!"
+                return "INFINITE LOCATIOOOOOOOONS !!!";
             } else if (locationDataArray.length >= 8) {
-                return "Oh! Isn't enough?"
-            }
-            else if (locationDataArray.length === 2) {
-                return "Add more! ;)"
+                return "Oh! Isn't enough?";
+            } else if (locationDataArray.length === 2) {
+                return "Add more! ;)";
             } else if (locationDataArray.length === 3) {
-                return "And more! ;)"
+                return "And more! ;))";
             } else if (locationDataArray.length >= 4) {
-                return "Add as many as u want ;)"
-            }
-            else {
-                return "Search for location... ;)"
+                return "Add as many as u want ;)";
+            } else {
+                return "Search for location... ;)";
             }
         }
     };
@@ -96,7 +94,6 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
               <Button fontSize="1.6rem"
                       borderRadius="0 5px 5px 0"
                       padding=".5em 1em">
-
                   <AiOutlineSearch/>
               </Button>
           </Form>
