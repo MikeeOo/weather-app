@@ -5,6 +5,7 @@ export interface ILocationDataState {
     locationDataDetails: ILocationData;
     locationDataLoader: boolean;
     locationNotFoundError: boolean;
+    locationDuplicateError: boolean;
 }
 
 export interface ILocationInputData {

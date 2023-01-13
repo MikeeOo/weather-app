@@ -9,7 +9,8 @@ const initialState: ILocationDataState = {
     locationDataArray: [],
     locationDataDetails: {},
     locationDataLoader: false,
-    locationNotFoundError: false
+    locationNotFoundError: false,
+    locationDuplicateError: false
 };
 
 const locationDataSlice = createSlice({
@@ -22,6 +23,10 @@ const locationDataSlice = createSlice({
 
         removeLocationNotFoundError(state): void {
             state.locationNotFoundError = false;
+        },
+
+        removeLocationDuplicateError(state): void {
+            state.locationDuplicateError = false;
         },
 
         addLocationInputDataToState(state, {payload}: PayloadAction<ILocationInputData>): void {
@@ -39,9 +44,7 @@ const locationDataSlice = createSlice({
 
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
 
-            if(!JSON.parse(localStorage.getItem(`locationDataArray`) as string).length){
-                localStorage.clear();
-            }
+            !JSON.parse(localStorage.getItem(`locationDataArray`) as string).length && localStorage.clear();
         },
 
         filterLocationDataArrayViaParams(state, {payload}: PayloadAction<ILocationParamsData>): void {
@@ -56,23 +59,26 @@ const locationDataSlice = createSlice({
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
 
-                if(payload[payload.length - 1].locationRequestCod === `200`) {
-                    state.locationDataArray = payload;
-                    localStorage.setItem(`locationDataArray`, JSON.stringify(payload))
-                    state.locationDataLoader = false;
-                } else {
+            let duplicate = 0;
 
-                    const updatedLocationArray: Array<ILocationData> = payload
-                    updatedLocationArray.pop()
-                    state.locationDataArray = updatedLocationArray
-                    localStorage.setItem(`locationDataArray`, JSON.stringify(updatedLocationArray))
-                    state.locationDataLoader = false;
-                    state.locationNotFoundError = true;
-                }
+            for(const location of payload) payload[payload.length - 1].locationName === location.locationName && (duplicate += 1);
+
+            if (duplicate !== 2 && payload[payload.length - 1].locationRequestCod === "200") {
+                state.locationDataArray = payload;
+                localStorage.setItem(`locationDataArray`, JSON.stringify(payload));
+                state.locationDataLoader = false;
+            } else {
+                payload[payload.length - 1].locationRequestCod === "404" ? state.locationNotFoundError = true : state.locationDuplicateError = true;
+                const updatedLocationArray: Array<ILocationData> = payload;
+                updatedLocationArray.pop();
+                state.locationDataArray = updatedLocationArray;
+                localStorage.setItem(`locationDataArray`, JSON.stringify(updatedLocationArray));
+                state.locationDataLoader = false;
+            }
         });
     }
 });
 
-export const {editLocationImage,removeLocationNotFoundError,setLocationDataLoader, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions;
+export const {editLocationImage,removeLocationNotFoundError, removeLocationDuplicateError, setLocationDataLoader, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions;
 
 export default locationDataSlice.reducer;

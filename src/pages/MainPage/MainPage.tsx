@@ -8,8 +8,6 @@ const MainPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch();
 
-    const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
-
     const [locationInput, setLocationInput] = useState<string>(``);
 
     const [locationInputTooShort, setLocationInputTooShort] = useState<boolean>(false);
@@ -23,7 +21,6 @@ const MainPage = (): JSX.Element => {
 
           <Search
               dispatch={dispatch}
-              locationNotFoundError={locationNotFoundError}
               locationInput={locationInput}
               setLocationInput={setLocationInput}
               locationInputTooShort={locationInputTooShort}

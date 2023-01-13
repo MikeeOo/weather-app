@@ -70,7 +70,6 @@ export interface ILocationDesc {
 
 export interface IMainSearch {
     dispatch: typeof store.dispatch;
-    locationNotFoundError: boolean;
     locationInput: string;
     setLocationInput: Dispatch<SetStateAction<string>>;
     locationInputTooShort: boolean;

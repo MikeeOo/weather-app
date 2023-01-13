@@ -7,7 +7,7 @@ import Guide from "../../../components/Guide";
 
 import { v4 as uuid } from 'uuid';
 
-import {addLocationInputDataToState, removeLocationNotFoundError} from "../../../redux/slices/locationDataSlice";
+import {addLocationInputDataToState, removeLocationNotFoundError, removeLocationDuplicateError} from "../../../redux/slices/locationDataSlice";
 
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -15,13 +15,18 @@ import {IMainSearch} from "../../../types/propsTypes";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 import {SearchStyled} from "./Search.styled";
+import {useAppSelector} from "../../../redux/store";
 
-const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInput, locationInputTooShort, setLocationInputTooShort, locationDataArray, locationDataLoader }: IMainSearch ): JSX.Element => {
+const Search = ({dispatch, locationInput, setLocationInput, locationInputTooShort, setLocationInputTooShort, locationDataArray, locationDataLoader }: IMainSearch ): JSX.Element => {
+
+    const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
+
+    const locationDuplicateError = useAppSelector(state=> state.locationData.locationDuplicateError);
 
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
 
-            dispatch(removeLocationNotFoundError())
+            dispatch(removeLocationNotFoundError());
         }, 1000 * 3);
 
         return () => clearTimeout(timeout);
@@ -36,6 +41,15 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
         return () => clearTimeout(timeout);
     },[locationInputTooShort]);
 
+    useEffect(() => {
+        const timeout: TimeoutId = setTimeout((): void => {
+
+            dispatch(removeLocationDuplicateError());
+        }, 1000 * 3);
+
+        return () => clearTimeout(timeout);
+    },[locationDuplicateError]);
+
     const handleGuideStatus = (): string => {
         if (locationDataLoader) {
             return "Updating...";
@@ -43,6 +57,8 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
             return `Error: Location not found!`;
         } else if(locationInputTooShort) {
             return `Location must be at last 3 characters long...`;
+        }  else if(locationDuplicateError) {
+            return `You've already searched for that one!`;
         } else {
             if (locationDataArray.length === 1) {
                 return "Add another one ;))";
@@ -98,7 +114,7 @@ const Search = ({dispatch, locationNotFoundError, locationInput, setLocationInpu
               </Button>
           </Form>
 
-          <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort) && `error`}/>
+          <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
       </SearchStyled>
   );
 };
