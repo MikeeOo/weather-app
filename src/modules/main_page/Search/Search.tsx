@@ -1,4 +1,4 @@
-import {useEffect, SyntheticEvent, ChangeEvent} from "react";
+import {useEffect, SyntheticEvent, ChangeEvent, useState} from "react";
 
 import Form from "../../../components/Form"
 import Input from "../../../components/Input";
@@ -7,17 +7,27 @@ import Guide from "../../../components/Guide";
 
 import { v4 as uuid } from 'uuid';
 
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+
 import {addLocationInputDataToState, removeLocationNotFoundError, removeLocationDuplicateError} from "../../../redux/slices/locationDataSlice";
 
 import { AiOutlineSearch } from "react-icons/ai";
 
-import {IMainSearch} from "../../../types/propsTypes";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 import {SearchStyled} from "./Search.styled";
-import {useAppSelector} from "../../../redux/store";
 
-const Search = ({dispatch, locationInput, setLocationInput, locationInputTooShort, setLocationInputTooShort, locationDataArray, locationDataLoader }: IMainSearch ): JSX.Element => {
+const Search = (): JSX.Element => {
+
+    const dispatch = useAppDispatch();
+
+    const [locationInput, setLocationInput] = useState<string>(``);
+
+    const [locationInputTooShort, setLocationInputTooShort] = useState<boolean>(false);
+
+    const locationDataArray = useAppSelector(state => state.locationData.locationDataArray);
+
+    const locationDataLoader = useAppSelector(state => state.locationData.locationDataLoader);
 
     const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
 
@@ -26,29 +36,15 @@ const Search = ({dispatch, locationInput, setLocationInput, locationInputTooShor
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
 
-            dispatch(removeLocationNotFoundError());
-        }, 1000 * 3);
+            locationInputTooShort && setLocationInputTooShort(false);
+
+            locationNotFoundError && dispatch(removeLocationNotFoundError());
+
+            locationDuplicateError && dispatch(removeLocationDuplicateError());
+        }, 1000 * 5);
 
         return () => clearTimeout(timeout);
-    },[locationNotFoundError]);
-
-    useEffect(() => {
-        const timeout: TimeoutId = setTimeout((): void => {
-
-            setLocationInputTooShort(false);
-        }, 1000 * 3);
-
-        return () => clearTimeout(timeout);
-    },[locationInputTooShort]);
-
-    useEffect(() => {
-        const timeout: TimeoutId = setTimeout((): void => {
-
-            dispatch(removeLocationDuplicateError());
-        }, 1000 * 3);
-
-        return () => clearTimeout(timeout);
-    },[locationDuplicateError]);
+    },[locationInputTooShort, locationNotFoundError, locationDuplicateError]);
 
     const handleGuideStatus = (): string => {
         if (locationDataLoader) {
@@ -104,8 +100,12 @@ const Search = ({dispatch, locationInput, setLocationInput, locationInputTooShor
                      value={locationInput}
                      placeholder={`City, Country or Landmark...`}
                      onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
-                     onClick={() => dispatch(removeLocationNotFoundError())}
-                     errorColor={(locationNotFoundError || locationInputTooShort) && `error`}/>
+                     onClick={(): void => {
+                         dispatch(removeLocationNotFoundError())
+                         dispatch(removeLocationDuplicateError())
+                         setLocationInputTooShort(false)
+                     }}
+                     errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
 
               <Button fontSize="1.6rem"
                       borderRadius="0 5px 5px 0"

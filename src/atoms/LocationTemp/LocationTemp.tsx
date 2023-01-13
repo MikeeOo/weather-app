@@ -1,5 +1,5 @@
 import {LocationTempStyled} from "./LocationTemp.styled";
-import {ILocationTemp} from "../../types/propsTypes";
+import {ILocationTemp} from "./LocationTemp.types";
 
 const LocationTemp = ({locationTemp}: ILocationTemp): JSX.Element => <LocationTempStyled>{locationTemp} °C</LocationTempStyled>;
 

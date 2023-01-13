@@ -1,12 +1,14 @@
 import Button from "../../../components/Button";
 import {editLocationImage} from "../../../redux/slices/locationDataSlice";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {IReturnToMain} from "../../../types/propsTypes";
 import {ReturnToMainStyled} from "./ReturnToMain.styled";
 import BackSave from "../../../atoms/BackSave";
+import {useAppDispatch} from "../../../redux/store";
+import {IReturnToMain} from "./ReturnToMain.types";
 
+const ReturnToMain = ({currSlide, params}: IReturnToMain): JSX.Element => {
 
-const ReturnToMain = ({dispatch, currSlide, params}: IReturnToMain): JSX.Element => {
+    const dispatch = useAppDispatch();
 
     const navigate: NavigateFunction = useNavigate();
 

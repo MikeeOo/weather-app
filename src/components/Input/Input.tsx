@@ -1,8 +1,7 @@
 import {InputStyled} from "./Input.styled";
+import {IInput} from "./Input.types";
 
-import {IInput} from "../../types/propsTypes";
-
-const Input = ({type, value, placeholder, onChange, onClick, errorColor} : IInput): JSX.Element => {
+const Input = ({type, value, placeholder, onChange, onClick, errorColor}: IInput): JSX.Element => {
 
   return (
       <InputStyled type={type}

@@ -1,15 +1,17 @@
 import SlickSlider from "react-slick";
-import {ILocationImagesURLs} from "../../../types/commonTypes";
+import {ILocationImagesURLs} from "../../../types/common.types";
 import ChevronRightSvg from "../../../components/svg/ChevronRightSvg";
 import ChevronLeftSvg from "../../../components/svg/ChevronLeftSvg";
 import { SliderStyled } from "./Slider.styled";
 import styled from "styled-components";
 import {sliderButtonsStyles} from "../../../styles/mixins";
-import {ISlider} from "../../../types/propsTypes";
-import {ISettings} from "../../../types/sliderTypes";
 import {MutableRefObject, useRef} from "react";
+import {useAppSelector} from "../../../redux/store";
+import {ISettings, ISlider} from "./Slider.types";
 
-const Slider = ({params, setCurrSlide, locationDataDetails}: ISlider): JSX.Element => {
+const Slider = ({params, setCurrSlide}: ISlider): JSX.Element => {
+
+    const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
 
     const slider: MutableRefObject<SlickSlider | null> = useRef(null);
 

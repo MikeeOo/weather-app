@@ -21,7 +21,7 @@ const Header = (): JSX.Element => {
                             contrast
                             fontSize="1.2rem"
                             padding=".5em .5em">
-                  <ThemeStatus themeChangeStatus={themeChangeStatus}/>
+                  <ThemeStatus/>
               </Button>
       </HeaderStyled>
   );

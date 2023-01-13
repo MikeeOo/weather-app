@@ -1,4 +1,4 @@
-import {ILocationData} from "./commonTypes";
+import {ILocationData} from "../../types/common.types";
 
 export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;

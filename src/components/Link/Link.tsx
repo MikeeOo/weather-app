@@ -1,7 +1,7 @@
-import {ILink} from "../../types/propsTypes";
 import {LinkStyled} from "./Link.styled";
 import LocationImg from "../../atoms/LocationImg";
 import ImgError from "../../atoms/ImgError";
+import {ILink} from "./Link.types";
 
 const Link = ({locationName, locationId, locationImages, locationImageIndex}: ILink): JSX.Element => {
 

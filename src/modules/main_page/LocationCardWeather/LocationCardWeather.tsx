@@ -1,12 +1,11 @@
 import {LocationCardWeatherStyled} from "./LocationCardWeather.styled";
 import WeatherIcon from "../../../components/WeatherIcon";
 import WeatherInfo from "../../../components/WeatherInfo";
-import {ILocationCardWeather} from "../../../types/propsTypes";
-
+import {ILocationCardWeather} from "./LocationCardWeather.types";
 
 const LocationCardWeather = ({locationIcon, locationTemp, locationDesc}: ILocationCardWeather): JSX.Element => {
 
-  return (
+    return (
       <LocationCardWeatherStyled>
 
           <WeatherIcon locationIcon={locationIcon}/>

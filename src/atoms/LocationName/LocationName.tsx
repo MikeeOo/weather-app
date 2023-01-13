@@ -1,5 +1,5 @@
 import {LocationNameStyled} from "./LocationName.styled";
-import {ILocationName} from "../../types/propsTypes";
+import {ILocationName} from "./LocationName.types";
 
 const LocationName = ({locationName}: ILocationName): JSX.Element => <LocationNameStyled>{locationName}</LocationNameStyled>;
 

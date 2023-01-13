@@ -1,14 +1,14 @@
-import {ILocation} from "../../../types/propsTypes";
 import {LocationCardStyled} from "./LocationCardAction.styled";
 import LocationCardWeather from "../LocationCardWeather";
 import LocationCardAction from "../LocationCardAction";
+import {ILocationCard} from "./LocationCard.types";
 
-const LocationCard = ({dispatch, locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocation): JSX.Element => {
+const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
 
-  return (
+    return (
       <LocationCardStyled>
 
-          <LocationCardAction dispatch={dispatch} locationId={locationId} locationName={locationName} locationImages={locationImages} locationImageIndex={locationImageIndex}/>
+          <LocationCardAction locationId={locationId} locationName={locationName} locationImages={locationImages} locationImageIndex={locationImageIndex}/>
 
           <LocationCardWeather locationIcon={locationIcon} locationTemp={locationTemp} locationDesc={locationDesc}/>
       </LocationCardStyled>
@@ -16,4 +16,3 @@ const LocationCard = ({dispatch, locationId, locationName, locationTemp, locatio
 };
 
 export default LocationCard;
-

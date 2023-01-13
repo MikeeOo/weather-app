@@ -1,5 +1,5 @@
 import { FormStyled } from "./Form.styled";
-import {IForm} from "../../types/propsTypes";
+import {IForm} from "./Form.types";
 
 const Form = ({children, onSubmit}: IForm): JSX.Element => {
 

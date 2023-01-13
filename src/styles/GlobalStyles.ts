@@ -1,6 +1,6 @@
 import {createGlobalStyle, DefaultTheme, GlobalStyleComponent} from "styled-components";
 
-import {ITheme} from "../types/themeTypes";
+import {ITheme} from "./theme.types";
 
 import {shadowOutline} from "./mixins";
 

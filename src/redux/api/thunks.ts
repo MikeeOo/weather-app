@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {WEATHER_API, WEATHER_API_KEY, IMAGE_API, IMAGE_API_KEY} from "./constants";
-import {ILocationData} from "../../types/commonTypes";
-import {IWeatherResponse, IImagesResponse, IWeatherData, IImagesData} from "../../types/thunksTypes";
+import {ILocationData} from "../../types/common.types";
+import {IWeatherResponse, IImagesResponse, IWeatherData, IImagesData} from "./thunks.types";
 
 export const updateLocationDataArrayViaApi = createAsyncThunk(
     'locationData/updateLocationDataArrayViaApi',

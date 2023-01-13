@@ -1,5 +1,5 @@
 import {LocationDescStyled} from "./LocationDesc.styled";
-import {ILocationDesc} from "../../types/propsTypes";
+import {ILocationDesc} from "./LocationDesc.types";
 
 const LocationDesc = ({locationDesc}: ILocationDesc): JSX.Element => <LocationDescStyled>{locationDesc}</LocationDescStyled>;
 

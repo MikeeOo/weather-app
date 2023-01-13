@@ -1,7 +1,8 @@
 import { ButtonStyled } from "./Button.styled";
-import {IButton} from "../../types/propsTypes";
+import {IButton} from "./Button.types";
 
-const Button = ({children, onClick, fontSize, borderRadius, padding, contrast , imgPosition}: IButton): JSX.Element => {
+const Button = ({children, onClick, fontSize, borderRadius, padding, contrast, imgPosition}: IButton): JSX.Element => {
+
   return (
       <ButtonStyled
           onClick={onClick}
@@ -10,7 +11,7 @@ const Button = ({children, onClick, fontSize, borderRadius, padding, contrast , 
           padding={padding}
           contrast={contrast}
           imgPosition={imgPosition}>
-
+          
           {children}
       </ButtonStyled>
   );

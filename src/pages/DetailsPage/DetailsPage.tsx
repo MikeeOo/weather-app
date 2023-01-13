@@ -15,9 +15,9 @@ export const DetailsPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch();
 
-    const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
-
     const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
+
+    const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
 
     const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationImageIndex as string));
 
@@ -28,9 +28,9 @@ export const DetailsPage = (): JSX.Element => {
   return (
       <DetailsPageStyled>
 
-          <ReturnToMain dispatch={dispatch} currSlide={currSlide} params={params}/>
+          <ReturnToMain params={params} currSlide={currSlide}/>
 
-          <Slider params={params} setCurrSlide={setCurrSlide} locationDataDetails={locationDataDetails}/>
+          <Slider params={params} setCurrSlide={setCurrSlide}/>
           {/*///////////////////////////////////////////////////*/}
           {/*change Location Data//Weather whatever name*/}
           <LocationCardWeather locationIcon={locationDataDetails.locationIcon} locationTemp={locationDataDetails.locationTemp} locationDesc={locationDataDetails.locationDesc}/>

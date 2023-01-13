@@ -2,7 +2,7 @@ import {WeatherInfoStyled} from "./WeatherInfo.styled";
 import LocationDesc from "../../atoms/LocationDesc";
 import PseudoElement from "../../atoms/PseudoElement";
 import LocationTemp from "../../atoms/LocationTemp";
-import {IWeatherInfo} from "../../types/propsTypes";
+import {IWeatherInfo} from "./WeatherInfo.types";
 
 const WeatherInfo = ({locationTemp, locationDesc}: IWeatherInfo): JSX.Element => {
 
