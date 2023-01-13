@@ -1,8 +1,9 @@
 import Button from "../../../components/Button";
-import {BsArrowLeft} from "react-icons/bs";
 import {editLocationImage} from "../../../redux/slices/locationDataSlice";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {IReturnToMain} from "../../../types/propsTypes";
+import {ReturnToMainStyled} from "./ReturnToMain.styled";
+import BackSave from "../../../atoms/BackSave";
 
 
 const ReturnToMain = ({dispatch, currSlide, params}: IReturnToMain): JSX.Element => {
@@ -20,13 +21,12 @@ const ReturnToMain = ({dispatch, currSlide, params}: IReturnToMain): JSX.Element
     };
 
   return (
-      <div style={{margin: "5rem 0"}}>
+      <ReturnToMainStyled>
 
           <Button onClick={returnToMain}
                   fontSize="1.4rem"
-                  padding="0.5em 1em"
-          ><BsArrowLeft size="1.8rem"/>Back / Save</Button>
-      </div>
+                  padding="0.5em 1em"><BackSave/></Button>
+      </ReturnToMainStyled>
   );
 };
 

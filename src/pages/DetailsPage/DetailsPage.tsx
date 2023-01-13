@@ -11,7 +11,7 @@ import LocationCardWeather from "../../modules/main_page/LocationCardWeather";
 import { DetailsPageStyled } from "./DetailsPage.styled";
 import ReturnToMain from "../../modules/details_page/ReturnToMain";
 
-const DetailsPage = (): JSX.Element => {
+export const DetailsPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch();
 

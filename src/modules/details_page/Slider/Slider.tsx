@@ -24,7 +24,6 @@ const Slider = ({params, setCurrSlide, locationDataDetails}: ISlider): JSX.Eleme
         initialSlide: parseInt(params.locationImageIndex as string),
     };
 
-
   return (
       <SliderStyled>
 

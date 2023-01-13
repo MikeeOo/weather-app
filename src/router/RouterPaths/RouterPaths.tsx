@@ -1,8 +1,8 @@
 import {Route, Routes} from "react-router-dom";
 
 import Default from "../Default";
-import MainPage from "../../containers/MainPage";
-import DetailsPage from "../../containers/DetailsPage";
+import MainPage from "../../pages/MainPage";
+import DetailsPage from "../../pages/DetailsPage";
 
 const RouterPaths = (): JSX.Element => {
 

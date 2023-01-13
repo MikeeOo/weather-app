@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import {css} from "styled-components";
+import styled, {css} from "styled-components";
 import {flexBox} from "../../styles/mixins";
 import {IButton} from "../../types/propsTypes";
 

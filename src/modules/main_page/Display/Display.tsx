@@ -10,7 +10,13 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import {ILocationData} from "../../../types/commonTypes";
 
 import { DisplayStyled } from "./Display.styled";
-import {IMainDisplay} from "../../../types/propsTypes";
+import {store} from "../../../redux/store";
+
+interface IMainDisplay {
+    dispatch: typeof store.dispatch;
+    locationDataArray: Array<ILocationData>;
+    locationDataLoader: boolean;
+}
 
 const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay): JSX.Element => {
 
@@ -23,15 +29,15 @@ const Display = ({dispatch, locationDataArray, locationDataLoader}: IMainDisplay
 
             dispatch(setLocationDataLoader())
 
-            // dispatch(updateLocationDataArrayViaApi(locationDataArray))
+            dispatch(updateLocationDataArrayViaApi(locationDataArray))
 
             // smoother
-            const timeout: TimeoutId = setTimeout((): void => {
-
-                    dispatch(updateLocationDataArrayViaApi(locationDataArray))
-                }, 250)
-
-                return () => clearTimeout(timeout)
+            // const timeout: TimeoutId = setTimeout((): void => {
+            //
+            //         dispatch(updateLocationDataArrayViaApi(locationDataArray))
+            //     }, 250)
+            //
+            //     return () => clearTimeout(timeout)
             }
     },[locationDataArray.length]);
 

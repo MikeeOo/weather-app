@@ -57,7 +57,6 @@ const locationDataSlice = createSlice({
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
 
                 if(payload[payload.length - 1].locationRequestCod === `200`) {
-
                     state.locationDataArray = payload;
                     localStorage.setItem(`locationDataArray`, JSON.stringify(payload))
                     state.locationDataLoader = false;
