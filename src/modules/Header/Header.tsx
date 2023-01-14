@@ -17,12 +17,12 @@ const Header = (): JSX.Element => {
 
           <h1>🌈weather-app🌈</h1>
 
-              <Button onClick={() => dispatch(changeTheme( themeChangeStatus === "Light" ? "Dark" : "Light"))}
-                            contrast
-                            fontSize="1.2rem"
-                            padding=".5em .5em">
-                  <ThemeStatus/>
-              </Button>
+              {/*<Button onClick={() => dispatch(changeTheme( themeChangeStatus === "Light" ? "Dark" : "Light"))}*/}
+              {/*              contrast*/}
+              {/*              fontSize="1.2rem"*/}
+              {/*              padding=".5em .5em">*/}
+              {/*    <ThemeStatus/>*/}
+              {/*</Button>*/}
       </HeaderStyled>
   );
 };

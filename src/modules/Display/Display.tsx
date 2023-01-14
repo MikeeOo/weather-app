@@ -1,15 +1,15 @@
 import {useEffect} from "react";
 
-import {setLocationDataLoader, getInitialStateFromLocalStorage} from "../../../redux/slices/locationDataSlice";
-import {updateLocationDataArrayViaApi} from "../../../redux/api/thunks";
+import {setLocationDataLoader, getInitialStateFromLocalStorage} from "../../redux/slices/locationDataSlice";
+import {updateLocationDataArrayViaApi} from "../../redux/api/thunks";
 
-import LocationCard from "../LocationCard";
-import Loader from "../Loader";
+import LocationCard from "../../containers/LocationCard";
+import Loader from "../../containers/Loader";
 
-import {ILocationData} from "../../../types/common.types";
+import {ILocationData} from "../../types/common.types";
 
 import {DisplayStyled} from "./Display.styled";
-import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 
 const Display = (): JSX.Element => {
 

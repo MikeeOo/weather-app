@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LocationCardWeatherStyled = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  align-items: center; 
   padding: .7rem 0;
 `;

@@ -1,15 +1,15 @@
 import {useEffect, SyntheticEvent, ChangeEvent, useState} from "react";
 
-import Form from "../../../components/Form"
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
-import Guide from "../../../components/Guide";
+import Form from "../../components/Form"
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import Guide from "../../components/Guide";
 
 import { v4 as uuid } from 'uuid';
 
-import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 
-import {addLocationInputDataToState, removeLocationNotFoundError, removeLocationDuplicateError} from "../../../redux/slices/locationDataSlice";
+import {addLocationInputDataToState, removeLocationNotFoundError, removeLocationDuplicateError} from "../../redux/slices/locationDataSlice";
 
 import { AiOutlineSearch } from "react-icons/ai";
 

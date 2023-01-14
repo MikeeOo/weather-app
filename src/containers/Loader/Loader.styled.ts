@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {flexBox} from "../../../styles/mixins";
+import {flexBox} from "../../styles/mixins";
 
 export const LoaderStyled = styled.div`
   margin: 0 auto;

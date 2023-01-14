@@ -1,6 +1,6 @@
-import {LocationCardStyled} from "./LocationCardAction.styled";
-import LocationCardWeather from "../LocationCardWeather";
-import LocationCardAction from "../LocationCardAction";
+import {LocationCardStyled} from "./LocationCard.styled";
+import LocationCardWeather from "../../components/LocationCardWeather";
+import LocationCardAction from "../../components/LocationCardAction";
 import {ILocationCard} from "./LocationCard.types";
 
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {

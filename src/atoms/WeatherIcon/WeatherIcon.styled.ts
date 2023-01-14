@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WeatherIconStyled = styled.img`
-  width: 100%;
-  max-width: 6em;
+  border-right: 2px solid ${({theme}) => theme.color.pseudoElement};
   filter: invert(0.2);
+  height: 6em;
 `;

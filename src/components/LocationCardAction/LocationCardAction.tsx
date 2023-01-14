@@ -1,12 +1,12 @@
 import {LocationCardActionStyled} from "./LocationCardAction.styled";
-import {deleteLocationData} from "../../../redux/slices/locationDataSlice";
+import {deleteLocationData} from "../../redux/slices/locationDataSlice";
 import {BsXLg} from "react-icons/bs";
 import {useState} from "react";
-import LocationName from "../../../atoms/LocationName";
-import ClickInfo from "../../../atoms/ClickInfo";
-import Link from "../../../components/Link";
-import Button from "../../../components/Button";
-import {useAppDispatch} from "../../../redux/store";
+import LocationName from "../../atoms/LocationName";
+import ClickInfo from "../../atoms/ClickInfo";
+import Link from "../Link";
+import Button from "../Button";
+import {useAppDispatch} from "../../redux/store";
 import {ILocationCardAction} from "./LocationCardAction.types";
 
 const LocationCardAction = ({locationId, locationName, locationImages, locationImageIndex}: ILocationCardAction): JSX.Element => {

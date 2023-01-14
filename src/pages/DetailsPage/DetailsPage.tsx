@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {filterLocationDataArrayViaParams} from "../../redux/slices/locationDataSlice";
 
 import Slider from "../../modules/details_page/Slider";
-import LocationCardWeather from "../../modules/main_page/LocationCardWeather";
+import LocationCardWeather from "../../components/LocationCardWeather";
 
 import { DetailsPageStyled } from "./DetailsPage.styled";
 import ReturnToMain from "../../modules/details_page/ReturnToMain";
