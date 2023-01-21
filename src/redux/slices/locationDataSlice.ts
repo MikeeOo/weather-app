@@ -9,6 +9,7 @@ const initialState: ILocationDataState = {
     locationDataArray: [],
     locationDataDetails: {},
     locationDataLoader: false,
+    locationLastDuplicate: ``,
     locationNotFoundError: false,
     locationDuplicateError: false
 };
@@ -59,15 +60,16 @@ const locationDataSlice = createSlice({
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
 
-            let duplicate = 0;
+            let duplicate: number = 0;
 
             for(const location of payload) payload[payload.length - 1].locationName === location.locationName && (duplicate += 1);
-
+            console.log(duplicate)
             if (duplicate !== 2 && payload[payload.length - 1].locationRequestCod === "200") {
                 state.locationDataArray = payload;
                 localStorage.setItem(`locationDataArray`, JSON.stringify(payload));
                 state.locationDataLoader = false;
             } else {
+                state.locationLastDuplicate = payload[payload.length - 1].locationName;
                 payload[payload.length - 1].locationRequestCod === "404" ? state.locationNotFoundError = true : state.locationDuplicateError = true;
                 const updatedLocationArray: Array<ILocationData> = payload;
                 updatedLocationArray.pop();

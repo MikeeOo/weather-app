@@ -29,6 +29,8 @@ const Search = (): JSX.Element => {
 
     const locationDataLoader = useAppSelector(state => state.locationData.locationDataLoader);
 
+    const locationLastDuplicate = useAppSelector(state => state.locationData.locationLastDuplicate);
+
     const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
 
     const locationDuplicateError = useAppSelector(state=> state.locationData.locationDuplicateError);
@@ -54,20 +56,16 @@ const Search = (): JSX.Element => {
         } else if(locationInputTooShort) {
             return `Location must be at last 3 characters long...`;
         }  else if(locationDuplicateError) {
-            return `You've already searched for that one!`;
+            return `You've already added ${locationLastDuplicate}!`;
         } else {
             if (locationDataArray.length === 1) {
                 return "Add another one ;))";
-            } else if (locationDataArray.length >= 9) {
-                return "INFINITE LOCATIOOOOOOOONS !!!";
             } else if (locationDataArray.length >= 8) {
                 return "Oh! Isn't enough?";
             } else if (locationDataArray.length === 2) {
                 return "Add more! ;)";
-            } else if (locationDataArray.length === 3) {
-                return "And more! ;))";
-            } else if (locationDataArray.length >= 4) {
-                return "Add as many as u want ;)";
+            } else if (locationDataArray.length >= 3) {
+                return `You successfully added ${locationDataArray[locationDataArray.length - 1].locationName} ;)`;
             } else {
                 return "Search for location... ;)";
             }
@@ -88,6 +86,7 @@ const Search = (): JSX.Element => {
         }
 
         dispatch(removeLocationNotFoundError());
+        dispatch(removeLocationDuplicateError());
         setLocationInput(``);
     };
 
@@ -101,9 +100,9 @@ const Search = (): JSX.Element => {
                      placeholder={`City, Country or Landmark...`}
                      onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
                      onClick={(): void => {
-                         dispatch(removeLocationNotFoundError())
-                         dispatch(removeLocationDuplicateError())
-                         setLocationInputTooShort(false)
+                         dispatch(removeLocationNotFoundError());
+                         dispatch(removeLocationDuplicateError());
+                         setLocationInputTooShort(false);
                      }}
                      errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
 
