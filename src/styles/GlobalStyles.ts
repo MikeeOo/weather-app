@@ -17,7 +17,7 @@ const GlobalStyles: GlobalStyleComponent<{theme: ITheme}, DefaultTheme> = create
   body {
     color: ${({theme}) => theme.color.text};
     font-family: 'Nunito Sans', sans-serif;
-  };
+  }
   
   a {
     text-decoration: none;

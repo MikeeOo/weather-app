@@ -95,7 +95,8 @@ const Search = (): JSX.Element => {
 
           <SearchStyled>
 
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit}
+                    errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}>
 
                   <Input type="search"
                          value={locationInput}
@@ -105,8 +106,7 @@ const Search = (): JSX.Element => {
                              dispatch(removeLocationNotFoundError());
                              dispatch(removeLocationDuplicateError());
                              setLocationInputTooShort(false);
-                         }}
-                         errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
+                         }}/>
 
                   <Button fontSize="1.6rem"
                           borderRadius="0 5px 5px 0"

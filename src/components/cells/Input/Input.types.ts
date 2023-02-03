@@ -6,5 +6,4 @@ export interface IInput {
     placeholder: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     onClick: () => void;
-    errorColor: string | boolean;
 }

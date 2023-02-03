@@ -63,7 +63,7 @@ const locationDataSlice = createSlice({
             let duplicate: number = 0;
 
             for(const location of payload) payload[payload.length - 1].locationName === location.locationName && (duplicate += 1);
-            console.log(duplicate)
+
             if (duplicate !== 2 && payload[payload.length - 1].locationRequestCod === "200") {
                 state.locationDataArray = payload;
                 localStorage.setItem(`locationDataArray`, JSON.stringify(payload));

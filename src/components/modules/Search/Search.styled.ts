@@ -7,6 +7,7 @@ export const SearchWrapped = styled.section`
 
 export const SearchStyled = styled.div`
   ${container};
+  
 
   @media (min-width: 426px) {
     max-width: 294px;

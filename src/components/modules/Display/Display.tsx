@@ -19,18 +19,24 @@ const Display = (): JSX.Element => {
 
     const locationDataLoader = useAppSelector(state => state.locationData.locationDataLoader);
 
-    useEffect((): void => {
-        dispatch(getInitialStateFromLocalStorage());
-    },[]);
-
     useEffect(() => {
-        if(locationDataArray.length){
+        dispatch(getInitialStateFromLocalStorage());
+
+        handleReduxLoaderAndApi(locationDataArray.length)
+
+        const intervalId = setInterval(() => handleReduxLoaderAndApi(locationDataArray.length), 1000 * 60 * 10);
+
+        return () => clearInterval(intervalId);
+
+    }, [locationDataArray.length]);
+
+    const handleReduxLoaderAndApi = (locationDataArrayLength: number): void => {
+        if (locationDataArrayLength) {
 
             dispatch(setLocationDataLoader());
-
             dispatch(updateLocationDataArrayViaApi(locationDataArray));
         }
-    },[locationDataArray.length]);
+    }
 
     return (
         <section>
