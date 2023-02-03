@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from "react";
+
 export interface ILocationData {
     locationId?: string;
     locationInput?: string;
@@ -12,4 +14,9 @@ export interface ILocationData {
 
 export interface ILocationImagesURLs {
     largeImageURL: string;
+}
+
+export interface IDetails {
+    params: Readonly<Partial<Record<string, string | undefined>>>;
+    setCurrSlide: Dispatch<SetStateAction<number>>;
 }

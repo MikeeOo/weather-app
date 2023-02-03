@@ -1,21 +1,16 @@
 import {useEffect, useState} from "react";
 
+import Details from "../../modules/Details";
+import Navigate from "../../modules/Navigate";
+
 import {useParams} from "react-router-dom";
 
-import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {useAppDispatch} from "../../../redux/store";
 import {filterLocationDataArrayViaParams} from "../../../redux/slices/locationDataSlice";
-
-import Slider from "../../modules/details-page/Slider";
-import CardWeather from "../../divisions/CardWeather";
-
-import styled from "styled-components";
-import ReturnToMain from "../../modules/details-page/ReturnToMain";
 
 export const DetailsPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch();
-
-    const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
 
     const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
 
@@ -26,23 +21,11 @@ export const DetailsPage = (): JSX.Element => {
     },[]);
 
   return (
-      <DetailsPageStyled>
-
-          <ReturnToMain params={params} currSlide={currSlide}/>
-
-          <Slider params={params} setCurrSlide={setCurrSlide}/>
-          {/*///////////////////////////////////////////////////*/}
-          {/*change Location Data//Weather whatever name*/}
-          <CardWeather locationIcon={locationDataDetails.locationIcon} locationTemp={locationDataDetails.locationTemp} locationDesc={locationDataDetails.locationDesc}/>
-      </DetailsPageStyled>
+      <>
+          <Navigate params={params} currSlide={currSlide}/>
+          <Details params={params} setCurrSlide={setCurrSlide}/>
+      </>
   );
 };
 
 export default DetailsPage;
-
-export const DetailsPageStyled = styled.div`
-  font-size: 20px;
-  //background-color: green;
-  max-width: 375px;
-  margin: 0 auto;
-`;

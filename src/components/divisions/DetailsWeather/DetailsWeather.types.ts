@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface ISlider {
+export interface IDetails {
     params: Readonly<Partial<Record<string, string | undefined>>>;
     setCurrSlide: Dispatch<SetStateAction<number>>;
 }

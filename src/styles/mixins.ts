@@ -24,6 +24,7 @@ export const sliderButtonsStyles = css`
   top: 50%;
   transform: translate(0, -50%);
   width: 15%;
+  font-size: 4rem;
 `;
 
 export const bold: string = `700`;
