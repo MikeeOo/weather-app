@@ -36,7 +36,7 @@ const Display = (): JSX.Element => {
             dispatch(setLocationDataLoader());
             dispatch(updateLocationDataArrayViaApi(locationDataArray));
         }
-    }
+    };
 
     return (
         <section>

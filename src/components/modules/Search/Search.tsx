@@ -23,6 +23,8 @@ const Search = (): JSX.Element => {
 
     const [locationInput, setLocationInput] = useState<string>(``);
 
+    const [lastLocationAdded, setLastLocationAdded] = useState<boolean>(false);
+
     const [locationInputTooShort, setLocationInputTooShort] = useState<boolean>(false);
 
     const locationDataArray = useAppSelector(state => state.locationData.locationDataArray);
@@ -38,6 +40,8 @@ const Search = (): JSX.Element => {
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
 
+            lastLocationAdded && setLastLocationAdded(false);
+
             locationInputTooShort && setLocationInputTooShort(false);
 
             locationNotFoundError && dispatch(removeLocationNotFoundError());
@@ -46,7 +50,8 @@ const Search = (): JSX.Element => {
         }, 1000 * 5);
 
         return () => clearTimeout(timeout);
-    },[locationInputTooShort, locationNotFoundError, locationDuplicateError]);
+
+    },[lastLocationAdded, locationInputTooShort, locationNotFoundError, locationDuplicateError]);
 
     const handleGuideStatus = (): string => {
         if (locationDataLoader) {
@@ -55,18 +60,16 @@ const Search = (): JSX.Element => {
             return `Error: Location not found!`;
         } else if(locationInputTooShort) {
             return `Location must be at last 3 characters long...`;
-        }  else if(locationDuplicateError) {
+        } else if(locationDuplicateError) {
             return `You've already added ${locationLastDuplicate}!`;
+        } else if (lastLocationAdded) {
+            return `You successfully added ${locationDataArray[locationDataArray.length - 1].locationName} ;)`;
         } else {
             if (locationDataArray.length === 1) {
-                return "Add another one ;))";
-            } else if (locationDataArray.length >= 8) {
-                return "Oh! Isn't enough?";
-            } else if (locationDataArray.length === 2) {
+                return "Add one more ;))";
+            } else if (locationDataArray.length % 2 === 1) {
                 return "Add more! ;)";
-            } else if (locationDataArray.length >= 3) {
-                return `You successfully added ${locationDataArray[locationDataArray.length - 1].locationName} ;)`;
-            } else {
+            }  else {
                 return "Search for location... ;)";
             }
         }
@@ -81,6 +84,7 @@ const Search = (): JSX.Element => {
                 locationInput: locationInput,
                 locationImageIndex: "0"
             }));
+            setLastLocationAdded(true);
         } else {
             setLocationInputTooShort(true);
         }
