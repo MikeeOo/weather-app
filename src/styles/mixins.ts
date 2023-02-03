@@ -1,5 +1,12 @@
 import {css} from "styled-components";
 
+export const container = css`
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1728px;
+  //background-color: rgba(0, 255, 0, 0.2);
+`;
+
 export const shadowOutline = css`
   opacity: 1;
   box-shadow: 0 0 15px 0 rgba(128, 128, 128, 0.4);
@@ -19,11 +26,8 @@ export const sliderButtonsStyles = css`
   width: 15%;
 `;
 
-export const extraBold = `800`;
-
-export const log = css`
-  background-color: rgba(0, 255, 0, 0.2);
-`;
+export const bold: string = `700`;
+export const extraBold: string = `800`;
 
 export const flexBox = ({jc = false, ai = false}: {jc?: string | boolean, ai?: string | boolean}): string => `
   display: flex;

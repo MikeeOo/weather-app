@@ -1,4 +1,4 @@
-import RouterPaths from "./router/RouterPaths";
+import RouterPaths from "./components/router/RouterPaths";
 
 import {useAppSelector} from "./redux/store";
 
