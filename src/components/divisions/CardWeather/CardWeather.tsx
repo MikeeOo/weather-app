@@ -1,20 +1,37 @@
 import {CardWeatherWrapped, CardWeatherStyled} from "./CardWeather.styled";
-import LocationIcon from "../../blocks/LocationIcon";
+import Img from "../../blocks/Img";
+import P from "../../blocks/P";
+
 import {ICardWeather} from "./CardWeather.types";
-import LocationTemp from "../../blocks/LocationTemp";
-import LocationDesc from "../../blocks/LocationDesc";
 
 const CardWeather = ({locationIcon, locationTemp, locationDesc}: ICardWeather): JSX.Element => {
 
     return (
       <CardWeatherWrapped>
 
-          <LocationIcon locationIcon={locationIcon}/>
+          <div>
+
+              <Img cardWeatherImgStyled
+                   src={locationIcon}
+                   alt="weather icon"
+              />
+          </div>
 
           <CardWeatherStyled>
-              <LocationTemp locationTemp={locationTemp}/>
 
-              <LocationDesc locationDesc={locationDesc}/>
+              <P cardWeatherPStyled
+                 borderBottom
+                 fontSize={`3.1rem`}>
+
+                  {locationTemp} °C
+              </P>
+
+              <P cardWeatherPStyled
+                 borderTop
+                 fontSize={`1.5rem`}>
+
+                  {locationDesc}
+              </P>
           </CardWeatherStyled>
 
       </CardWeatherWrapped>

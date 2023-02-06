@@ -11,7 +11,6 @@ const Button = ({children, onClick, fontSize, borderRadius, padding, contrast, i
           padding={padding}
           contrast={contrast}
           imgPosition={imgPosition}>
-          
           {children}
       </ButtonStyled>
   );

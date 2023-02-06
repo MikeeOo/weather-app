@@ -27,7 +27,6 @@ export const sliderButtonsStyles = css`
   font-size: 4rem;
 `;
 
-export const bold: string = `700`;
 export const extraBold: string = `800`;
 
 export const flexBox = ({jc = false, ai = false}: {jc?: string | boolean, ai?: string | boolean}): string => `

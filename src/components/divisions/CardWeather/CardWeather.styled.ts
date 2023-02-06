@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardWeatherWrapped = styled.div`
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding: .7rem 0;
 `;
 

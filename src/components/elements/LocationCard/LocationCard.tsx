@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 import ClickInfo from "../../atoms/ClickInfo";
-import LocationHeader from "../../blocks/LocationHeader";
+import H2 from "../../blocks/H2";
 
 import Link from "../../cells/Link";
 import Button from "../../cells/Button";
@@ -29,7 +29,11 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                               onMouseLeave={() => setIsHover(false)}
                               onTouchMove={() => setIsHover(true)}>
 
-              <LocationHeader locationName={locationName}/>
+              <H2 locationCardStyled
+                  fontSize={`1.8rem`}>
+
+                  {locationName}
+              </H2>
 
               <Link locationName={locationName} locationId={locationId} locationImages={locationImages} locationImageIndex={locationImageIndex}/>
 

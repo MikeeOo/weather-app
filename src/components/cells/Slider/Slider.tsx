@@ -5,6 +5,7 @@ import {useAppSelector} from "../../../redux/store";
 import {ISliderSettings} from "./Slider.types";
 import { SliderButtonNextStyled, SliderButtonPrevStyled } from "./Slider.styled";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Img from "../../blocks/Img";
 
 const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
 
@@ -28,7 +29,13 @@ const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
           <SlickSlider ref={slider} {...sliderSettings}>
 
               {locationDataDetails.locationImages && locationDataDetails.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
-                  <div key={index} ><img src={imgURL.largeImageURL} alt="" style={{width: `100%`, height: `230px`, objectFit: `cover`, borderRadius: "1rem"}}/></div>)}
+                  <div key={index}>
+
+                      <Img sliderImgStyled
+                           src={imgURL.largeImageURL}
+                           alt="one of location images"
+                      />
+                  </div>)}
           </SlickSlider>
 
           <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><BsChevronRight/></SliderButtonNextStyled>
