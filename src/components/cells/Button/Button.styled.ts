@@ -4,7 +4,6 @@ import {IButton} from "./Button.types";
 
 export const ButtonStyled = styled.button<IButton>`
   ${flexBox({jc: "center", ai: "center"})};
-  
   border-radius: ${props => props.borderRadius};
   font-size: ${props => props.fontSize};
   padding: ${props => props.padding};

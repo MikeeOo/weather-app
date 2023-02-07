@@ -10,4 +10,4 @@ export const SliderButtonNextStyled = styled.button`
 export const SliderButtonPrevStyled = styled.button`
   ${sliderButtonsStyles};
   border-radius: 0 50% 50% 0;
-`
+`;

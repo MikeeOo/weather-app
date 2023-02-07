@@ -2,9 +2,10 @@ import Button from "../../cells/Button";
 import {editLocationImage} from "../../../redux/slices/locationDataSlice";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {NavigateStyled} from "./Navigate.styled";
-import BackSave from "../../00/BackSave";
 import {useAppDispatch} from "../../../redux/store";
 import {INavigate} from "./Navigate.types";
+import BtnContent from "../../atoms/BtnContent";
+import {BsArrowLeft} from "react-icons/bs";
 
 const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
 
@@ -29,7 +30,10 @@ const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
 
               <Button onClick={returnToMain}
                       fontSize="1.4rem"
-                      padding="0.5em 1em"><BackSave/></Button>
+                      padding="0.5em 1em">
+
+                  <BtnContent  content={`iconText`} icon={<BsArrowLeft size="1.8rem"/>} text={`Back / Save`}/>
+              </Button>
           </NavigateStyled>
       </section>
   );

@@ -6,6 +6,7 @@ import H2 from "../../blocks/H2";
 import Link from "../../cells/Link";
 import Button from "../../cells/Button";
 import CardWeather from "../../divisions/CardWeather";
+import BtnContent from "../../atoms/BtnContent";
 
 import {useAppDispatch} from "../../../redux/store";
 import {deleteLocationData} from "../../../redux/slices/locationDataSlice";
@@ -42,7 +43,10 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                                   contrast
                                   imgPosition
                                   fontSize="1.2rem"
-                                  padding="1em"><BsXLg/></Button>}
+                                  padding="1em">
+
+                  <BtnContent content="icon" icon={<BsXLg/>}/>
+              </Button>}
 
               {isHover &&  <ClickInfo/>}
 

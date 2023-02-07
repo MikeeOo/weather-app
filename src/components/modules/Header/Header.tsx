@@ -1,10 +1,13 @@
 import Button from "../../cells/Button";
-import ThemeStatus from "../../00/ThemeStatus";
+import BtnContent from "../../atoms/BtnContent";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { changeTheme } from "../../../redux/slices/themeStatusSlice";
 
 import {HeaderWrapped, HeaderStyled} from "./Header.styled";
+import {FaLightbulb} from "react-icons/fa";
+import {BsFillMoonFill} from "react-icons/bs";
+
 
 const Header = (): JSX.Element => {
 
@@ -26,9 +29,11 @@ const Header = (): JSX.Element => {
                       contrast
                       fontSize="1.2rem"
                       padding=".5em .5em">
-                  <ThemeStatus/>
-              </Button>
 
+                  <BtnContent content="iconText"
+                              icon={themeChangeStatus === "Light" ? <FaLightbulb/> : <BsFillMoonFill/>}
+                              text={`${themeChangeStatus} Mode`}/>
+              </Button>
           </HeaderStyled>
       </HeaderWrapped>
   );

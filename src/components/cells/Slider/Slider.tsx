@@ -6,6 +6,7 @@ import {ISliderSettings} from "./Slider.types";
 import { SliderButtonNextStyled, SliderButtonPrevStyled } from "./Slider.styled";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Img from "../../blocks/Img";
+import ImgError from "../../blocks/ImgError";
 
 const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
 
@@ -26,20 +27,25 @@ const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
 
   return (
       <>
-          <SlickSlider ref={slider} {...sliderSettings}>
+          {locationDataDetails.locationImages?.length ?
 
-              {locationDataDetails.locationImages && locationDataDetails.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
-                  <div key={index}>
+              <div style={{position: `relative`}}>
 
-                      <Img sliderImgStyled
-                           src={imgURL.largeImageURL}
-                           alt="one of location images"
-                      />
-                  </div>)}
-          </SlickSlider>
+                   <SlickSlider ref={slider} {...sliderSettings}>
 
-          <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><BsChevronRight/></SliderButtonNextStyled>
-          <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><BsChevronLeft/></SliderButtonPrevStyled>
+                      {locationDataDetails.locationImages && locationDataDetails.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
+                          <div key={index}>
+
+                              <Img sliderImgStyled
+                                   src={imgURL.largeImageURL}
+                                   alt="one of location images"
+                              />
+                          </div>)}
+                  </SlickSlider>
+
+                  <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><BsChevronRight/></SliderButtonNextStyled>
+                  <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><BsChevronLeft/></SliderButtonPrevStyled>
+              </div> : <ImgError  fontSize={"3rem"} errorBorder/>}
       </>
   );
 };

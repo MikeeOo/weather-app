@@ -17,4 +17,3 @@ export const lightTheme: ITheme = {
         pseudoElement: `rgba(0, 0, 0 , 0.3)`
     }
 };
-
