@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {device} from "../../../styles/mixins";
 
 export const LocationCardWrapped = styled.article`
   background-color: ${({theme}) => theme.color.elements};
@@ -6,7 +7,7 @@ export const LocationCardWrapped = styled.article`
   margin: 4.2rem 6% 0 6%;
   border-radius: 10px;
   
-  @media (min-width: 426px) {
+  @media (${device.tabletS}) {
     margin: 4.2rem 0 0 0;
   }
 `;

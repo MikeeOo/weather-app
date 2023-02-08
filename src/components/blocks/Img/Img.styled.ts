@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {IImg} from "./Img.types";
+import {device} from "../../../styles/mixins";
 
 export const ImgStyled = styled.img<IImg>`
   width: 100%;
@@ -25,22 +26,22 @@ export const ImgStyled = styled.img<IImg>`
     object-fit: cover;
     border-radius: 1rem;
     
-    @media (min-width: 769px) {
+    @media (${device.tabletL}) {
       height: 23rem;
     }
-    @media (min-width: 1025px) {
+    @media (${device.laptopS}) {
       height: 30rem;
     }
-    @media (min-width: 1325px) {
+    @media (${device.laptopL}) {
       height: 35rem;
     }
-    @media (min-width: 1729px) {
+    @media (${device.desktopS}) {
       height: 40rem;
     }
-    @media (min-width: 1920px) {
+    @media (${device.desktopM}) {
       height: 50rem;
     }
-    @media (min-width: 2200px) {
+    @media (${device.desktopL}) {
       height: 60rem;
     }
   `};

@@ -1,11 +1,23 @@
 import {css} from "styled-components";
+import {IDevice} from "./mixins.types";
 
 export const container = css`
   margin: 0 auto;
   width: 90%;
   max-width: 1728px;
-  //background-color: rgba(0, 255, 0, 0.2);
 `;
+
+export const device: IDevice = {
+  tabletS: css`min-width: 426px`,
+  tabletM: css`min-width: 646px`,
+  tabletL: css`min-width: 769px`,
+  laptopS: css`min-width: 1025px`,
+  laptopM: css`min-width: 1225px`,
+  laptopL: css`min-width: 1325px`,
+  desktopS: css`min-width: 1729px`,
+  desktopM: css`min-width: 1920px`,
+  desktopL: css`min-width: 2200px`
+}
 
 export const shadowOutline = css`
   opacity: 1;
@@ -27,22 +39,22 @@ export const sliderButtonsStyles = css`
   //max-height: 22rem;
   font-size: 3rem;
   
-  @media (min-width: 426px) {
+  @media (${device.tabletS}) {
     font-size: 4rem;
     height: 45%;
   }
-  @media (min-width: 1025px) {
+  @media (${device.laptopS}) {
     font-size: 5rem;
     height: 45%;
   }
-  @media (min-width: 1325px) {
+  @media (${device.laptopL}) {
     height: 40%;
   }
-  @media (min-width: 1729px) {
+  @media (${device.desktopS}) {
     font-size: 5rem;
     width: 15%;
   }
-  @media (min-width: 1920px) {
+  @media (${device.desktopM}) {
     font-size: 6rem;
     height: 30%;
     width: 15%;
@@ -55,11 +67,4 @@ export const flexBox = ({jc = false, ai = false}: {jc?: string | boolean, ai?: s
   display: flex;
   ${jc ? `justify-content: ${jc};` : ""}
   ${ai ? `align-items: ${ai};` : ""}
-`;
-
-
-
-export const wh = ({w, h = w}: {w: string, h?: string}): string => `
-  width: ${w};
-  height: ${h};
 `;

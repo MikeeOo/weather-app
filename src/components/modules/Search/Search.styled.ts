@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {container} from "../../../styles/mixins";
+import {container, device} from "../../../styles/mixins";
 
 export const SearchWrapped = styled.section`
   margin-top: 2.4rem;
@@ -9,19 +9,19 @@ export const SearchStyled = styled.div`
   ${container};
   
 
-  @media (min-width: 426px) {
+  @media (${device.tabletS}) {
     max-width: 294px;
   }
-  @media (min-width: 646px) {
+  @media (${device.tabletM}) {
     max-width: 354px;
   }
-  @media (min-width: 769px) {
+  @media (${device.tabletL}) {
     max-width: 368px;
   }
-  @media (min-width: 1225px) {
+  @media (${device.laptopM}) {
     max-width: 400px;
   }
-  @media (min-width: 1729px) {
+  @media (${device.desktopS}) {
     max-width: 468px;
   }
 `;

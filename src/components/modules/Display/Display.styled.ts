@@ -1,23 +1,23 @@
 import styled from "styled-components";
-import {container} from "../../../styles/mixins";
+import {container, device} from "../../../styles/mixins";
 
 export const DisplayStyled = styled.div`
   ${container};
   padding-bottom: 2.4rem;
   
-  @media (min-width: 426px) {
+  @media (${device.tabletS}) {
     display: grid;
     column-gap: 5%;
     grid-template-columns: 1fr 1fr;
   }
-  @media (min-width: 769px) {
+  @media (${device.tabletL}) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  @media (min-width: 1025px) {
+  @media (${device.laptopS}) {
     column-gap: 3%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  @media (min-width: 1729px) {
+  @media (${device.desktopS}) {
     column-gap: 2.5%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
