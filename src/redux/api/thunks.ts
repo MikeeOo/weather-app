@@ -22,7 +22,7 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
             if(locationApiRequest[0].value.cod === "404"){
                 updatedLocationDataArray.push({
                     locationRequestCod: locationApiRequest[0].value.cod
-                })
+                });
             }
             else{
                 updatedLocationDataArray.push({

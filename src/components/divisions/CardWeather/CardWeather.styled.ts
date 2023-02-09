@@ -9,5 +9,5 @@ export const CardWeatherWrapped = styled.div`
 export const CardWeatherStyled = styled.div`
   width: 100%;
   padding: 0 .7rem;
-  border-left: 2px solid ${({theme}) => theme.color.pseudoElement};
+  border-left: 2px solid ${({theme}) => theme.color.border};
 `;

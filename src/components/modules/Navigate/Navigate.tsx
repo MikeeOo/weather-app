@@ -1,11 +1,17 @@
 import Button from "../../cells/Button";
-import {editLocationImage} from "../../../redux/slices/locationDataSlice";
-import {NavigateFunction, useNavigate} from "react-router-dom";
-import {NavigateStyled} from "./Navigate.styled";
-import {useAppDispatch} from "../../../redux/store";
-import {INavigate} from "./Navigate.types";
 import BtnContent from "../../atoms/BtnContent";
+
+import {useAppDispatch} from "../../../redux/store";
+import {editLocationImage} from "../../../redux/slices/locationDataSlice";
+
+import {NavigateFunction, useNavigate} from "react-router-dom";
+
 import {BsArrowLeft} from "react-icons/bs";
+
+import {INavigate} from "./Navigate.types";
+
+import {NavigateStyled} from "./Navigate.styled";
+
 
 const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
 
@@ -17,7 +23,7 @@ const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
 
         dispatch(editLocationImage({
             currLocationSlide: currSlide.toString(),
-            currLocationId: params.locationId,
+            currLocationId: params.locationId
         }));
 
         navigate("/");

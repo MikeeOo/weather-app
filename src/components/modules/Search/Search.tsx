@@ -4,11 +4,11 @@ import Form from "../../cells/Form"
 import Input from "../../cells/Input";
 import Button from "../../cells/Button";
 import Guide from "../../blocks/Guide";
+import BtnContent from "../../atoms/BtnContent";
 
 import { v4 as uuid } from 'uuid';
 
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
-
 import { addLocationInputDataToState, removeLocationNotFoundError, removeLocationDuplicateError } from "../../../redux/slices/locationDataSlice";
 
 import { AiOutlineSearch } from "react-icons/ai";
@@ -16,8 +16,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 import { SearchWrapped, SearchStyled } from "./Search.styled";
-import BtnContent from "../../atoms/BtnContent";
-import {BsXLg} from "react-icons/bs";
 
 const Search = (): JSX.Element => {
 

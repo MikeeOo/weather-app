@@ -1,3 +1,3 @@
 export interface IThemeChangeStatusState {
-    themeChangeStatus: string
+    themeChangeStatus: string;
 }

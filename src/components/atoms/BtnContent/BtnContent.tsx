@@ -1,5 +1,5 @@
-import {BtnContentStyled} from "./BtnContent.styled";
 import {IBtnContent} from "./BtnContent.types";
+import {BtnContentStyled} from "./BtnContent.styled";
 
 const BtnContent = ({text, icon, content}: IBtnContent): JSX.Element => {
 

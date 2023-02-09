@@ -6,5 +6,5 @@ interface IColor {
     text: string;
     elements: string;
     background: string;
-    pseudoElement: string;
+    border: string;
 }

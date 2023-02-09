@@ -4,7 +4,7 @@ export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;
     locationDataDetails: ILocationData;
     locationDataLoader: boolean;
-    locationLastDuplicate: string | undefined,
+    locationLastDuplicate: string | undefined;
     locationNotFoundError: boolean;
     locationDuplicateError: boolean;
 }

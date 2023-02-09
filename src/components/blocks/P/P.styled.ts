@@ -11,11 +11,11 @@ export const PStyled = styled.p<IP>`
   `};
   
   ${props => props.borderBottom && css`
-    border-bottom: 1px solid ${({theme}) => theme.color.pseudoElement};
+    border-bottom: 1px solid ${({theme}) => theme.color.border};
   `};
   
   ${props => props.borderTop && css`
-    border-top: 1px solid ${({theme}) => theme.color.pseudoElement};
+    border-top: 1px solid ${({theme}) => theme.color.border};
   `};
   
   ${props => props.detailsWeatherPStyled && css`

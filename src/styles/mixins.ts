@@ -36,7 +36,6 @@ export const sliderButtonsStyles = css`
   top: 50%;
   transform: translate(0, -50%);
   max-width: 7rem;
-  //max-height: 22rem;
   font-size: 3rem;
   
   @media (${device.tabletS}) {

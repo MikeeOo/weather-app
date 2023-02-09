@@ -1,9 +1,9 @@
+import Slider from "../../cells/Slider";
+import DetailsWeather from "../../divisions/DetailsWeather";
 
 import {IDetails} from "../../../types/common.types";
 
 import { DetailsStyled } from "./Details.styled";
-import Slider from "../../cells/Slider";
-import DetailsWeather from "../../divisions/DetailsWeather";
 
 const Details = ({params, setCurrSlide}: IDetails): JSX.Element => {
 
