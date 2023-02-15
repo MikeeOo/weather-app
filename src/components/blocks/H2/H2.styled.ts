@@ -4,7 +4,6 @@ import {IH2} from "./H2.types";
 export const H2Styled = styled.h2<IH2>`
   font-size: ${props => props.fontSize};
   font-weight: bold;
-  
   ${props => props.locationCardStyled && css`
     background-color: ${({theme}) => theme.color.elements};
     position: absolute;
