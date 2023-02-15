@@ -46,5 +46,3 @@ export const ImgStyled = styled.img<IImg>`
     }
   `};
 `;
-
-// <div style={{position: `relative`, height: `50vh`}}>

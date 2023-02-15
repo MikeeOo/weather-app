@@ -13,7 +13,7 @@ export const HeaderStyled = styled.header`
   padding: 2.7em 0;
 `;
 
-export const H1Styled = styled.h1`
+export const H1 = styled.h1`
   font-size: 1.4rem;
   font-weight: 700;
 `;

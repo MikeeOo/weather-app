@@ -7,7 +7,7 @@ import {changeTheme} from "../../../redux/slices/themeStatusSlice";
 import {FaLightbulb} from "react-icons/fa";
 import {BsFillMoonFill} from "react-icons/bs";
 
-import {HeaderWrapped, HeaderStyled, H1Styled} from "./Header.styled";
+import {HeaderWrapped, HeaderStyled, H1} from "./Header.styled";
 
 const Header = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const Header = (): JSX.Element => {
     return (
         <HeaderWrapped>
             <HeaderStyled>
-                <H1Styled>🌈weather-app🌈</H1Styled>
+                <H1>🌈weather-app🌈</H1>
                 <Button onClick={() => dispatch(changeTheme( themeChangeStatus === "Light" ? "Dark" : "Light"))}
                         contrast
                         fontSize="1.2rem"

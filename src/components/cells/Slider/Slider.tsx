@@ -1,17 +1,21 @@
-import SlickSlider from "react-slick";
-import {IDetails, ILocationImagesURLs} from "../../../types/common.types";
 import {MutableRefObject, useRef} from "react";
-import {useAppSelector} from "../../../redux/store";
-import {ISliderSettings} from "./Slider.types";
-import { SliderButtonNextStyled, SliderButtonPrevStyled } from "./Slider.styled";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
 import Img from "../../blocks/Img";
 import ImgError from "../../blocks/ImgError";
 
+import {useAppSelector} from "../../../redux/store";
+
+import SlickSlider from "react-slick";
+
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
+import {IDetails, ILocationImagesURLs} from "../../../types/common.types";
+import {ISliderSettings} from "./Slider.types";
+
+import {SliderButtonNextStyled, SliderButtonPrevStyled, SliderStyled} from "./Slider.styled";
+
 const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
-
     const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
-
     const slider: MutableRefObject<SlickSlider | null> = useRef(null);
 
     const sliderSettings: ISliderSettings = {
@@ -25,29 +29,22 @@ const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
         initialSlide: parseInt(params.locationImageIndex as string),
     };
 
-  return (
-      <>
-          {locationDataDetails.locationImages?.length ?
-
-              <div style={{position: `relative`}}>
-
-                   <SlickSlider ref={slider} {...sliderSettings}>
-
-                      {locationDataDetails.locationImages && locationDataDetails.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
-                          <div key={index}>
-
-                              <Img sliderImgStyled
-                                   src={imgURL.largeImageURL}
-                                   alt="one of location images"
-                              />
-                          </div>)}
-                  </SlickSlider>
-
-                  <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><BsChevronRight/></SliderButtonNextStyled>
-                  <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><BsChevronLeft/></SliderButtonPrevStyled>
-              </div> : <ImgError  fontSize={"3rem"} errorBorder/>}
-      </>
-  );
+    return (
+        <>
+            {locationDataDetails.locationImages?.length
+                ?
+                <SliderStyled>
+                    <SlickSlider ref={slider} {...sliderSettings}>
+                        {locationDataDetails.locationImages && locationDataDetails.locationImages.map((imgURL: ILocationImagesURLs, index: number) =>
+                            <div key={index}><Img sliderImgStyled src={imgURL.largeImageURL} alt="one of location images"/></div>)}
+                    </SlickSlider>
+                    <SliderButtonNextStyled onClick={() => slider?.current?.slickNext()}><BsChevronRight/></SliderButtonNextStyled>
+                    <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><BsChevronLeft/></SliderButtonPrevStyled>
+                </SliderStyled>
+                :
+                <ImgError errorBorder fontSize={"3rem"}/>}
+        </>
+    );
 };
 
 export default Slider;
