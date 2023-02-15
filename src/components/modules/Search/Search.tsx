@@ -1,6 +1,6 @@
 import {useEffect, SyntheticEvent, ChangeEvent, useState} from "react";
 
-import Form from "../../cells/Form"
+import Form from "../../cells/Form";
 import Input from "../../cells/Input";
 import Button from "../../cells/Button";
 import BtnContent from "../../atoms/BtnContent";
@@ -28,16 +28,6 @@ const Search = (): JSX.Element => {
     const locationLastDuplicate = useAppSelector(state => state.locationData.locationLastDuplicate);
     const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
     const locationDuplicateError = useAppSelector(state=> state.locationData.locationDuplicateError);
-
-    useEffect(() => {
-        const timeout: TimeoutId = setTimeout((): void => {
-            lastLocationAdded && setLastLocationAdded(false);
-            locationInputTooShort && setLocationInputTooShort(false);
-            locationNotFoundError && dispatch(removeLocationNotFoundError());
-            locationDuplicateError && dispatch(removeLocationDuplicateError());
-        }, 1000 * 5);
-        return () => clearTimeout(timeout);
-    },[lastLocationAdded, locationInputTooShort, locationNotFoundError, locationDuplicateError]);
 
     const handleGuideStatus = (): string => {
         if (locationDataLoader) {
@@ -83,6 +73,16 @@ const Search = (): JSX.Element => {
         dispatch(removeLocationDuplicateError());
         setLocationInputTooShort(false);
     };
+
+    useEffect(() => {
+        const timeout: TimeoutId = setTimeout((): void => {
+            lastLocationAdded && setLastLocationAdded(false);
+            locationInputTooShort && setLocationInputTooShort(false);
+            locationNotFoundError && dispatch(removeLocationNotFoundError());
+            locationDuplicateError && dispatch(removeLocationDuplicateError());
+        }, 1000 * 5);
+        return () => clearTimeout(timeout);
+    },[lastLocationAdded, locationInputTooShort, locationNotFoundError, locationDuplicateError]);
 
     return (
         <SearchWrapped>
