@@ -1,4 +1,4 @@
-export interface IImgError {
+export interface IErrImg {
     fontSize: string;
     errorBorder?: boolean;
 }

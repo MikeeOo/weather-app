@@ -21,7 +21,7 @@ export const LocationCardHoverStyled = styled.div`
     button {
       display: flex;
     }
-    div {
+    .clickInfo {
       display: block;
     }
   }

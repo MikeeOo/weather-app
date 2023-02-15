@@ -16,3 +16,11 @@ export const DetailsStyled = styled.section`
     column-gap: 2.5%;
   }
 `;
+
+export const DetailsWeatherStyled = styled.div`
+    margin-top: 4rem;
+`;
+
+export const Em  = styled.em`
+  font-weight: 600;
+`;

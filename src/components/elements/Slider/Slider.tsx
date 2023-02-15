@@ -1,7 +1,7 @@
 import {MutableRefObject, useRef} from "react";
 
 import Img from "../../blocks/Img";
-import ImgError from "../../blocks/ImgError";
+import ErrImg from "../../atoms/ErrImg";
 
 import {useAppSelector} from "../../../redux/store";
 
@@ -42,7 +42,7 @@ const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
                     <SliderButtonPrevStyled onClick={() => slider?.current?.slickPrev()}><BsChevronLeft/></SliderButtonPrevStyled>
                 </SliderStyled>
                 :
-                <ImgError errorBorder fontSize={"3rem"}/>}
+                <ErrImg errorBorder fontSize={"3rem"}/>}
         </>
     );
 };

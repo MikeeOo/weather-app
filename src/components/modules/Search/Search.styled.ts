@@ -32,7 +32,7 @@ export const GuideStyled = styled.div<{errorColor: string | boolean;}>`
   font-weight: ${extraBold};
   opacity: 0.2;
   ${props => props.errorColor === `error` && css`
-    color: #FF0000;
+    color: ${({theme}) => theme.color.err};
     opacity: 1;
   `};
 `;

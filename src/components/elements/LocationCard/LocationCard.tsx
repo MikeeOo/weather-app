@@ -1,7 +1,7 @@
 import H2 from "../../blocks/H2";
 import Img from "../../blocks/Img";
 import P from "../../blocks/P";
-import ImgError from "../../blocks/ImgError";
+import ErrImg from "../../atoms/ErrImg";
 import Button from "../../cells/Button";
 import BtnContent from "../../atoms/BtnContent";
 
@@ -28,7 +28,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                             ? <Img linkImgStyled
                                    src={`${locationImages?.length && locationImages[parseInt(locationImageIndex as string)].largeImageURL}`}
                                    alt="current location image"/>
-                            : <ImgError fontSize={"1.4rem"}/>}
+                            : <ErrImg fontSize={"1.4rem"}/>}
                     </LinkStyled>
                     <Button onClick={() => dispatch(deleteLocationData(locationId))}
                             borderRadius="1rem"
@@ -39,7 +39,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                             padding="1em">
                         <BtnContent icon={<BsXLg/>}/>
                     </Button>
-                    <ClickInfoStyled>Click to change image...</ClickInfoStyled>
+                    <ClickInfoStyled className="clickInfo">Click to change image...</ClickInfoStyled>
                 </LocationCardHoverStyled>
             </LocationCardStyled>
 

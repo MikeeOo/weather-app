@@ -1,8 +1,6 @@
 import {createGlobalStyle, DefaultTheme, GlobalStyleComponent} from "styled-components";
-
-import {ITheme} from "./theme.types";
-
 import {shadowOutline} from "./mixins";
+import {ITheme} from "./theme.types";
 
 const GlobalStyles: GlobalStyleComponent<{theme: ITheme}, DefaultTheme> = createGlobalStyle`
   :root {

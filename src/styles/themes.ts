@@ -1,7 +1,10 @@
 import {ITheme} from "./theme.types";
 
+const red: string = `#FF0000`;
+
 export const darkTheme: ITheme = {
     color: {
+        err: red,
         text: `#FFFFFF`,
         elements: `#2B3844`,
         background: `#202C36`,
@@ -11,6 +14,7 @@ export const darkTheme: ITheme = {
 
 export const lightTheme: ITheme = {
     color: {
+        err: red,
         text: `#111517`,
         elements: `#FFFFFF`,
         background: `#FAFAFA`,

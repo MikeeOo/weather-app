@@ -3,6 +3,7 @@ export interface ITheme {
 }
 
 interface IColor {
+    err: string;
     text: string;
     elements: string;
     background: string;
