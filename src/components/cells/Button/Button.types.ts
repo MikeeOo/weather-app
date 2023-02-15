@@ -5,6 +5,5 @@ export interface IButton {
     borderRadius?: string;
     padding: string;
     contrast?: boolean;
-    hide?: boolean;
     imgPosition?: boolean;
 }

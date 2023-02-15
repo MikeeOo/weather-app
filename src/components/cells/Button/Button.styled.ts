@@ -10,9 +10,6 @@ export const ButtonStyled = styled.button<IButton>`
   ${props => props.contrast && css`
     background-color: ${({theme}) => theme.color.background};
   `};
-  ${props => props.hide && css`
-    display: none;
-  `};
   ${props => props.imgPosition && css`
     position: absolute;
     top: .5em;

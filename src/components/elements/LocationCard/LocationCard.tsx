@@ -33,7 +33,6 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                     <Button onClick={() => dispatch(deleteLocationData(locationId))}
                             borderRadius="1rem"
                             contrast
-                            hide
                             imgPosition
                             fontSize="1.2rem"
                             padding="1em">

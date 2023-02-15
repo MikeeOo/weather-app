@@ -25,6 +25,15 @@ export const LocationCardHoverStyled = styled.div`
       display: block;
     }
   }
+  @media (${device.tabletL}) {
+    button {
+      display: none;
+    }
+    .clickInfo {
+      display: none;
+      opacity: 1;
+    }
+  }
 `;
 
 export const LinkStyled = styled(Link)`
@@ -34,7 +43,6 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const ClickInfoStyled = styled.div`
-  display: none;
   position: absolute;
   color: ${({theme}) => theme.color.text};
   background-color: ${({theme}) => theme.color.elements};
@@ -42,6 +50,7 @@ export const ClickInfoStyled = styled.div`
   padding: 0.25em;
   bottom: 0;
   font-weight: 700;
+  opacity: .7;
 `;
 
 export const LocationCardWeatherWrapped = styled.div`
