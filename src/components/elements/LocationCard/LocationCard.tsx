@@ -17,6 +17,13 @@ import {ILocationCard} from "./LocationCard.types";
 
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
     const dispatch = useAppDispatch();
+
+    const confirmDelete = () =>{
+        if (window.confirm(`Do you want to delete this location?`)) {
+            dispatch(deleteLocationData(locationId))
+        }
+    }
+
     return (
         <LocationCardWrapped>
 
@@ -30,7 +37,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                                    alt="current location image"/>
                             : <ErrImg fontSize={"1.4rem"}/>}
                     </LinkStyled>
-                    <Button onClick={() => dispatch(deleteLocationData(locationId))}
+                    <Button onClick={confirmDelete}
                             borderRadius="1rem"
                             contrast
                             imgPosition

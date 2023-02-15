@@ -31,7 +31,6 @@ export const LocationCardHoverStyled = styled.div`
     }
     .clickInfo {
       display: none;
-      opacity: 1;
     }
   }
 `;
@@ -50,7 +49,7 @@ export const ClickInfoStyled = styled.div`
   padding: 0.25em;
   bottom: 0;
   font-weight: 700;
-  opacity: .7;
+  opacity: .8;
 `;
 
 export const LocationCardWeatherWrapped = styled.div`
