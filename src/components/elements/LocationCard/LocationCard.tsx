@@ -17,13 +17,11 @@ import {ILocationCard} from "./LocationCard.types";
 
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
     const dispatch = useAppDispatch();
-
-    const confirmDelete = () =>{
+    const confirmDelete = (): void =>{
         if (window.confirm(`Do you want to delete this location?`)) {
             dispatch(deleteLocationData(locationId))
         }
-    }
-
+    };
     return (
         <LocationCardWrapped>
 
