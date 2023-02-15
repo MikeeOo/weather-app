@@ -1,24 +1,7 @@
 import {IBtnContent} from "./BtnContent.types";
-import {BtnContentStyled} from "./BtnContent.styled";
+import {BtnContentStyled, IconStyled} from "./BtnContent.styled";
 
-const BtnContent = ({text, icon, content}: IBtnContent): JSX.Element => {
-    return (
-        <BtnContentStyled>
-            {content === "iconText" ?
-                <>
-                    <span style={{
-                        display: `flex`,
-                        alignItems: `center`,
-                        paddingRight: `.5em` }}>
-
-                        {icon}
-                    </span>
-                    <span>{text}</span>
-                </>
-            :
-            <>{icon}</>}
-        </BtnContentStyled>
-    );
-};
+const BtnContent = ({text, icon, iconText}: IBtnContent): JSX.Element =>
+    <BtnContentStyled>{iconText ? <><IconStyled>{icon}</IconStyled><span>{text}</span></> : <>{icon}</>}</BtnContentStyled>
 
 export default BtnContent;

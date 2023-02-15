@@ -95,11 +95,7 @@ const Search = (): JSX.Element => {
                            placeholder={`City, Country or Landmark...`}
                            onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
                            onClick={handleClickOnInput}/>
-                    <Button fontSize="1.6rem"
-                            borderRadius="0 5px 5px 0"
-                            padding=".5em 1em">
-                        <BtnContent content="icon" icon={<AiOutlineSearch/>}/>
-                    </Button>
+                    <Button fontSize="1.6rem" borderRadius="0 5px 5px 0" padding=".5em 1em"><BtnContent icon={<AiOutlineSearch/>}/></Button>
                 </Form>
                 <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
             </SearchStyled>

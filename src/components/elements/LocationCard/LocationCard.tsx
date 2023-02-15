@@ -45,7 +45,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                                   fontSize="1.2rem"
                                   padding="1em">
 
-                  <BtnContent content="icon" icon={<BsXLg/>}/>
+                  <BtnContent icon={<BsXLg/>}/>
               </Button>}
 
               {isHover &&  <ClickInfo/>}

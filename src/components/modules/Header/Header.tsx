@@ -20,7 +20,7 @@ const Header = (): JSX.Element => {
                         contrast
                         fontSize="1.2rem"
                         padding=".5em .5em">
-                    <BtnContent content="iconText"
+                    <BtnContent iconText
                                 icon={themeChangeStatus === "Light" ? <FaLightbulb/> : <BsFillMoonFill/>}
                                 text={`${themeChangeStatus} Mode`}/>
                 </Button>

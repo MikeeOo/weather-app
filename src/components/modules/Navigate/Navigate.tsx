@@ -27,12 +27,8 @@ const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
     return (
         <section>
             <NavigateStyled>
-                <Button onClick={returnToMain}
-                        fontSize="1.4rem"
-                        padding="0.5em 1em">
-                    <BtnContent content={`iconText`}
-                                icon={<BsArrowLeft size="1.8rem"/>}
-                                text={`Back / Save`}/>
+                <Button onClick={returnToMain} fontSize="1.4rem" padding="0.5em 1em">
+                    <BtnContent iconText icon={<BsArrowLeft size="1.8rem"/>} text={`Back / Save`}/>
                 </Button>
             </NavigateStyled>
         </section>
