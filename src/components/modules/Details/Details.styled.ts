@@ -4,7 +4,6 @@ import {container, device} from "../../../styles/mixins";
 export const DetailsStyled = styled.section`
   ${container};
   margin-top: 4rem;
-  
   @media (${device.tabletL}) {
     display: grid;
     column-gap: 5%;

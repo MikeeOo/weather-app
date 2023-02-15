@@ -10,7 +10,6 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
         const updatedLocationDataArray: Array<ILocationData> = [];
 
         for(const locationData  of locationDataArray){
-
             const locationApiRequest: [IWeatherResponse, IImagesResponse] = await Promise.allSettled([
                 (await fetch(`${WEATHER_API}weather?q=${locationData.locationInput}&appid=${WEATHER_API_KEY}&units=metric`)).json(),
                 (await fetch(`${IMAGE_API}?key=${IMAGE_API_KEY}&q=${locationData.locationInput}`)).json()
@@ -38,7 +37,6 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
                 });
             }
         }
-
         return updatedLocationDataArray;
     }
 );

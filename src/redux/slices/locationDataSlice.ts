@@ -21,42 +21,31 @@ const locationDataSlice = createSlice({
         setLocationDataLoader(state): void {
             state.locationDataLoader = true;
         },
-
         removeLocationNotFoundError(state): void {
             state.locationNotFoundError = false;
         },
-
         removeLocationDuplicateError(state): void {
             state.locationDuplicateError = false;
         },
-
         addLocationInputDataToState(state, {payload}: PayloadAction<ILocationInputData>): void {
             state.locationDataArray.push(payload)
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         },
-
         getInitialStateFromLocalStorage(state): void {
             state.locationDataArray = localStorage.getItem(`locationDataArray`) ? JSON.parse(localStorage.getItem(`locationDataArray`) as string) : [];
         },
-
         deleteLocationData(state, {payload}: PayloadAction<undefined | string>): void {
-
             state.locationDataArray.splice(state.locationDataArray.findIndex((location): boolean => location.locationId === payload),1);
-
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
-
             !JSON.parse(localStorage.getItem(`locationDataArray`) as string).length && localStorage.clear();
         },
-
         filterLocationDataArrayViaParams(state, {payload}: PayloadAction<ILocationParamsData>): void {
             state.locationDataDetails = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.locationId);
         },
-
         editLocationImage(state, {payload}: PayloadAction<ILocationEditData>): void {
             state.locationDataArray = state.locationDataArray.map(locationData => locationData.locationId === payload.currLocationId ? {...locationData, locationImageIndex: payload.currLocationSlide} : locationData);
         }
     },
-
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
 

@@ -12,14 +12,11 @@ export default function App(): JSX.Element {
 
     const themeChangeStatus = useAppSelector(state => state.theme.themeChangeStatus);
 
-  return (
-      <ThemeProvider theme={themeChangeStatus === `Light` ? darkTheme : lightTheme}>
-
-          <ResetStyles/>
-
-          <GlobalStyles/>
-
-          <RouterPaths/>
-      </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={themeChangeStatus === `Light` ? darkTheme : lightTheme}>
+            <ResetStyles/>
+            <GlobalStyles/>
+            <RouterPaths/>
+        </ThemeProvider>
+    );
 };

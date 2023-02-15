@@ -18,39 +18,26 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import { SearchWrapped, SearchStyled } from "./Search.styled";
 
 const Search = (): JSX.Element => {
-
     const dispatch = useAppDispatch();
 
     const [locationInput, setLocationInput] = useState<string>(``);
-
     const [lastLocationAdded, setLastLocationAdded] = useState<boolean>(false);
-
     const [locationInputTooShort, setLocationInputTooShort] = useState<boolean>(false);
 
     const locationDataArray = useAppSelector(state => state.locationData.locationDataArray);
-
     const locationDataLoader = useAppSelector(state => state.locationData.locationDataLoader);
-
     const locationLastDuplicate = useAppSelector(state => state.locationData.locationLastDuplicate);
-
     const locationNotFoundError = useAppSelector(state=> state.locationData.locationNotFoundError);
-
     const locationDuplicateError = useAppSelector(state=> state.locationData.locationDuplicateError);
 
     useEffect(() => {
         const timeout: TimeoutId = setTimeout((): void => {
-
             lastLocationAdded && setLastLocationAdded(false);
-
             locationInputTooShort && setLocationInputTooShort(false);
-
             locationNotFoundError && dispatch(removeLocationNotFoundError());
-
             locationDuplicateError && dispatch(removeLocationDuplicateError());
         }, 1000 * 5);
-
         return () => clearTimeout(timeout);
-
     },[lastLocationAdded, locationInputTooShort, locationNotFoundError, locationDuplicateError]);
 
     const handleGuideStatus = (): string => {
@@ -76,8 +63,7 @@ const Search = (): JSX.Element => {
     };
 
     const handleSubmit = (e: SyntheticEvent): void => {
-      e.preventDefault();
-
+        e.preventDefault();
         if(locationInput.length > 2) {
             dispatch(addLocationInputDataToState({
                 locationId: uuid(),
@@ -88,43 +74,37 @@ const Search = (): JSX.Element => {
         } else {
             setLocationInputTooShort(true);
         }
-
         dispatch(removeLocationNotFoundError());
         dispatch(removeLocationDuplicateError());
         setLocationInput(``);
     };
 
-  return (
-      <SearchWrapped>
+    const handleClickOnInput = (): void => {
+        dispatch(removeLocationNotFoundError());
+        dispatch(removeLocationDuplicateError());
+        setLocationInputTooShort(false);
+    };
 
-          <SearchStyled>
-
-              <Form onSubmit={handleSubmit}
-                    errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}>
-
-                  <Input type="search"
-                         value={locationInput}
-                         placeholder={`City, Country or Landmark...`}
-                         onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
-                         onClick={(): void => {
-                             dispatch(removeLocationNotFoundError());
-                             dispatch(removeLocationDuplicateError());
-                             setLocationInputTooShort(false);
-                         }}/>
-
-                  <Button fontSize="1.6rem"
-                          borderRadius="0 5px 5px 0"
-                          padding=".5em 1em">
-
-                      <BtnContent content="icon" icon={<AiOutlineSearch/>}/>
-                  </Button>
-              </Form>
-
-              <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
-
-          </SearchStyled>
-      </SearchWrapped>
-  );
+    return (
+        <SearchWrapped>
+            <SearchStyled>
+                <Form onSubmit={handleSubmit}
+                      errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}>
+                    <Input type="search"
+                           value={locationInput}
+                           placeholder={`City, Country or Landmark...`}
+                           onChange={(e :ChangeEvent<HTMLInputElement>)=> setLocationInput(e.target.value)}
+                           onClick={handleClickOnInput}/>
+                    <Button fontSize="1.6rem"
+                            borderRadius="0 5px 5px 0"
+                            padding=".5em 1em">
+                        <BtnContent content="icon" icon={<AiOutlineSearch/>}/>
+                    </Button>
+                </Form>
+                <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
+            </SearchStyled>
+        </SearchWrapped>
+    );
 };
 
 export default Search;

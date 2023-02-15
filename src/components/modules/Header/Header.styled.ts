@@ -7,9 +7,13 @@ export const HeaderWrapped = styled.section`
 
 export const HeaderStyled = styled.header`
   ${container};
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.7em 0;
+`;
+
+export const H1Styled = styled.h1`
+  font-size: 1.4rem;
+  font-weight: 700;
 `;

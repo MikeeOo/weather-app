@@ -5,15 +5,14 @@ import {ITheme} from "./theme.types";
 import {shadowOutline} from "./mixins";
 
 const GlobalStyles: GlobalStyleComponent<{theme: ITheme}, DefaultTheme> = createGlobalStyle`
-      
   :root {
     font-size: 62.5%;
   }
-      
+  
   * {
     box-sizing: border-box;
   }
-
+  
   body {
     color: ${({theme}) => theme.color.text};
     font-family: 'Nunito Sans', sans-serif;

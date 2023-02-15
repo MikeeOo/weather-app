@@ -4,7 +4,6 @@ import {container, device} from "../../../styles/mixins";
 export const DisplayStyled = styled.div`
   ${container};
   padding-bottom: 2.4rem;
-  
   @media (${device.tabletS}) {
     display: grid;
     column-gap: 5%;
