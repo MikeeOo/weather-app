@@ -3,5 +3,5 @@ export interface IImg {
     alt?: string;
     sliderImgStyled?:boolean;
     linkImgStyled?: boolean;
-    cardWeatherImgStyled?: boolean;
+    weatherImgStyled?: boolean;
 }
