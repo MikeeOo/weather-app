@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {container, device} from "../../../styles/mixins";
+import styled, {css} from "styled-components";
+import {container, device, extraBold} from "../../../styles/mixins";
 
 export const SearchWrapped = styled.section`
   margin-top: 2.4rem;
@@ -7,8 +7,6 @@ export const SearchWrapped = styled.section`
 
 export const SearchStyled = styled.div`
   ${container};
-  
-
   @media (${device.tabletS}) {
     max-width: 294px;
   }
@@ -24,4 +22,17 @@ export const SearchStyled = styled.div`
   @media (${device.desktopS}) {
     max-width: 468px;
   }
+`;
+
+export const GuideStyled = styled.div<{errorColor: string | boolean;}>`
+  padding-top: 2.4rem;
+  text-align: center;
+  color: ${({theme}) => theme.color.text};
+  font-size: 2rem;
+  font-weight: ${extraBold};
+  opacity: 0.2;
+  ${props => props.errorColor === `error` && css`
+    color: #FF0000;
+    opacity: 1;
+  `};
 `;

@@ -3,7 +3,6 @@ import {useEffect, SyntheticEvent, ChangeEvent, useState} from "react";
 import Form from "../../cells/Form"
 import Input from "../../cells/Input";
 import Button from "../../cells/Button";
-import Guide from "../../blocks/Guide";
 import BtnContent from "../../atoms/BtnContent";
 
 import { v4 as uuid } from 'uuid';
@@ -15,7 +14,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
-import { SearchWrapped, SearchStyled } from "./Search.styled";
+import { SearchWrapped, SearchStyled, GuideStyled } from "./Search.styled";
 
 const Search = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -97,7 +96,9 @@ const Search = (): JSX.Element => {
                            onClick={handleClickOnInput}/>
                     <Button fontSize="1.6rem" borderRadius="0 5px 5px 0" padding=".5em 1em"><BtnContent icon={<AiOutlineSearch/>}/></Button>
                 </Form>
-                <Guide guideStatus={handleGuideStatus()} errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}/>
+                <GuideStyled errorColor={(locationNotFoundError || locationInputTooShort || locationDuplicateError) && `error`}>
+                    {handleGuideStatus()}
+                </GuideStyled>
             </SearchStyled>
         </SearchWrapped>
     );
