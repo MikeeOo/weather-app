@@ -39,7 +39,11 @@ const Search = (): JSX.Element => {
         } else if(locationDuplicateError) {
             return `You've already added ${locationLastDuplicate}!`;
         } else if (lastLocationAdded) {
-            return `You successfully added ${locationDataArray[locationDataArray.length - 1].locationName} ;)`;
+            if (locationDataArray.length) {
+                return `You successfully added ${locationDataArray[locationDataArray.length - 1].locationName} ;)`;
+            } else {
+                return "Search for location... ;)";
+            }
         } else {
             if (locationDataArray.length === 1) {
                 return "Add one more ;))";
@@ -72,6 +76,7 @@ const Search = (): JSX.Element => {
         dispatch(removeLocationNotFoundError());
         dispatch(removeLocationDuplicateError());
         setLocationInputTooShort(false);
+        setLastLocationAdded(false);
     };
 
     useEffect(() => {

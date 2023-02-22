@@ -6,7 +6,7 @@ import Button from "../../cells/Button";
 import BtnContent from "../../atoms/BtnContent";
 
 import {useAppDispatch} from "../../../redux/store";
-import {deleteLocationData} from "../../../redux/slices/locationDataSlice";
+import {deleteLocationData, removeLocationDuplicateError} from "../../../redux/slices/locationDataSlice";
 
 import {BsXLg} from "react-icons/bs";
 
@@ -19,7 +19,8 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
     const dispatch = useAppDispatch();
     const confirmDelete = (): void =>{
         if (window.confirm(`Do you want to delete this location?`)) {
-            dispatch(deleteLocationData(locationId))
+            dispatch(deleteLocationData(locationId));
+            dispatch(removeLocationDuplicateError());
         }
     };
     return (

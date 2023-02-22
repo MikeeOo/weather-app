@@ -22,6 +22,7 @@ const Display = (): JSX.Element => {
             dispatch(updateLocationDataArrayViaApi(locationDataArray));
         }
     };
+
     useEffect(() => {
         dispatch(getInitialStateFromLocalStorage());
         handleReduxLoaderAndApi(locationDataArray.length);
