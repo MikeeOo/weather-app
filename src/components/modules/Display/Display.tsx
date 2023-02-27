@@ -1,10 +1,10 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import LocationCard from "../../elements/LocationCard";
 import Loader from "../../atoms/Loader";
 
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
-import {setLocationDataLoader, getInitialStateFromLocalStorage} from "../../../redux/slices/locationDataSlice";
+import { getInitialStateFromLocalStorage, setApiOperationStatus} from "../../../redux/slices/locationDataSlice";
 import {updateLocationDataArrayViaApi} from "../../../redux/api/thunks";
 
 import {ILocationData} from "../../../types/common.types";
@@ -14,11 +14,12 @@ import {DisplayStyled} from "./Display.styled";
 const Display = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const locationDataArray = useAppSelector(state => state.locationData.locationDataArray);
-    const locationDataLoader = useAppSelector(state => state.locationData.locationDataLoader);
+
+    const apiOperationStatus = useAppSelector(state => state.locationData.apiOperationStatus);
 
     const handleReduxLoaderAndApi = (locationDataArrayLength: number): void => {
-        if (locationDataArrayLength) {
-            dispatch(setLocationDataLoader());
+        if (locationDataArrayLength && !apiOperationStatus.endsWith('deleted!')) {
+            dispatch(setApiOperationStatus('Updating...'))
             dispatch(updateLocationDataArrayViaApi(locationDataArray));
         }
     };
@@ -32,8 +33,8 @@ const Display = (): JSX.Element => {
 
     return (
         <section>
-            {locationDataLoader && <Loader/>}
-            {!locationDataLoader && <DisplayStyled>{locationDataArray.map((location: ILocationData) => <LocationCard key={location.locationId} {...location}/>)}</DisplayStyled>}
+            {apiOperationStatus === "Updating..." && <Loader/>}
+            {apiOperationStatus !== "Updating..." && <DisplayStyled>{locationDataArray.map((location: ILocationData) => <LocationCard key={location.locationId} {...location}/>)}</DisplayStyled>}
         </section>
     );
 };

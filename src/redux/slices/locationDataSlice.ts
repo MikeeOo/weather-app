@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {updateLocationDataArrayViaApi} from "../api/thunks";
+import {addLocationDataArrayViaApi, updateLocationDataArrayViaApi} from "../api/thunks";
 
 import {ILocationDataState, ILocationInputData, ILocationParamsData, ILocationEditData} from "./locationDataSlice.types";
 import {ILocationData} from "../../types/common.types";
@@ -8,24 +8,15 @@ import {ILocationData} from "../../types/common.types";
 const initialState: ILocationDataState = {
     locationDataArray: [],
     locationDataDetails: {},
-    locationDataLoader: false,
-    locationLastDuplicate: ``,
-    locationNotFoundError: false,
-    locationDuplicateError: false
+    apiOperationStatus: ""
 };
 
 const locationDataSlice = createSlice({
     name: 'locationData',
     initialState,
     reducers: {
-        setLocationDataLoader(state): void {
-            state.locationDataLoader = true;
-        },
-        removeLocationNotFoundError(state): void {
-            state.locationNotFoundError = false;
-        },
-        removeLocationDuplicateError(state): void {
-            state.locationDuplicateError = false;
+        setApiOperationStatus(state, {payload}): void{
+            state.apiOperationStatus = payload;
         },
         addLocationInputDataToState(state, {payload}: PayloadAction<ILocationInputData>): void {
             state.locationDataArray.push(payload)
@@ -35,9 +26,14 @@ const locationDataSlice = createSlice({
             state.locationDataArray = localStorage.getItem(`locationDataArray`) ? JSON.parse(localStorage.getItem(`locationDataArray`) as string) : [];
         },
         deleteLocationData(state, {payload}: PayloadAction<undefined | string>): void {
-            state.locationDataArray.splice(state.locationDataArray.findIndex((location): boolean => location.locationId === payload),1);
+            const locationIndex = state.locationDataArray.findIndex((location): boolean => location.locationId === payload)
+            const locationName = state.locationDataArray[locationIndex].locationName
+
+            state.locationDataArray.splice(locationIndex,1);
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
             !JSON.parse(localStorage.getItem(`locationDataArray`) as string).length && localStorage.clear();
+
+            state.apiOperationStatus = `Location ${locationName} deleted!`
         },
         filterLocationDataArrayViaParams(state, {payload}: PayloadAction<ILocationParamsData>): void {
             state.locationDataDetails = JSON.parse(localStorage.getItem(`locationDataArray`) as string).find((location: ILocationData): boolean => location.locationId === payload.locationId);
@@ -48,28 +44,25 @@ const locationDataSlice = createSlice({
     },
     extraReducers: (builder): void => {
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
+            state.locationDataArray = payload;
+            localStorage.setItem(`locationDataArray`, JSON.stringify(payload));
+            state.apiOperationStatus = `You successfully added ${payload[payload.length - 1].locationName} ;)`;
+        });
+        builder.addCase(addLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<ILocationData>): void => {
+            const duplicate: ILocationData | undefined = state.locationDataArray.find(location => location.locationName === payload.locationName);
 
-            let duplicate: number = 0;
-
-            for(const location of payload) payload[payload.length - 1].locationName === location.locationName && (duplicate += 1);
-
-            if (duplicate !== 2 && payload[payload.length - 1].locationRequestCod === "200") {
-                state.locationDataArray = payload;
+            if (duplicate === undefined && payload.locationRequestCod === "200") {
+                state.locationDataArray.push(payload);
                 localStorage.setItem(`locationDataArray`, JSON.stringify(payload));
-                state.locationDataLoader = false;
+                state.apiOperationStatus = `You successfully added ${payload.locationName} ;)`;
             } else {
-                state.locationLastDuplicate = payload[payload.length - 1].locationName;
-                payload[payload.length - 1].locationRequestCod === "404" ? state.locationNotFoundError = true : state.locationDuplicateError = true;
-                const updatedLocationArray: Array<ILocationData> = payload;
-                updatedLocationArray.pop();
-                state.locationDataArray = updatedLocationArray;
-                localStorage.setItem(`locationDataArray`, JSON.stringify(updatedLocationArray));
-                state.locationDataLoader = false;
+                state.apiOperationStatus =  payload.locationRequestCod === "404" ? "Error: Location not found!" : `Error: You've already added ${payload.locationName}!`
             }
         });
+
     }
 });
 
-export const {editLocationImage,removeLocationNotFoundError, removeLocationDuplicateError, setLocationDataLoader, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams} = locationDataSlice.actions;
+export const {editLocationImage, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams, setApiOperationStatus} = locationDataSlice.actions;
 
 export default locationDataSlice.reducer;

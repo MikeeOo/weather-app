@@ -3,10 +3,7 @@ import {ILocationData} from "../../types/common.types";
 export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;
     locationDataDetails: ILocationData;
-    locationDataLoader: boolean;
-    locationLastDuplicate: string | undefined;
-    locationNotFoundError: boolean;
-    locationDuplicateError: boolean;
+    apiOperationStatus: string,
 }
 
 export interface ILocationInputData {
