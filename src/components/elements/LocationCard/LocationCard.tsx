@@ -5,7 +5,7 @@ import ErrImg from "../../atoms/ErrImg";
 import Button from "../../cells/Button";
 import BtnContent from "../../atoms/BtnContent";
 
-import {useAppDispatch} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {
     deleteLocationData,
     setApiOperationStatus
@@ -20,7 +20,8 @@ import {ILocationCard} from "./LocationCard.types";
 
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
     const dispatch = useAppDispatch();
-    const confirmDelete = (): void =>{
+    // USUWANIE DOPERO PO 5 SEKUNDACH... GET PLACEHOLDER TEXT TU WRZUĆ?
+    const confirmDelete = (): void => {
         if (window.confirm(`Do you want to delete this location?`)) {
             dispatch(deleteLocationData(locationId));
         }

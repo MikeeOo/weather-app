@@ -16,54 +16,44 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import { SearchWrapped, SearchStyled, GuideStyled } from "./Search.styled";
 
 import {v4 as uuid} from "uuid";
+import getPlaceholderText from "../../../utils/getPlaceholderText";
+import {OperationStatuses} from "../../../redux/slices/locationDataSlice.types";
 
 const Search = (): JSX.Element => {
     const dispatch = useAppDispatch();
-
     const [locationInput, setLocationInput] = useState<string>(``);
-
     const locationDataArray = useAppSelector(state => state.locationData.locationDataArray);
-
     const apiOperationStatus = useAppSelector(state=> state.locationData.apiOperationStatus);
-
-    const getPlaceholderText = (): string => {
-        if (locationDataArray.length === 1) {
-            return "Add one more ;))";
-        } else if (locationDataArray.length % 2 === 1) {
-            return "Add more! ;)";
-        }
-        return "Search for location... ;)"
-    }
 
     const handleSubmit = (e: SyntheticEvent): void => {
         e.preventDefault();
         if(locationInput.length > 2) {
+            dispatch(setApiOperationStatus({status: OperationStatuses.update, message: 'Updating...'}));
             dispatch(addLocationDataArrayViaApi({
                 locationId: uuid(),
                 locationInput: locationInput,
                 locationImageIndex: "0"
             }));
         } else {
-           dispatch(setApiOperationStatus( `Error: Location must be at last 3 characters long...`));
+           dispatch(setApiOperationStatus( {message: `Error: Location must be at last 3 characters long...`, status: OperationStatuses.error}));
         }
-        dispatch(setApiOperationStatus(getPlaceholderText()));
         setLocationInput(``);
     };
 
     const handleClickOnInput = (): void => {
-        dispatch(setApiOperationStatus(getPlaceholderText()));
+        dispatch(setApiOperationStatus({message: getPlaceholderText(locationDataArray.length), status: OperationStatuses.idle}));
     };
 
     useEffect(() => {
-        const timeout: TimeoutId = setTimeout(() => dispatch(setApiOperationStatus(getPlaceholderText())), 1000 * 5);
+        const timeout: TimeoutId = setTimeout(() => dispatch(setApiOperationStatus({message: getPlaceholderText(locationDataArray.length), status: OperationStatuses.idle})), 1000 * 5);
         return () => clearTimeout(timeout);
-    },[apiOperationStatus]);
+    },[apiOperationStatus.status]);
 
     return (
         <SearchWrapped>
             <SearchStyled>
                 <Form onSubmit={handleSubmit}
-                      errorColor={apiOperationStatus.startsWith('Error:') && `error`}>
+                      errorColor={apiOperationStatus.status === OperationStatuses.error && `error`}>
                     <Input type="search"
                            value={locationInput}
                            placeholder={`City, Country or Landmark...`}
@@ -71,8 +61,8 @@ const Search = (): JSX.Element => {
                            onClick={handleClickOnInput}/>
                     <Button fontSize="1.6rem" borderRadius="0 5px 5px 0" padding=".5em 1em"><BtnContent icon={<AiOutlineSearch/>}/></Button>
                 </Form>
-                <GuideStyled errorColor={apiOperationStatus.startsWith('Error:') && `error`}>
-                    {apiOperationStatus}
+                <GuideStyled errorColor={apiOperationStatus.status === OperationStatuses.error && `error`}>
+                    {apiOperationStatus.message}
                 </GuideStyled>
             </SearchStyled>
         </SearchWrapped>
