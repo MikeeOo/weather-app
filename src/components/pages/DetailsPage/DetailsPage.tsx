@@ -13,8 +13,10 @@ export const DetailsPage = (): JSX.Element => {
     const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
     const [currSlide, setCurrSlide] = useState<number>(parseInt(params.locationImageIndex as string));
 
+
     useEffect((): void => {
         dispatch(filterLocationDataArrayViaParams(params));
+        console.log(params)
     },[]);
 
     return (

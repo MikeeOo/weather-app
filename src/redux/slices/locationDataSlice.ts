@@ -57,6 +57,10 @@ const locationDataSlice = createSlice({
 
         editLocationImage(state, {payload}: PayloadAction<ILocationEditData>): void {
             state.locationDataArray = state.locationDataArray.map(locationData => locationData.locationId === payload.currLocationId ? {...locationData, locationImageIndex: payload.currLocationSlide} : locationData);
+
+            console.log(state.locationDataArray);
+
+            localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         }
     },
     extraReducers: (builder): void => {

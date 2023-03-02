@@ -26,6 +26,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
             dispatch(deleteLocationData(locationId));
         }
     };
+
     return (
         <LocationCardWrapped>
 
