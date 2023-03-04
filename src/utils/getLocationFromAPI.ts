@@ -25,7 +25,7 @@ const getLocationFromAPI = async (locationData: ILocationData): Promise<ILocatio
         locationDesc: locationApiRequest[0].value.weather[0].description,
         locationIcon: `https://openweathermap.org/img/wn/${locationApiRequest[0].value.weather[0].icon}@2x.png`,
         locationImages: locationApiRequest[1].value.hits,
-        locationImageIndex: "0",
+        locationImageIndex: locationData.locationImageIndex ? locationData.locationImageIndex : "0",
         locationRequestCod: locationApiRequest[0].value.cod.toString()
     };
 }

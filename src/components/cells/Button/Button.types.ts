@@ -1,5 +1,5 @@
 export interface IButton {
-    children?: JSX.Element | Array<JSX.Element | string>;
+    children?: JSX.Element | string | Array<JSX.Element | string>;
     onClick?: () => void;
     fontSize: string;
     borderRadius?: string;

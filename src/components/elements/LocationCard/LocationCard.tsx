@@ -8,7 +8,7 @@ import BtnContent from "../../atoms/BtnContent";
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {
     deleteLocationData,
-    setApiOperationStatus
+    setApiOperationStatus, toggleModal
 } from "../../../redux/slices/locationDataSlice";
 
 import {BsXLg} from "react-icons/bs";
@@ -21,10 +21,14 @@ import {ILocationCard} from "./LocationCard.types";
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
     const dispatch = useAppDispatch();
     // USUWANIE DOPERO PO 5 SEKUNDACH... GET PLACEHOLDER TEXT TU WRZUĆ?
-    const confirmDelete = (): void => {
-        if (window.confirm(`Do you want to delete this location?`)) {
-            dispatch(deleteLocationData(locationId));
-        }
+    // const confirmDelete = (): void => {
+    //     if (window.confirm(`Do you want to delete this location?`)) {
+    //         dispatch(deleteLocationData(locationId));
+    //     }
+    // };
+
+    const showModal = (): void => {
+        dispatch(toggleModal({showModal: true, locationDeleteId: locationId, locationDeleteName: locationName}));
     };
 
     return (
@@ -40,7 +44,7 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                                    alt="current location image"/>
                             : <ErrImg fontSize={"1.4rem"}/>}
                     </LinkStyled>
-                    <Button onClick={confirmDelete}
+                    <Button onClick={showModal}
                             borderRadius="1rem"
                             contrast
                             imgPosition

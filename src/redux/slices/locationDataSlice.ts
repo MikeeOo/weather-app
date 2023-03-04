@@ -2,7 +2,15 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {addLocationDataArrayViaApi, updateLocationDataArrayViaApi} from "../api/thunks";
 
-import {ILocationDataState, ILocationInputData, ILocationParamsData, ILocationEditData, IApiOperationStatus, OperationStatuses} from "./locationDataSlice.types";
+import {
+    ILocationDataState,
+    ILocationInputData,
+    ILocationParamsData,
+    ILocationEditData,
+    IApiOperationStatus,
+    OperationStatuses,
+    ILocationDeleteModal
+} from "./locationDataSlice.types";
 import {ILocationData} from "../../types/common.types";
 import getPlaceholderText from "../../utils/getPlaceholderText";
 
@@ -11,12 +19,16 @@ import getPlaceholderText from "../../utils/getPlaceholderText";
 //     notFound = "404",
 // }
 
-
 //1. Update
 
 const initialState: ILocationDataState = {
     locationDataArray: [],
     locationDataDetails: {},
+    locationDeleteModal: {
+        showModal: false,
+        locationDeleteId: "",
+        locationDeleteName: ""
+    },
     apiOperationStatus: {
         message: "Search for location... ;)",
         status: OperationStatuses.idle
@@ -29,6 +41,10 @@ const locationDataSlice = createSlice({
     reducers: {
         setApiOperationStatus(state, {payload}: PayloadAction<IApiOperationStatus>): void{
             state.apiOperationStatus = payload;
+        },
+
+        toggleModal(state, {payload}: PayloadAction<ILocationDeleteModal>): void{
+            state.locationDeleteModal = payload;
         },
 
         // to do wywalenia
@@ -58,8 +74,6 @@ const locationDataSlice = createSlice({
         editLocationImage(state, {payload}: PayloadAction<ILocationEditData>): void {
             state.locationDataArray = state.locationDataArray.map(locationData => locationData.locationId === payload.currLocationId ? {...locationData, locationImageIndex: payload.currLocationSlide} : locationData);
 
-            console.log(state.locationDataArray);
-
             localStorage.setItem(`locationDataArray`, JSON.stringify(state.locationDataArray));
         }
     },
@@ -76,7 +90,6 @@ const locationDataSlice = createSlice({
             }
         });
         builder.addCase(updateLocationDataArrayViaApi.fulfilled, (state, {payload}: PayloadAction<Array<ILocationData>>): void => {
-            console.log('update')
             state.locationDataArray = payload;
             localStorage.setItem(`locationDataArray`, JSON.stringify(payload));
             // tutaj odpalić get placeholder text
@@ -85,6 +98,6 @@ const locationDataSlice = createSlice({
     }
 });
 
-export const {editLocationImage, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams, setApiOperationStatus} = locationDataSlice.actions;
+export const {toggleModal,editLocationImage, addLocationInputDataToState ,getInitialStateFromLocalStorage, deleteLocationData, filterLocationDataArrayViaParams, setApiOperationStatus} = locationDataSlice.actions;
 
 export default locationDataSlice.reducer;

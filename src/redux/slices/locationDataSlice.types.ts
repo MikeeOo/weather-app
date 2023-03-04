@@ -8,7 +8,14 @@ export interface IApiOperationStatus{
 export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;
     locationDataDetails: ILocationData;
-    apiOperationStatus: IApiOperationStatus,
+    locationDeleteModal: ILocationDeleteModal;
+    apiOperationStatus: IApiOperationStatus;
+}
+
+export interface ILocationDeleteModal {
+    showModal?: boolean;
+    locationDeleteId?: string;
+    locationDeleteName?: string;
 }
 
 export interface ILocationInputData {
@@ -23,12 +30,12 @@ export interface ILocationParamsData {
     locationImageIndex?: string;
 }
 
-export interface ILocationEditData{
+export interface ILocationEditData {
     currLocationSlide: string;
     currLocationId?: string;
 }
 
-export enum OperationStatuses{
+export enum OperationStatuses {
     idle = 0,
     update,
     add,
