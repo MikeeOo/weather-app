@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+
 import {IP} from "./P.types";
 import {flexBox} from "../../../styles/mixins";
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import {device, flexBox} from "../../../styles/mixins";
 
 export const OverlayStyled = styled.div`

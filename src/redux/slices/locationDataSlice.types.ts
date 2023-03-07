@@ -1,27 +1,21 @@
 import {ILocationData} from "../../types/common.types";
 
-export interface IApiOperationStatus{
-    message: string,
-    status: number
+export interface ILocationRequestState{
+    message: string;
+    status: number;
 }
 
 export interface ILocationDataState {
     locationDataArray: Array<ILocationData>;
     locationDataDetails: ILocationData;
     locationDeleteModal: ILocationDeleteModal;
-    apiOperationStatus: IApiOperationStatus;
+    locationRequestState: ILocationRequestState;
 }
 
 export interface ILocationDeleteModal {
     showModal?: boolean;
     locationDeleteId?: string;
     locationDeleteName?: string;
-}
-
-export interface ILocationInputData {
-    locationId: string;
-    locationInput: string;
-    locationImageIndex: string;
 }
 
 export interface ILocationParamsData {
@@ -33,12 +27,4 @@ export interface ILocationParamsData {
 export interface ILocationEditData {
     currLocationSlide: string;
     currLocationId?: string;
-}
-
-export enum OperationStatuses {
-    idle = 0,
-    update,
-    add,
-    delete,
-    error
 }

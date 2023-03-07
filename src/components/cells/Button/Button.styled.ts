@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
-import {flexBox} from "../../../styles/mixins";
+
 import {IButton} from "./Button.types";
+import {flexBox} from "../../../styles/mixins";
 
 export const ButtonStyled = styled.button<IButton>`
   ${flexBox({jc: "center", ai: "center"})};

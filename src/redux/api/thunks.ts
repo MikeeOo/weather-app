@@ -1,6 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
+
 import {ILocationData} from "../../types/common.types";
 import getLocationFromAPI from "../../utils/getLocationFromAPI";
+
+export const addLocationDataArrayViaApi = createAsyncThunk(
+    'locationData/addLocationDataArrayViaApi',
+    async (locationData: ILocationData): Promise<ILocationData> => {
+        return await getLocationFromAPI(locationData);
+    }
+);
 
 export const updateLocationDataArrayViaApi = createAsyncThunk(
     'locationData/updateLocationDataArrayViaApi',
@@ -12,12 +20,5 @@ export const updateLocationDataArrayViaApi = createAsyncThunk(
         }
 
         return updatedLocationDataArray;
-    }
-);
-
-export const addLocationDataArrayViaApi = createAsyncThunk(
-    'locationData/addLocationDataArrayViaApi',
-    async (locationData: ILocationData): Promise<ILocationData> => {
-        return await getLocationFromAPI(locationData);
     }
 );

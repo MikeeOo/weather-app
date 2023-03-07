@@ -1,3 +1,13 @@
+import {BsXLg} from "react-icons/bs";
+
+import {ILocationCard} from "./LocationCard.types";
+import {useAppDispatch} from "../../../redux/store";
+import {toggleModal} from "../../../redux/slices/locationDataSlice";
+import {
+    LocationCardStyled, LocationCardWrapped, LinkStyled,
+    ClickInfoStyled, LocationCardHoverStyled, LocationCardWeatherWrapped,
+    LocationCardWeatherStyled
+} from "./LocationCard.styled";
 import H2 from "../../blocks/H2";
 import Img from "../../blocks/Img";
 import P from "../../blocks/P";
@@ -5,27 +15,8 @@ import ErrImg from "../../atoms/ErrImg";
 import Button from "../../cells/Button";
 import BtnContent from "../../atoms/BtnContent";
 
-import {useAppDispatch, useAppSelector} from "../../../redux/store";
-import {
-    deleteLocationData,
-    setApiOperationStatus, toggleModal
-} from "../../../redux/slices/locationDataSlice";
-
-import {BsXLg} from "react-icons/bs";
-
-import {LocationCardStyled, LocationCardWrapped, LinkStyled, ClickInfoStyled,
-        LocationCardHoverStyled, LocationCardWeatherWrapped, LocationCardWeatherStyled} from "./LocationCard.styled";
-
-import {ILocationCard} from "./LocationCard.types";
-
 const LocationCard = ({locationId, locationName, locationTemp, locationDesc, locationIcon, locationImages, locationImageIndex}: ILocationCard): JSX.Element => {
     const dispatch = useAppDispatch();
-    // USUWANIE DOPERO PO 5 SEKUNDACH... GET PLACEHOLDER TEXT TU WRZUĆ?
-    // const confirmDelete = (): void => {
-    //     if (window.confirm(`Do you want to delete this location?`)) {
-    //         dispatch(deleteLocationData(locationId));
-    //     }
-    // };
 
     const showModal = (): void => {
         dispatch(toggleModal({showModal: true, locationDeleteId: locationId, locationDeleteName: locationName}));
@@ -33,7 +24,6 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
 
     return (
         <LocationCardWrapped>
-
             <LocationCardStyled>
                 <H2 locationCardStyled fontSize={`1.8rem`}>{locationName}</H2>
                 <LocationCardHoverStyled>
@@ -55,7 +45,6 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                     <ClickInfoStyled className="clickInfo">Click to change image...</ClickInfoStyled>
                 </LocationCardHoverStyled>
             </LocationCardStyled>
-
             <LocationCardWeatherWrapped>
                 <div><Img weatherImgStyled src={locationIcon} alt="weather icon"/></div>
                 <LocationCardWeatherStyled>
@@ -63,7 +52,6 @@ const LocationCard = ({locationId, locationName, locationTemp, locationDesc, loc
                     <P cardWeatherPStyled borderTop fontSize={`1.5rem`}>{locationDesc}</P>
                 </LocationCardWeatherStyled>
             </LocationCardWeatherWrapped>
-
         </LocationCardWrapped>
     );
 };

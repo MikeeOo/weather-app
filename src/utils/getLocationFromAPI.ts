@@ -1,6 +1,6 @@
 import {IImagesData, IImagesResponse, IWeatherData, IWeatherResponse} from "../redux/api/thunks.types";
-import {IMAGE_API, IMAGE_API_KEY, WEATHER_API, WEATHER_API_KEY} from "../redux/api/constants";
 import {ILocationData} from "../types/common.types";
+import {IMAGE_API, IMAGE_API_KEY, WEATHER_API, WEATHER_API_KEY} from "../redux/api/constants";
 
 const getLocationFromAPI = async (locationData: ILocationData): Promise<ILocationData> => {
     const locationApiRequest: [IWeatherResponse, IImagesResponse] = await Promise.allSettled([
@@ -28,6 +28,6 @@ const getLocationFromAPI = async (locationData: ILocationData): Promise<ILocatio
         locationImageIndex: locationData.locationImageIndex ? locationData.locationImageIndex : "0",
         locationRequestCod: locationApiRequest[0].value.cod.toString()
     };
-}
+};
 
 export default getLocationFromAPI;

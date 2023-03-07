@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { sliderButtonsStyles } from "../../../styles/mixins";
+
+import {sliderButtonsStyles} from "../../../styles/mixins";
 
 export const SliderStyled = styled.div`
   position: relative;

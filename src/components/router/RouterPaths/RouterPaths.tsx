@@ -1,8 +1,8 @@
+import {Route, Routes} from "react-router-dom";
+
 import Default from "../Default";
 import MainPage from "../../pages/MainPage";
 import DetailsPage from "../../pages/DetailsPage";
-
-import {Route, Routes} from "react-router-dom";
 
 const RouterPaths = (): JSX.Element => {
     return (

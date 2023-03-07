@@ -1,7 +1,6 @@
 import {LoaderWrapped, LoaderStyled} from "./Loader.styled";
 
-const Loader = (): JSX.Element => {
-    return (
+const Loader = (): JSX.Element =>
         <LoaderWrapped>
             <LoaderStyled version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                            viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
@@ -36,8 +35,6 @@ const Loader = (): JSX.Element => {
                         repeatCount="indefinite"/>
                 </path>
             </LoaderStyled>
-        </LoaderWrapped>
-    );
-};
+        </LoaderWrapped>;
 
 export default Loader;

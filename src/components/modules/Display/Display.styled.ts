@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import {container, device} from "../../../styles/mixins";
 
 export const DisplayStyled = styled.div`

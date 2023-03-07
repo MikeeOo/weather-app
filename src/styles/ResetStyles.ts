@@ -204,6 +204,6 @@ const ResetStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
     color: #000;
     padding: 0.2em 0;
   }
-`
+`;
 
 export default ResetStyles;

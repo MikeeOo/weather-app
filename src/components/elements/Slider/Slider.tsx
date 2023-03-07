@@ -1,22 +1,20 @@
 import {MutableRefObject, useRef} from "react";
 
-import Img from "../../blocks/Img";
-import ErrImg from "../../atoms/ErrImg";
-
-import {useAppSelector} from "../../../redux/store";
-
+import {useParams} from "react-router-dom";
 import SlickSlider from "react-slick";
-
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import {BsChevronLeft, BsChevronRight} from "react-icons/bs";
 
 import {IDetails, ILocationImagesURLs} from "../../../types/common.types";
 import {ISliderSettings} from "./Slider.types";
-
+import {useAppSelector} from "../../../redux/store";
 import {SliderButtonNextStyled, SliderButtonPrevStyled, SliderStyled} from "./Slider.styled";
+import Img from "../../blocks/Img";
+import ErrImg from "../../atoms/ErrImg";
 
-const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
-    const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
+const Slider = ({setCurrSlide}: IDetails): JSX.Element => {
+    const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
     const slider: MutableRefObject<SlickSlider | null> = useRef(null);
+    const locationDataDetails = useAppSelector(state  => state.locationData.locationDataDetails);
 
     const sliderSettings: ISliderSettings = {
         beforeChange: (current: number, next: number): void => setCurrSlide(next),
@@ -26,7 +24,7 @@ const Slider = ({params, setCurrSlide}: IDetails): JSX.Element => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows : false,
-        initialSlide: parseInt(params.locationImageIndex as string),
+        initialSlide: parseInt(params.locationImageIndex as string)
     };
 
     return (

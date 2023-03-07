@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+
 import {IImg} from "./Img.types";
 import {device} from "../../../styles/mixins";
 

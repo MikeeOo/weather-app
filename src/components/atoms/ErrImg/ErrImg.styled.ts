@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
-import {flexBox} from "../../../styles/mixins";
+
 import {IErrImg} from "./ErrImg.types";
+import {flexBox} from "../../../styles/mixins";
 
 export const ErrImgStyled = styled.div<IErrImg>`
   ${flexBox({jc: `center`, ai: `center`})};

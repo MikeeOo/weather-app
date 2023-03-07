@@ -1,4 +1,3 @@
-//____________IWeatherResponse____________//
 export interface IWeatherResponse {
     status: string;
     value: IWeatherData;
@@ -19,7 +18,7 @@ interface IWeatherWeather {
     description: string;
     icon: string;
 }
-//____________IImagesResponse____________//
+
 export interface IImagesResponse {
     status: string;
     value: IImagesData;

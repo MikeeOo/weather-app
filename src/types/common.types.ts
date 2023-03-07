@@ -17,6 +17,13 @@ export interface ILocationImagesURLs {
 }
 
 export interface IDetails {
-    params: Readonly<Partial<Record<string, string | undefined>>>;
     setCurrSlide: Dispatch<SetStateAction<number>>;
+}
+
+export enum RequestStatus {
+    idle ,
+    update,
+    add,
+    delete,
+    error
 }

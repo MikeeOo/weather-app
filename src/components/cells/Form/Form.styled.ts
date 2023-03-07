@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
-import {flexBox} from "../../../styles/mixins";
+
 import {IForm} from "./Form.types";
+import {flexBox} from "../../../styles/mixins";
 
 export const FormStyled = styled.form<IForm>`
   ${flexBox({jc: "center"})};

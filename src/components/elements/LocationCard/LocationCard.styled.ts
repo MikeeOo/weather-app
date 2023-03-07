@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import {device} from "../../../styles/mixins";
 import {Link} from "react-router-dom";
+
+import {device} from "../../../styles/mixins";
 
 export const LocationCardWrapped = styled.article`
   background-color: ${({theme}) => theme.color.elements};

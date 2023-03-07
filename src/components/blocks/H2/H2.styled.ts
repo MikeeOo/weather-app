@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+
 import {IH2} from "./H2.types";
 
 export const H2Styled = styled.h2<IH2>`

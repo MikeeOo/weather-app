@@ -1,5 +1,10 @@
 import styled, {css} from "styled-components";
+
 import {container, device, extraBold} from "../../../styles/mixins";
+
+interface IGuideError {
+  errorColor: string | boolean;
+}
 
 export const SearchWrapped = styled.section`
   margin-top: 2.4rem;
@@ -24,7 +29,7 @@ export const SearchStyled = styled.div`
   }
 `;
 
-export const GuideStyled = styled.div<{errorColor: string | boolean;}>`
+export const GuideStyled = styled.div<IGuideError>`
   padding-top: 2.4rem;
   text-align: center;
   color: ${({theme}) => theme.color.text};

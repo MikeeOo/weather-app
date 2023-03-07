@@ -1,19 +1,16 @@
-import Button from "../../cells/Button";
-import BtnContent from "../../atoms/BtnContent";
-
-import {NavigateFunction, useNavigate} from "react-router-dom";
-
-import {useAppDispatch} from "../../../redux/store";
-import {editLocationImage} from "../../../redux/slices/locationDataSlice";
-
+import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import {BsArrowLeft} from "react-icons/bs";
 
 import {INavigate} from "./Navigate.types";
-
+import {useAppDispatch} from "../../../redux/store";
+import {editLocationImage} from "../../../redux/slices/locationDataSlice";
 import {NavigateStyled} from "./Navigate.styled";
+import Button from "../../cells/Button";
+import BtnContent from "../../atoms/BtnContent";
 
-const Navigate = ({currSlide, params}: INavigate): JSX.Element => {
+const Navigate = ({currSlide}: INavigate): JSX.Element => {
     const dispatch = useAppDispatch();
+    const params: Readonly<Partial<Record<string, string | undefined>>> = useParams();
     const navigate: NavigateFunction = useNavigate();
 
     const returnToMain = (): void => {

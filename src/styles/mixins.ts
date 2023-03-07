@@ -1,4 +1,5 @@
 import {css} from "styled-components";
+
 import {IDevice} from "./mixins.types";
 
 export const container = css`
@@ -17,7 +18,7 @@ export const device: IDevice = {
   desktopS: css`min-width: 1729px`,
   desktopM: css`min-width: 1920px`,
   desktopL: css`min-width: 2200px`
-}
+};
 
 export const shadowOutline = css`
   opacity: 1;
